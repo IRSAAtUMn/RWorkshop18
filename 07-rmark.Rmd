@@ -70,10 +70,12 @@ for most purposes.
 
 R Markdown allows you to include R computations and graphics in documents
 *reproducibly*.  That means that anyone anywhere who gets your R markdown
-file can satisfy themselves that R did you you say it did.
+file can satisfy themselves that R did what you say it did.
 
 This is very different from the old fashioned way of putting results
-in documents, where one just cut-and-pastes (snarf-and-barfs) the results
+in documents, where one just cut-and-pastes
+([snarf-and-barfs](http://www.catb.org/jargon/html/S/snarf-ampersand-barf.html))
+the results
 into the document.  Then there is zero evidence that these numbers or figures
 were produced the way you claim.
 
