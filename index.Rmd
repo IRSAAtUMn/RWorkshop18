@@ -28,7 +28,7 @@ output:
         instapper: no
         vk: no  
 documentclass: book
-github-repo: IRSAAtUMn/RWorkshop17/docs
+github-repo: IRSAAtUMn/RWorkshop18/docs
 ---
 
 ```{r set-options, include=FALSE}
