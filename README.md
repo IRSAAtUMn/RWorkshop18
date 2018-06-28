@@ -5,7 +5,7 @@ Post all workshop materials here.
 In order to collate the materials into a single git book, you can simply drop your Rmd files (and any supporting images, etc) OUTSIDE the docs folder.  Someone will put these into the book later.  Or, if you're comfortable with R bookdown, read the steps below.
 
 
-1. In RStudio start a new project.  FILE / New Project > Version Control > Git.  In dialog box, paste the repository address: https://github.com/IRSAAtUMn/RWorkshop17.git and then click "Create Project" . 
+1. In RStudio start a new project.  FILE / New Project > Version Control > Git.  In dialog box, paste the repository address: https://github.com/IRSAAtUMn/RWorkshop18.git and then click "Create Project" . 
 
 2. Pull the current materials from github.     
 
