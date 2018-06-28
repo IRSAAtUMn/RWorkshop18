@@ -11,17 +11,18 @@ Attribution-ShareAlike 4.0 International License
 
 ## R
 
- * The version of R used to make this document is `r getRversion()`.
+ * The version of R used to make this document is 3.5.0.
 
- * The version of the `rmarkdown` package used to make this document is `r packageVersion("rmarkdown")`.
+ * The version of the `rmarkdown` package used to make this document is 1.9.
 
- * The version of the `knitr` package used to make this document is `r packageVersion("knitr")`.
+ * The version of the `knitr` package used to make this document is 1.20.
 
 ## Rendering
 
 This is a demo for using the R package `rmarkdown`.  To turn this file
 into HTML, use the R commands
-```{r eval=FALSE}
+
+```r
 library("rmarkdown")
 render("rmark.Rmd")
 ```
@@ -33,7 +34,8 @@ need the `rmarkdown` package).
 If instead you wish to make a PDF document or some other output format
 (many are possible), use the optional argument `output_format` to the
 `render` function.
-```{r eval=FALSE}
+
+```r
 library("rmarkdown")
 render("rmark.Rmd", output_format="pdf_document")
 ```
@@ -80,8 +82,13 @@ into the document.  Then there is zero evidence that these numbers or figures
 were produced the way you claim.
 
 For concreteness, here is a simple example.
-```{r}
+
+```r
 2 * pi
+```
+
+```
+## [1] 6.283185
 ```
 The result here was not cut-and-pasted into the document.  Instead the
 R expression `2 * pi` was executed in R and the result was put in the document
@@ -92,11 +99,14 @@ matches the R code that generated it.  There is no way they can fail to match
 (which can happen and often does happen with snarf-and-barf).
 
 Here is another concrete example.
-```{r histogram plot, fig.align='center'}
+
+```r
 # set.seed(42) # uncomment to always get the same plot
 hist(rnorm(1000), probability = TRUE)
 curve(dnorm, add = TRUE)
 ```
+
+<img src="07-rmark_files/figure-html/histogram plot-1.png" width="672" style="display: block; margin: auto;" />
 Every time the document is generated, this figure is different because the
 random sample produced by `rnorm(1000)` is different.  (If I wanted it to
 be the same, I could uncomment the `set.seed(42)` statement.)
@@ -181,7 +191,8 @@ from raw data?*  Probably not.
 The way experts use R is
 
  * type commands into a file, say `foo.R`.  Use
-```{r eval=FALSE}
+
+```r
 R CMD BATCH --vanilla foo.R
 ```
    to run R to do the analysis.
@@ -189,7 +200,8 @@ R CMD BATCH --vanilla foo.R
  * type commands with explanations into an R Markdown file, and render it
    in a clean R environment (empty global environment).  Either start R
    with a clean global environment (with `R --vanilla`) and do
-```{r eval=FALSE}
+
+```r
 library("rmarkdown")
 render("foo.Rmd")
 ```
@@ -283,8 +295,13 @@ Code chunks begin with ` ```{r} ` and end with ` ``` `.
 The delimiters have to begin in column one (I think).
 
 Here is an example.
-```{r}
+
+```r
 2 + 2
+```
+
+```
+## [1] 4
 ```
 This is a "code chunk" processed by `rmarkdown`.
 When `rmarkdown` hits such a thing, it processes it, runs R to get the
@@ -301,7 +318,8 @@ Here are some simple ones.
 
 The option `eval=FALSE` says to show the chunk
 but do not evaluate it, as here
-```{r eval=FALSE}
+
+```r
 2 + 2
 ```
 
@@ -309,15 +327,18 @@ The option `echo=FALSE` says to to **not** show the chunk
 but **do** evaluate it (just the opposite of `eval=FALSE`), as here
 (nothing appears in the output document because of `echo=FALSE` but
 the code chunk is executed).
-```{r echo=FALSE}
-hide <- 3
-```
+
 
 If you look at the document source you will see a hidden code chunk
 that assigns a value to the variable `hide` which we can see in a code
 chunk with no options
-```{r}
+
+```r
 hide
+```
+
+```
+## [1] 3
 ```
 
 This example also shows that all code chunks are executed in the same
@@ -333,7 +354,8 @@ We showed a simple plot above, here is a more complicated one.
 #### Make Up Data
 
 Simulate regression data, and do the regression.
-```{r}
+
+```r
 n <- 50
 x <- seq(1, n)
 a.true <- 3
@@ -345,13 +367,40 @@ out1 <- lm(y ~ x)
 summary(out1)
 ```
 
+```
+## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -26.533  -7.244   1.638   7.531  33.400 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   1.0932     4.0645   0.269    0.789    
+## x             1.4744     0.1387  10.629 3.31e-14 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 14.16 on 48 degrees of freedom
+## Multiple R-squared:  0.7018,	Adjusted R-squared:  0.6956 
+## F-statistic:   113 on 1 and 48 DF,  p-value: 3.315e-14
+```
+
 #### Figure with Code to Make It Shown
 
 The following figure is produced by the following code
-```{r fig.align='center', fig.cap='Simple Linear Regression'}
+
+```r
 plot(x, y)
 abline(out1)
 ```
+
+<div class="figure" style="text-align: center">
+<img src="07-rmark_files/figure-html/unnamed-chunk-11-1.png" alt="Simple Linear Regression" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-11)Simple Linear Regression</p>
+</div>
 Here we use the chunk options
 `fig.align='center', fig.cap='Simple Linear Regression'`
 to center the figure and to get the figure legend.
@@ -361,16 +410,38 @@ Note that options are comma separated.
 #### Figure with Code to Make It Not Shown
 
 For this example we do a cubic regression on the same data.
-```{r}
+
+```r
 out3 <- lm(y ~ x + I(x^2) + I(x^3))
 summary(out3)
 ```
+
+```
+## 
+## Call:
+## lm(formula = y ~ x + I(x^2) + I(x^3))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -28.543  -7.429   1.689   6.709  31.697 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)
+## (Intercept) -5.0997724  8.7489286  -0.583    0.563
+## x            2.3961226  1.4709844   1.629    0.110
+## I(x^2)      -0.0304160  0.0666656  -0.456    0.650
+## I(x^3)       0.0002707  0.0008598   0.315    0.754
+## 
+## Residual standard error: 14.32 on 46 degrees of freedom
+## Multiple R-squared:  0.7075,	Adjusted R-squared:  0.6884 
+## F-statistic: 37.09 on 3 and 46 DF,  p-value: 2.455e-12
+```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
-```{r fig.cap="Scatter Plot with Cubic Regression Curve", echo=FALSE, fig.align='center'}
-plot(x, y)
-curve(predict(out3, newdata=data.frame(x=x)), add = TRUE)
-```
+<div class="figure" style="text-align: center">
+<img src="07-rmark_files/figure-html/unnamed-chunk-13-1.png" alt="Scatter Plot with Cubic Regression Curve" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-13)Scatter Plot with Cubic Regression Curve</p>
+</div>
 
 This plot is made by a hidden code chunk that uses the option `echo=FALSE`
 in addition to `fig.align` and `fig.caption` that were also used in the
@@ -392,9 +463,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
-`r out3$coef[3]`
+-0.030416
 and
-`r out3$coef[4]`.
+2.7070463\times 10^{-4}.
 Magic!
 See the source for this document to see how the magic works.
 
@@ -405,25 +476,47 @@ by R, then everything is always as claimed.
 
 The same goes for tables.
 Here is a "table" of sorts in some R printout.
-```{r}
+
+```r
 out2 <- lm(y ~ x + I(x^2))
 anova(out1, out2, out3)
+```
+
+```
+## Analysis of Variance Table
+## 
+## Model 1: y ~ x
+## Model 2: y ~ x + I(x^2)
+## Model 3: y ~ x + I(x^2) + I(x^3)
+##   Res.Df    RSS Df Sum of Sq      F Pr(>F)
+## 1     48 9617.9                           
+## 2     47 9454.7  1   163.261 0.7960 0.3769
+## 3     46 9434.3  1    20.332 0.0991 0.7543
 ```
 
 We want to turn that into a table in output format we are creating.
 First we have to figure out what the output of the R function
 `anova` is and capture it so we can use it.
-```{r}
+
+```r
 foo <- anova(out1, out2, out3)
 class(foo)
+```
+
+```
+## [1] "anova"      "data.frame"
 ```
 So now we are ready to turn the matrix `foo`
 and the simplest way to do that seems to be the `kable` option on
 our R chunk
-```{r kable, echo = FALSE}
-options(knitr.kable.NA = '')
-knitr::kable(foo, caption = "ANOVA Table", digits = c(0, 0, 2, 0, 2, 3, 3))
-```
+
+Table: (\#tab:kable)ANOVA Table
+
+ Res.Df    RSS   Df   Sum of Sq     F   Pr(>F)
+-------  -----  ---  ----------  ----  -------
+     48   9618                                
+     47   9455    1         163   0.8    0.377
+     46   9434    1          20   0.1    0.754
 
 ## LaTeX Math
 
