@@ -13,7 +13,7 @@ Attribution-ShareAlike 4.0 International License
 
  * The version of R used to make this document is 3.5.0.
 
- * The version of the `rmarkdown` package used to make this document is 1.9.
+ * The version of the `rmarkdown` package used to make this document is 1.10.
 
  * The version of the `knitr` package used to make this document is 1.20.
 
@@ -106,7 +106,7 @@ hist(rnorm(1000), probability = TRUE)
 curve(dnorm, add = TRUE)
 ```
 
-<img src="07-rmark_files/figure-html/histogram plot-1.png" width="672" style="display: block; margin: auto;" />
+<img src="07-rmark_files/figure-html/histogram-1.png" width="672" style="display: block; margin: auto;" />
 Every time the document is generated, this figure is different because the
 random sample produced by `rnorm(1000)` is different.  (If I wanted it to
 be the same, I could uncomment the `set.seed(42)` statement.)
@@ -374,18 +374,18 @@ summary(out1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -26.533  -7.244   1.638   7.531  33.400 
+## -45.678  -9.774  -1.511  11.329  32.664 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   1.0932     4.0645   0.269    0.789    
-## x             1.4744     0.1387  10.629 3.31e-14 ***
+## (Intercept)   6.1109     4.9253   1.241    0.221    
+## x             1.2874     0.1681   7.659 7.25e-10 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 14.16 on 48 degrees of freedom
-## Multiple R-squared:  0.7018,	Adjusted R-squared:  0.6956 
-## F-statistic:   113 on 1 and 48 DF,  p-value: 3.315e-14
+## Residual standard error: 17.15 on 48 degrees of freedom
+## Multiple R-squared:   0.55,	Adjusted R-squared:  0.5406 
+## F-statistic: 58.66 on 1 and 48 DF,  p-value: 7.247e-10
 ```
 
 #### Figure with Code to Make It Shown
@@ -398,8 +398,8 @@ abline(out1)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-rmark_files/figure-html/unnamed-chunk-11-1.png" alt="Simple Linear Regression" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-11)Simple Linear Regression</p>
+<img src="07-rmark_files/figure-html/regression-1.png" alt="Simple Linear Regression" width="672" />
+<p class="caption">(\#fig:regression)Simple Linear Regression</p>
 </div>
 Here we use the chunk options
 `fig.align='center', fig.cap='Simple Linear Regression'`
@@ -423,24 +423,24 @@ summary(out3)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -28.543  -7.429   1.689   6.709  31.697 
+## -44.551 -10.123  -2.863  10.992  33.036 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(>|t|)
-## (Intercept) -5.0997724  8.7489286  -0.583    0.563
-## x            2.3961226  1.4709844   1.629    0.110
-## I(x^2)      -0.0304160  0.0666656  -0.456    0.650
-## I(x^3)       0.0002707  0.0008598   0.315    0.754
+## (Intercept)  7.779e+00  1.069e+01   0.728    0.470
+## x            1.165e+00  1.797e+00   0.648    0.520
+## I(x^2)      -1.743e-03  8.142e-02  -0.021    0.983
+## I(x^3)       9.105e-05  1.050e-03   0.087    0.931
 ## 
-## Residual standard error: 14.32 on 46 degrees of freedom
-## Multiple R-squared:  0.7075,	Adjusted R-squared:  0.6884 
-## F-statistic: 37.09 on 3 and 46 DF,  p-value: 2.455e-12
+## Residual standard error: 17.49 on 46 degrees of freedom
+## Multiple R-squared:  0.5515,	Adjusted R-squared:  0.5223 
+## F-statistic: 18.86 on 3 and 46 DF,  p-value: 4.055e-08
 ```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
 <div class="figure" style="text-align: center">
-<img src="07-rmark_files/figure-html/unnamed-chunk-13-1.png" alt="Scatter Plot with Cubic Regression Curve" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-13)Scatter Plot with Cubic Regression Curve</p>
+<img src="07-rmark_files/figure-html/cubic-1.png" alt="Scatter Plot with Cubic Regression Curve" width="672" />
+<p class="caption">(\#fig:cubic)Scatter Plot with Cubic Regression Curve</p>
 </div>
 
 This plot is made by a hidden code chunk that uses the option `echo=FALSE`
@@ -463,9 +463,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
--0.030416
+-0.0017427
 and
-2.7070463\times 10^{-4}.
+9.1047953\times 10^{-5}.
 Magic!
 See the source for this document to see how the magic works.
 
@@ -488,10 +488,10 @@ anova(out1, out2, out3)
 ## Model 1: y ~ x
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
-##   Res.Df    RSS Df Sum of Sq      F Pr(>F)
-## 1     48 9617.9                           
-## 2     47 9454.7  1   163.261 0.7960 0.3769
-## 3     46 9434.3  1    20.332 0.0991 0.7543
+##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
+## 1     48 14123                           
+## 2     47 14076  1    47.257 0.1545 0.6961
+## 3     46 14073  1     2.300 0.0075 0.9313
 ```
 
 We want to turn that into a table in output format we are creating.
@@ -512,11 +512,11 @@ our R chunk
 
 Table: (\#tab:kable)ANOVA Table
 
- Res.Df    RSS   Df   Sum of Sq     F   Pr(>F)
--------  -----  ---  ----------  ----  -------
-     48   9618                                
-     47   9455    1         163   0.8    0.377
-     46   9434    1          20   0.1    0.754
+ Res.Df     RSS   Df   Sum of Sq      F   Pr(>F)
+-------  ------  ---  ----------  -----  -------
+     48   14123                                 
+     47   14076    1          47   0.15    0.696
+     46   14073    1           2   0.01    0.931
 
 ## LaTeX Math
 
