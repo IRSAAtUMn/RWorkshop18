@@ -17,13 +17,22 @@ Attribution-ShareAlike 4.0 International License
 
  * The version of the `knitr` package used to make this document is `r packageVersion("knitr")`.
 
+ * The version of the `ggplot2` package used to make this document is `r packageVersion("ggplot2")`.
+
+```{r packages}
+library(rmarkdown)
+library(ggplot2)
+```
+
 ## Rendering
 
+The source for this file is
+https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/07-rmark.Rmd.
+
 This is a demo for using the R package `rmarkdown`.  To turn this file
-into HTML, use the R commands
+into HTML, after you have downloaded it, use the R commands
 ```{r eval=FALSE}
-library("rmarkdown")
-render("rmark.Rmd")
+render("07-rmark.Rmd")
 ```
 
 The same rendering can be accomplished in RStudio by loading the document
@@ -34,7 +43,6 @@ If instead you wish to make a PDF document or some other output format
 (many are possible), use the optional argument `output_format` to the
 `render` function.
 ```{r eval=FALSE}
-library("rmarkdown")
 render("rmark.Rmd", output_format="pdf_document")
 ```
 Many other output formats are
@@ -92,10 +100,13 @@ matches the R code that generated it.  There is no way they can fail to match
 (which can happen and often does happen with snarf-and-barf).
 
 Here is another concrete example.
-```{r fig.align='center', label='histogram'}
+```{r fig.align='center', label='histogram', fig.cap='Histogram with probability density function.'}
 # set.seed(42) # uncomment to always get the same plot
-hist(rnorm(1000), probability = TRUE)
-curve(dnorm, add = TRUE)
+mydata <- data.frame(x = rnorm(1000))
+ggplot(mydata, aes(x)) +
+    geom_histogram(aes(y = ..density..), binwidth = 0.5,
+        fill = "cornsilk", color = "black") +
+    stat_function(fun = dnorm, color = "maroon")
 ```
 Every time the document is generated, this figure is different because the
 random sample produced by `rnorm(1000)` is different.  (If I wanted it to
@@ -138,7 +149,7 @@ make you a lot more careful in doing the analysis.
 
 Outside of science there is no buzz about "replication crisis,"
 at least not yet.  The hype about "big data" is so strong that hardly
-**anyone is questioning whether results are correct or actually support
+anyone is questioning whether results are correct or actually support
 conclusions people draw from them.
 
 But even if the results are never made public, R Markdown can still help a lot.
@@ -190,7 +201,7 @@ R CMD BATCH --vanilla foo.R
    in a clean R environment (empty global environment).  Either start R
    with a clean global environment (with `R --vanilla`) and do
 ```{r eval=FALSE}
-library("rmarkdown")
+library(rmarkdown)
 render("foo.Rmd")
 ```
    or start RStudio with a clean global environment (on the "Tools" menu,
@@ -210,7 +221,16 @@ We have already exemplified a lot, but there's more.
 
 ### Title, Author, Date
 
-This document shows how to put in a title, author, and date using
+Because this document is a chapter in a "book" done by the
+```bookdown``` R package, it does not serve as a complete example
+of a standalone R markdown document.
+
+So we have made a toy example
+https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.Rmd,
+which renders as
+https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.html.
+
+That document shows how to put in a title, author, and date using
 the YAML comment block (set off by lines of hyphens at the top of
 the document).  There does not seem to be any reference where all of
 the stuff that can be put in a YAML comment is documented.  What

@@ -294,17 +294,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>The version of R used to make this document is 3.5.0.</p></li>
 <li><p>The version of the <code>rmarkdown</code> package used to make this document is 1.10.</p></li>
 <li><p>The version of the <code>knitr</code> package used to make this document is 1.20.</p></li>
+<li><p>The version of the <code>ggplot2</code> package used to make this document is 2.2.1.</p></li>
 </ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rmarkdown)
+<span class="kw">library</span>(ggplot2)</code></pre></div>
 </div>
 <div id="rendering" class="section level2">
 <h2><span class="header-section-number">7.3</span> Rendering</h2>
-<p>This is a demo for using the R package <code>rmarkdown</code>. To turn this file into HTML, use the R commands</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;rmarkdown&quot;</span>)
-<span class="kw">render</span>(<span class="st">&quot;rmark.Rmd&quot;</span>)</code></pre></div>
+<p>The source for this file is <a href="https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/07-rmark.Rmd" class="uri">https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/07-rmark.Rmd</a>.</p>
+<p>This is a demo for using the R package <code>rmarkdown</code>. To turn this file into HTML, after you have downloaded it, use the R commands</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">render</span>(<span class="st">&quot;07-rmark.Rmd&quot;</span>)</code></pre></div>
 <p>The same rendering can be accomplished in RStudio by loading the document into Rstudio and clicking the “Knit” button (this also does not seem to need the <code>rmarkdown</code> package).</p>
 <p>If instead you wish to make a PDF document or some other output format (many are possible), use the optional argument <code>output_format</code> to the <code>render</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;rmarkdown&quot;</span>)
-<span class="kw">render</span>(<span class="st">&quot;rmark.Rmd&quot;</span>, <span class="dt">output_format=</span><span class="st">&quot;pdf_document&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">render</span>(<span class="st">&quot;rmark.Rmd&quot;</span>, <span class="dt">output_format=</span><span class="st">&quot;pdf_document&quot;</span>)</code></pre></div>
 <p>Many other output formats are <a href="http://rmarkdown.rstudio.com/lesson-9.html">explained in the Rmarkdown documentation</a>.</p>
 </div>
 <div id="markdown" class="section level2">
@@ -334,9 +336,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>This happens <em>every time the document is generated</em> so the result always matches the R code that generated it. There is no way they can fail to match (which can happen and often does happen with snarf-and-barf).</p>
 <p>Here is another concrete example.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set.seed(42) # uncomment to always get the same plot</span>
-<span class="kw">hist</span>(<span class="kw">rnorm</span>(<span class="dv">1000</span>), <span class="dt">probability =</span> <span class="ot">TRUE</span>)
-<span class="kw">curve</span>(dnorm, <span class="dt">add =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="07-rmark_files/figure-html/histogram-1.png" width="672" style="display: block; margin: auto;" /> Every time the document is generated, this figure is different because the random sample produced by <code>rnorm(1000)</code> is different. (If I wanted it to be the same, I could uncomment the <code>set.seed(42)</code> statement.)</p>
+mydata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="dv">1000</span>))
+<span class="kw">ggplot</span>(mydata, <span class="kw">aes</span>(x)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">binwidth =</span> <span class="fl">0.5</span>,
+        <span class="dt">fill =</span> <span class="st">&quot;cornsilk&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">color =</span> <span class="st">&quot;maroon&quot;</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:histogram"></span>
+<img src="07-rmark_files/figure-html/histogram-1.png" alt="Histogram with probability density function." width="672" />
+<p class="caption">
+Figure 7.1: Histogram with probability density function.
+</p>
+</div>
+<p>Every time the document is generated, this figure is different because the random sample produced by <code>rnorm(1000)</code> is different. (If I wanted it to be the same, I could uncomment the <code>set.seed(42)</code> statement.)</p>
 <p>Again, there is no way the figure can fail to match the R code that generates it. The source code for the document (the <code>Rmd</code> file) is <em>proof</em> that everything is as the document claims. Anyone can verify the results by generating the document again.</p>
 </div>
 <div id="why-do-we-want-it" class="section level3">
@@ -355,7 +366,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="business-and-consulting" class="section level4">
 <h4><span class="header-section-number">7.5.3.2</span> Business and Consulting</h4>
-<p>Outside of science there is no buzz about “replication crisis,” at least not yet. The hype about “big data” is so strong that hardly **anyone is questioning whether results are correct or actually support conclusions people draw from them.</p>
+<p>Outside of science there is no buzz about “replication crisis,” at least not yet. The hype about “big data” is so strong that hardly anyone is questioning whether results are correct or actually support conclusions people draw from them.</p>
 <p>But even if the results are never made public, R Markdown can still help a lot. Imagine you have spent weeks doing a very complicated analysis. The day before it is finished, a co-worker tells you there is a mistake in the data that has to be fixed. If you are generating your report the old-fashioned way, it will take almost as much time to redo the report as to do it in the first place. If you have done the report with R Markdown, correct the data, rerun R Markdown, and you’re done.</p>
 <p>R Markdown takes some time to learn. And it always takes more time to do a data analysis while simultaneously documenting it than to do it while skipping the documentation. But it takes a lot less time than doing the analysis without documentation and adding documentation later. Also</p>
 <ul>
@@ -385,7 +396,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>type commands with explanations into an R Markdown file, and render it in a clean R environment (empty global environment). Either start R with a clean global environment (with <code>R --vanilla</code>) and do</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;rmarkdown&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rmarkdown)
 <span class="kw">render</span>(<span class="st">&quot;foo.Rmd&quot;</span>)</code></pre></div>
 <p>or start RStudio with a clean global environment (on the “Tools” menu, select “Global Options” and uncheck “Restore .RData into workspace at startup”, then close and restart) load the R Markdown file and click “Knit”.</p>
 <p>The important thing is using a clean R environment so all calculations are fully reproducible. Same results every time the analysis is rerun by you or by anybody, anywhere, on any computer that has R.</p>
@@ -398,7 +409,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>We have already exemplified a lot, but there’s more.</p>
 <div id="title-author-date" class="section level3">
 <h3><span class="header-section-number">7.6.1</span> Title, Author, Date</h3>
-<p>This document shows how to put in a title, author, and date using the YAML comment block (set off by lines of hyphens at the top of the document). There does not seem to be any reference where all of the stuff that can be put in a YAML comment is documented. What can be done with YAML comments is scattered in many places in the R Markdown documentation.</p>
+<p>Because this document is a chapter in a “book” done by the <code>bookdown</code> R package, it does not serve as a complete example of a standalone R markdown document.</p>
+<p>So we have made a toy example <a href="https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.Rmd" class="uri">https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.Rmd</a>, which renders as <a href="https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.html" class="uri">https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.html</a>.</p>
+<p>That document shows how to put in a title, author, and date using the YAML comment block (set off by lines of hyphens at the top of the document). There does not seem to be any reference where all of the stuff that can be put in a YAML comment is documented. What can be done with YAML comments is scattered in many places in the R Markdown documentation.</p>
 </div>
 <div id="headers" class="section level3">
 <h3><span class="header-section-number">7.6.2</span> Headers</h3>
@@ -479,19 +492,19 @@ out1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op"
 ## lm(formula = y ~ x)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -45.678  -9.774  -1.511  11.329  32.664 
+##    Min     1Q Median     3Q    Max 
+## -54.49 -11.57   0.07  13.16  34.06 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   6.1109     4.9253   1.241    0.221    
-## x             1.2874     0.1681   7.659 7.25e-10 ***
+## (Intercept)   5.6982     5.3792   1.059    0.295    
+## x             1.3139     0.1836   7.157 4.23e-09 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 17.15 on 48 degrees of freedom
-## Multiple R-squared:   0.55,  Adjusted R-squared:  0.5406 
-## F-statistic: 58.66 on 1 and 48 DF,  p-value: 7.247e-10</code></pre>
+## Residual standard error: 18.73 on 48 degrees of freedom
+## Multiple R-squared:  0.5162, Adjusted R-squared:  0.5061 
+## F-statistic: 51.22 on 1 and 48 DF,  p-value: 4.232e-09</code></pre>
 </div>
 <div id="figure-with-code-to-make-it-shown" class="section level4">
 <h4><span class="header-section-number">7.7.3.2</span> Figure with Code to Make It Shown</h4>
@@ -501,7 +514,7 @@ out1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op"
 <div class="figure" style="text-align: center"><span id="fig:regression"></span>
 <img src="07-rmark_files/figure-html/regression-1.png" alt="Simple Linear Regression" width="672" />
 <p class="caption">
-Figure 7.1: Simple Linear Regression
+Figure 7.2: Simple Linear Regression
 </p>
 </div>
 <p>Here we use the chunk options <code>fig.align='center', fig.cap='Simple Linear Regression'</code> to center the figure and to get the figure legend.</p>
@@ -518,23 +531,23 @@ Figure 7.1: Simple Linear Regression
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -44.551 -10.123  -2.863  10.992  33.036 
+## -54.134 -10.612  -0.851  13.646  34.760 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)  7.779e+00  1.069e+01   0.728    0.470
-## x            1.165e+00  1.797e+00   0.648    0.520
-## I(x^2)      -1.743e-03  8.142e-02  -0.021    0.983
-## I(x^3)       9.105e-05  1.050e-03   0.087    0.931
+##              Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)  2.909091  11.621491   0.250    0.803
+## x            2.197367   1.953957   1.125    0.267
+## I(x^2)      -0.050791   0.088554  -0.574    0.569
+## I(x^3)       0.000734   0.001142   0.643    0.524
 ## 
-## Residual standard error: 17.49 on 46 degrees of freedom
-## Multiple R-squared:  0.5515, Adjusted R-squared:  0.5223 
-## F-statistic: 18.86 on 3 and 46 DF,  p-value: 4.055e-08</code></pre>
+## Residual standard error: 19.02 on 46 degrees of freedom
+## Multiple R-squared:  0.5219, Adjusted R-squared:  0.4908 
+## F-statistic: 16.74 on 3 and 46 DF,  p-value: 1.719e-07</code></pre>
 Then we plot this figure with a hidden code chunk (so the R commands to make it do not appear in the document).
 <div class="figure" style="text-align: center"><span id="fig:cubic"></span>
 <img src="07-rmark_files/figure-html/cubic-1.png" alt="Scatter Plot with Cubic Regression Curve" width="672" />
 <p class="caption">
-Figure 7.2: Scatter Plot with Cubic Regression Curve
+Figure 7.3: Scatter Plot with Cubic Regression Curve
 </p>
 </div>
 <p>This plot is made by a hidden code chunk that uses the option <code>echo=FALSE</code> in addition to <code>fig.align</code> and <code>fig.caption</code> that were also used in the preceding section.</p>
@@ -545,7 +558,7 @@ Figure 7.2: Scatter Plot with Cubic Regression Curve
 <h3><span class="header-section-number">7.7.4</span> R in Text</h3>
 <p>The <em>no snarf and barf</em> rule must be adhered to strictly. None at all!</p>
 <p>When you want to refer to some number in R printout, either make a code chunk that contains the printout you want, or, much nicer looking, you can “inline” R printout.</p>
-<p>Here we show how to do that. The quadratic and cubic regression coefficients in the preceding regression were -0.0017427 and 9.104795310^{-5}. Magic! See the source for this document to see how the magic works.</p>
+<p>Here we show how to do that. The quadratic and cubic regression coefficients in the preceding regression were -0.0507911 and 7.340092310^{-4}. Magic! See the source for this document to see how the magic works.</p>
 <p>If you never snarf and barf, and everything in your document is computed by R, then everything is always as claimed.</p>
 </div>
 <div id="rtables" class="section level3">
@@ -559,9 +572,9 @@ Figure 7.2: Scatter Plot with Cubic Regression Curve
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
 ##   Res.Df   RSS Df Sum of Sq      F Pr(&gt;F)
-## 1     48 14123                           
-## 2     47 14076  1    47.257 0.1545 0.6961
-## 3     46 14073  1     2.300 0.0075 0.9313</code></pre>
+## 1     48 16846                           
+## 2     47 16796  1    49.789 0.1376 0.7124
+## 3     46 16647  1   149.486 0.4131 0.5236</code></pre>
 <p>We want to turn that into a table in output format we are creating. First we have to figure out what the output of the R function <code>anova</code> is and capture it so we can use it.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span><span class="kw">anova</span>(out1, out2, out3)
 <span class="kw">class</span>(foo)</code></pre></div>
@@ -582,7 +595,7 @@ Figure 7.2: Scatter Plot with Cubic Regression Curve
 <tbody>
 <tr class="odd">
 <td align="right">48</td>
-<td align="right">14123</td>
+<td align="right">16846</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right"></td>
@@ -590,19 +603,19 @@ Figure 7.2: Scatter Plot with Cubic Regression Curve
 </tr>
 <tr class="even">
 <td align="right">47</td>
-<td align="right">14076</td>
+<td align="right">16796</td>
 <td align="right">1</td>
-<td align="right">47</td>
-<td align="right">0.15</td>
-<td align="right">0.696</td>
+<td align="right">50</td>
+<td align="right">0.14</td>
+<td align="right">0.712</td>
 </tr>
 <tr class="odd">
 <td align="right">46</td>
-<td align="right">14073</td>
+<td align="right">16647</td>
 <td align="right">1</td>
-<td align="right">2</td>
-<td align="right">0.01</td>
-<td align="right">0.931</td>
+<td align="right">149</td>
+<td align="right">0.41</td>
+<td align="right">0.524</td>
 </tr>
 </tbody>
 </table>

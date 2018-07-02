@@ -139,8 +139,8 @@ summary.rq(f1, se="boot", bsmethod="xy", R=1000)
 ## 
 ## Coefficients:
 ##               Value    Std. Error t value  Pr(>|t|)
-## (Intercept)    0.18168  0.09852    1.84401  0.06645
-## log10(income)  0.87659  0.03383   25.91041  0.00000
+## (Intercept)    0.18168  0.10401    1.74667  0.08201
+## log10(income)  0.87659  0.03560   24.62198  0.00000
 ```
 
 ```r
@@ -155,8 +155,8 @@ summary.rq(f1, se="boot", bsmethod="pwy", R=1000)
 ## 
 ## Coefficients:
 ##               Value    Std. Error t value  Pr(>|t|)
-## (Intercept)    0.18168  0.10297    1.76432  0.07899
-## log10(income)  0.87659  0.03530   24.83381  0.00000
+## (Intercept)    0.18168  0.10388    1.74897  0.08161
+## log10(income)  0.87659  0.03554   24.66235  0.00000
 ```
 
 ## Pointwise confidence intervals

@@ -17,14 +17,24 @@ Attribution-ShareAlike 4.0 International License
 
  * The version of the `knitr` package used to make this document is 1.20.
 
-## Rendering
+ * The version of the `ggplot2` package used to make this document is 2.2.1.
 
-This is a demo for using the R package `rmarkdown`.  To turn this file
-into HTML, use the R commands
 
 ```r
-library("rmarkdown")
-render("rmark.Rmd")
+library(rmarkdown)
+library(ggplot2)
+```
+
+## Rendering
+
+The source for this file is
+https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/07-rmark.Rmd.
+
+This is a demo for using the R package `rmarkdown`.  To turn this file
+into HTML, after you have downloaded it, use the R commands
+
+```r
+render("07-rmark.Rmd")
 ```
 
 The same rendering can be accomplished in RStudio by loading the document
@@ -36,7 +46,6 @@ If instead you wish to make a PDF document or some other output format
 `render` function.
 
 ```r
-library("rmarkdown")
 render("rmark.Rmd", output_format="pdf_document")
 ```
 Many other output formats are
@@ -102,11 +111,17 @@ Here is another concrete example.
 
 ```r
 # set.seed(42) # uncomment to always get the same plot
-hist(rnorm(1000), probability = TRUE)
-curve(dnorm, add = TRUE)
+mydata <- data.frame(x = rnorm(1000))
+ggplot(mydata, aes(x)) +
+    geom_histogram(aes(y = ..density..), binwidth = 0.5,
+        fill = "cornsilk", color = "black") +
+    stat_function(fun = dnorm, color = "maroon")
 ```
 
-<img src="07-rmark_files/figure-html/histogram-1.png" width="672" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="07-rmark_files/figure-html/histogram-1.png" alt="Histogram with probability density function." width="672" />
+<p class="caption">(\#fig:histogram)Histogram with probability density function.</p>
+</div>
 Every time the document is generated, this figure is different because the
 random sample produced by `rnorm(1000)` is different.  (If I wanted it to
 be the same, I could uncomment the `set.seed(42)` statement.)
@@ -148,7 +163,7 @@ make you a lot more careful in doing the analysis.
 
 Outside of science there is no buzz about "replication crisis,"
 at least not yet.  The hype about "big data" is so strong that hardly
-**anyone is questioning whether results are correct or actually support
+anyone is questioning whether results are correct or actually support
 conclusions people draw from them.
 
 But even if the results are never made public, R Markdown can still help a lot.
@@ -202,7 +217,7 @@ R CMD BATCH --vanilla foo.R
    with a clean global environment (with `R --vanilla`) and do
 
 ```r
-library("rmarkdown")
+library(rmarkdown)
 render("foo.Rmd")
 ```
    or start RStudio with a clean global environment (on the "Tools" menu,
@@ -222,7 +237,16 @@ We have already exemplified a lot, but there's more.
 
 ### Title, Author, Date
 
-This document shows how to put in a title, author, and date using
+Because this document is a chapter in a "book" done by the
+```bookdown``` R package, it does not serve as a complete example
+of a standalone R markdown document.
+
+So we have made a toy example
+https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.Rmd,
+which renders as
+https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.html.
+
+That document shows how to put in a title, author, and date using
 the YAML comment block (set off by lines of hyphens at the top of
 the document).  There does not seem to be any reference where all of
 the stuff that can be put in a YAML comment is documented.  What
@@ -373,19 +397,19 @@ summary(out1)
 ## lm(formula = y ~ x)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -45.678  -9.774  -1.511  11.329  32.664 
+##    Min     1Q Median     3Q    Max 
+## -54.49 -11.57   0.07  13.16  34.06 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   6.1109     4.9253   1.241    0.221    
-## x             1.2874     0.1681   7.659 7.25e-10 ***
+## (Intercept)   5.6982     5.3792   1.059    0.295    
+## x             1.3139     0.1836   7.157 4.23e-09 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 17.15 on 48 degrees of freedom
-## Multiple R-squared:   0.55,	Adjusted R-squared:  0.5406 
-## F-statistic: 58.66 on 1 and 48 DF,  p-value: 7.247e-10
+## Residual standard error: 18.73 on 48 degrees of freedom
+## Multiple R-squared:  0.5162,	Adjusted R-squared:  0.5061 
+## F-statistic: 51.22 on 1 and 48 DF,  p-value: 4.232e-09
 ```
 
 #### Figure with Code to Make It Shown
@@ -423,18 +447,18 @@ summary(out3)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -44.551 -10.123  -2.863  10.992  33.036 
+## -54.134 -10.612  -0.851  13.646  34.760 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)
-## (Intercept)  7.779e+00  1.069e+01   0.728    0.470
-## x            1.165e+00  1.797e+00   0.648    0.520
-## I(x^2)      -1.743e-03  8.142e-02  -0.021    0.983
-## I(x^3)       9.105e-05  1.050e-03   0.087    0.931
+##              Estimate Std. Error t value Pr(>|t|)
+## (Intercept)  2.909091  11.621491   0.250    0.803
+## x            2.197367   1.953957   1.125    0.267
+## I(x^2)      -0.050791   0.088554  -0.574    0.569
+## I(x^3)       0.000734   0.001142   0.643    0.524
 ## 
-## Residual standard error: 17.49 on 46 degrees of freedom
-## Multiple R-squared:  0.5515,	Adjusted R-squared:  0.5223 
-## F-statistic: 18.86 on 3 and 46 DF,  p-value: 4.055e-08
+## Residual standard error: 19.02 on 46 degrees of freedom
+## Multiple R-squared:  0.5219,	Adjusted R-squared:  0.4908 
+## F-statistic: 16.74 on 3 and 46 DF,  p-value: 1.719e-07
 ```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
@@ -463,9 +487,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
--0.0017427
+-0.0507911
 and
-9.1047953\times 10^{-5}.
+7.3400923\times 10^{-4}.
 Magic!
 See the source for this document to see how the magic works.
 
@@ -489,9 +513,9 @@ anova(out1, out2, out3)
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
 ##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
-## 1     48 14123                           
-## 2     47 14076  1    47.257 0.1545 0.6961
-## 3     46 14073  1     2.300 0.0075 0.9313
+## 1     48 16846                           
+## 2     47 16796  1    49.789 0.1376 0.7124
+## 3     46 16647  1   149.486 0.4131 0.5236
 ```
 
 We want to turn that into a table in output format we are creating.
@@ -514,9 +538,9 @@ Table: (\#tab:kable)ANOVA Table
 
  Res.Df     RSS   Df   Sum of Sq      F   Pr(>F)
 -------  ------  ---  ----------  -----  -------
-     48   14123                                 
-     47   14076    1          47   0.15    0.696
-     46   14073    1           2   0.01    0.931
+     48   16846                                 
+     47   16796    1          50   0.14    0.712
+     46   16647    1         149   0.41    0.524
 
 ## LaTeX Math
 
