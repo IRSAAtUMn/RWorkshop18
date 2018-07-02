@@ -410,7 +410,7 @@ Figure 7.1: Histogram with probability density function.
 <div id="title-author-date" class="section level3">
 <h3><span class="header-section-number">7.6.1</span> Title, Author, Date</h3>
 <p>Because this document is a chapter in a “book” done by the <code>bookdown</code> R package, it does not serve as a complete example of a standalone R markdown document.</p>
-<p>So we have made a toy example <a href="https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.Rmd" class="uri">https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.Rmd</a>, which renders as <a href="https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.html" class="uri">https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.html</a>.</p>
+<p>So we have made a toy example <a href="https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.Rmd" class="uri">https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.Rmd</a>, which renders as <a href="http://htmlpreview.github.io/?https://github.com/IRSAAtUMn/RWorkshop18/blob/master/foo/foo.html" class="uri">http://htmlpreview.github.io/?https://github.com/IRSAAtUMn/RWorkshop18/blob/master/foo/foo.html</a></p>
 <p>That document shows how to put in a title, author, and date using the YAML comment block (set off by lines of hyphens at the top of the document). There does not seem to be any reference where all of the stuff that can be put in a YAML comment is documented. What can be done with YAML comments is scattered in many places in the R Markdown documentation.</p>
 </div>
 <div id="headers" class="section level3">
@@ -492,25 +492,27 @@ out1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op"
 ## lm(formula = y ~ x)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -54.49 -11.57   0.07  13.16  34.06 
+##     Min      1Q  Median      3Q     Max 
+## -33.504 -10.026  -1.934  13.554  31.917 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   5.6982     5.3792   1.059    0.295    
-## x             1.3139     0.1836   7.157 4.23e-09 ***
+## (Intercept)   5.3332     4.6404   1.149    0.256    
+## x             1.3737     0.1584   8.674 2.15e-11 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 18.73 on 48 degrees of freedom
-## Multiple R-squared:  0.5162, Adjusted R-squared:  0.5061 
-## F-statistic: 51.22 on 1 and 48 DF,  p-value: 4.232e-09</code></pre>
+## Residual standard error: 16.16 on 48 degrees of freedom
+## Multiple R-squared:  0.6105, Adjusted R-squared:  0.6024 
+## F-statistic: 75.23 on 1 and 48 DF,  p-value: 2.155e-11</code></pre>
 </div>
 <div id="figure-with-code-to-make-it-shown" class="section level4">
 <h4><span class="header-section-number">7.7.3.2</span> Figure with Code to Make It Shown</h4>
 <p>The following figure is produced by the following code</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, y)
-<span class="kw">abline</span>(out1)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, y)
+<span class="kw">ggplot</span>(mydata, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</code></pre></div>
+<pre><code>## Warning in grid.Call.graphics(C_polygon, x$x, x$y, index): semi-
+## transparency is not supported on this device: reported only once per page</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:regression"></span>
 <img src="07-rmark_files/figure-html/regression-1.png" alt="Simple Linear Regression" width="672" />
 <p class="caption">
@@ -531,18 +533,18 @@ Figure 7.2: Simple Linear Regression
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -54.134 -10.612  -0.851  13.646  34.760 
+## -32.871 -10.501  -1.746  12.705  31.097 
 ## 
 ## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)  2.909091  11.621491   0.250    0.803
-## x            2.197367   1.953957   1.125    0.267
-## I(x^2)      -0.050791   0.088554  -0.574    0.569
-## I(x^3)       0.000734   0.001142   0.643    0.524
+##               Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) 11.8400966 10.0242323   1.181    0.244
+## x            0.1239091  1.6854052   0.074    0.942
+## I(x^2)       0.0542359  0.0763832   0.710    0.481
+## I(x^3)      -0.0006521  0.0009851  -0.662    0.511
 ## 
-## Residual standard error: 19.02 on 46 degrees of freedom
-## Multiple R-squared:  0.5219, Adjusted R-squared:  0.4908 
-## F-statistic: 16.74 on 3 and 46 DF,  p-value: 1.719e-07</code></pre>
+## Residual standard error: 16.41 on 46 degrees of freedom
+## Multiple R-squared:  0.6152, Adjusted R-squared:  0.5901 
+## F-statistic: 24.51 on 3 and 46 DF,  p-value: 1.263e-09</code></pre>
 Then we plot this figure with a hidden code chunk (so the R commands to make it do not appear in the document).
 <div class="figure" style="text-align: center"><span id="fig:cubic"></span>
 <img src="07-rmark_files/figure-html/cubic-1.png" alt="Scatter Plot with Cubic Regression Curve" width="672" />
@@ -558,7 +560,7 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 <h3><span class="header-section-number">7.7.4</span> R in Text</h3>
 <p>The <em>no snarf and barf</em> rule must be adhered to strictly. None at all!</p>
 <p>When you want to refer to some number in R printout, either make a code chunk that contains the printout you want, or, much nicer looking, you can “inline” R printout.</p>
-<p>Here we show how to do that. The quadratic and cubic regression coefficients in the preceding regression were -0.0507911 and 7.340092310^{-4}. Magic! See the source for this document to see how the magic works.</p>
+<p>Here we show how to do that. The quadratic and cubic regression coefficients in the preceding regression were 0.0542359 and -6.520529110^{-4}. Magic! See the source for this document to see how the magic works.</p>
 <p>If you never snarf and barf, and everything in your document is computed by R, then everything is always as claimed.</p>
 </div>
 <div id="rtables" class="section level3">
@@ -572,14 +574,14 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
 ##   Res.Df   RSS Df Sum of Sq      F Pr(&gt;F)
-## 1     48 16846                           
-## 2     47 16796  1    49.789 0.1376 0.7124
-## 3     46 16647  1   149.486 0.4131 0.5236</code></pre>
+## 1     48 12536                           
+## 2     47 12503  1    32.843 0.1220 0.7285
+## 3     46 12385  1   117.967 0.4381 0.5113</code></pre>
 <p>We want to turn that into a table in output format we are creating. First we have to figure out what the output of the R function <code>anova</code> is and capture it so we can use it.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span><span class="kw">anova</span>(out1, out2, out3)
 <span class="kw">class</span>(foo)</code></pre></div>
 <pre><code>## [1] &quot;anova&quot;      &quot;data.frame&quot;</code></pre>
-<p>So now we are ready to turn the matrix <code>foo</code> and the simplest way to do that seems to be the <code>kable</code> option on our R chunk</p>
+<p>So now we are ready to turn the data frame <code>foo</code> into a table and the simplest way to do that seems to be the <code>kable</code> option on our R chunk</p>
 <table>
 <caption><span id="tab:kable">Table 7.1: </span>ANOVA Table</caption>
 <thead>
@@ -595,7 +597,7 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 <tbody>
 <tr class="odd">
 <td align="right">48</td>
-<td align="right">16846</td>
+<td align="right">12536</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right"></td>
@@ -603,19 +605,19 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 </tr>
 <tr class="even">
 <td align="right">47</td>
-<td align="right">16796</td>
+<td align="right">12503</td>
 <td align="right">1</td>
-<td align="right">50</td>
-<td align="right">0.14</td>
-<td align="right">0.712</td>
+<td align="right">33</td>
+<td align="right">0.12</td>
+<td align="right">0.728</td>
 </tr>
 <tr class="odd">
 <td align="right">46</td>
-<td align="right">16647</td>
+<td align="right">12385</td>
 <td align="right">1</td>
-<td align="right">149</td>
-<td align="right">0.41</td>
-<td align="right">0.524</td>
+<td align="right">118</td>
+<td align="right">0.44</td>
+<td align="right">0.511</td>
 </tr>
 </tbody>
 </table>
@@ -662,12 +664,11 @@ If <span class="math display">\[
    &amp; =
    \frac{1}{12}
 \end{align}\]</span>
-<p>Unfortunately, to get this to work for HTML output requires (at least temporarily, until the <code>rmarkdown</code> package gets fixed) some arcane magic in the YAML header (just copy the one for this document).</p>
 </div>
 <div id="caching-computation" class="section level2">
 <h2><span class="header-section-number">7.9</span> Caching Computation</h2>
 <p>If computations in an R Markdown take so much time that editing the document becomes annoying, you can “cache” the computations by adding the option <code>cache=TRUE</code> to time consuming code chunks.</p>
-<p>This feature is rather smart. Usually if anything changes in the input to the cached computations, the computations will be redone (for example if there were a change to the raw data), but if nothing has changed the computations will not be redone (the cached results will be used again) and no time is lost. So the computations are redone if and only if they need to be redone.</p>
+<p>This feature is rather smart. If anything changes in code for the cached computations, then the computations will be redone. But if nothing has changed, the computations will not be redone (the cached results will be used again) and no time is lost.</p>
 <p>My Stat 3701 course notes have an example that does caching:</p>
 <ul>
 <li><p><a href="http://www.stat.umn.edu/geyer/3701/notes/mcmc-bayes.Rmd">R Markdown source</a> and</p></li>

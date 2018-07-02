@@ -238,13 +238,13 @@ We have already exemplified a lot, but there's more.
 ### Title, Author, Date
 
 Because this document is a chapter in a "book" done by the
-```bookdown``` R package, it does not serve as a complete example
+`bookdown` R package, it does not serve as a complete example
 of a standalone R markdown document.
 
 So we have made a toy example
 https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.Rmd,
 which renders as
-https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.html.
+http://htmlpreview.github.io/?https://github.com/IRSAAtUMn/RWorkshop18/blob/master/foo/foo.html
 
 That document shows how to put in a title, author, and date using
 the YAML comment block (set off by lines of hyphens at the top of
@@ -397,19 +397,19 @@ summary(out1)
 ## lm(formula = y ~ x)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -54.49 -11.57   0.07  13.16  34.06 
+##     Min      1Q  Median      3Q     Max 
+## -33.504 -10.026  -1.934  13.554  31.917 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   5.6982     5.3792   1.059    0.295    
-## x             1.3139     0.1836   7.157 4.23e-09 ***
+## (Intercept)   5.3332     4.6404   1.149    0.256    
+## x             1.3737     0.1584   8.674 2.15e-11 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 18.73 on 48 degrees of freedom
-## Multiple R-squared:  0.5162,	Adjusted R-squared:  0.5061 
-## F-statistic: 51.22 on 1 and 48 DF,  p-value: 4.232e-09
+## Residual standard error: 16.16 on 48 degrees of freedom
+## Multiple R-squared:  0.6105,	Adjusted R-squared:  0.6024 
+## F-statistic: 75.23 on 1 and 48 DF,  p-value: 2.155e-11
 ```
 
 #### Figure with Code to Make It Shown
@@ -417,8 +417,13 @@ summary(out1)
 The following figure is produced by the following code
 
 ```r
-plot(x, y)
-abline(out1)
+mydata <- data.frame(x, y)
+ggplot(mydata, aes(x = x, y = y)) + geom_point() + geom_smooth(method = "lm")
+```
+
+```
+## Warning in grid.Call.graphics(C_polygon, x$x, x$y, index): semi-
+## transparency is not supported on this device: reported only once per page
 ```
 
 <div class="figure" style="text-align: center">
@@ -447,18 +452,18 @@ summary(out3)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -54.134 -10.612  -0.851  13.646  34.760 
+## -32.871 -10.501  -1.746  12.705  31.097 
 ## 
 ## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)
-## (Intercept)  2.909091  11.621491   0.250    0.803
-## x            2.197367   1.953957   1.125    0.267
-## I(x^2)      -0.050791   0.088554  -0.574    0.569
-## I(x^3)       0.000734   0.001142   0.643    0.524
+##               Estimate Std. Error t value Pr(>|t|)
+## (Intercept) 11.8400966 10.0242323   1.181    0.244
+## x            0.1239091  1.6854052   0.074    0.942
+## I(x^2)       0.0542359  0.0763832   0.710    0.481
+## I(x^3)      -0.0006521  0.0009851  -0.662    0.511
 ## 
-## Residual standard error: 19.02 on 46 degrees of freedom
-## Multiple R-squared:  0.5219,	Adjusted R-squared:  0.4908 
-## F-statistic: 16.74 on 3 and 46 DF,  p-value: 1.719e-07
+## Residual standard error: 16.41 on 46 degrees of freedom
+## Multiple R-squared:  0.6152,	Adjusted R-squared:  0.5901 
+## F-statistic: 24.51 on 3 and 46 DF,  p-value: 1.263e-09
 ```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
@@ -487,9 +492,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
--0.0507911
+0.0542359
 and
-7.3400923\times 10^{-4}.
+-6.5205291\times 10^{-4}.
 Magic!
 See the source for this document to see how the magic works.
 
@@ -513,9 +518,9 @@ anova(out1, out2, out3)
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
 ##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
-## 1     48 16846                           
-## 2     47 16796  1    49.789 0.1376 0.7124
-## 3     46 16647  1   149.486 0.4131 0.5236
+## 1     48 12536                           
+## 2     47 12503  1    32.843 0.1220 0.7285
+## 3     46 12385  1   117.967 0.4381 0.5113
 ```
 
 We want to turn that into a table in output format we are creating.
@@ -530,7 +535,7 @@ class(foo)
 ```
 ## [1] "anova"      "data.frame"
 ```
-So now we are ready to turn the matrix `foo`
+So now we are ready to turn the data frame `foo` into a table
 and the simplest way to do that seems to be the `kable` option on
 our R chunk
 
@@ -538,9 +543,9 @@ Table: (\#tab:kable)ANOVA Table
 
  Res.Df     RSS   Df   Sum of Sq      F   Pr(>F)
 -------  ------  ---  ----------  -----  -------
-     48   16846                                 
-     47   16796    1          50   0.14    0.712
-     46   16647    1         149   0.41    0.524
+     48   12536                                 
+     47   12503    1          33   0.12    0.728
+     46   12385    1         118   0.44    0.511
 
 ## LaTeX Math
 
@@ -593,9 +598,6 @@ then
    & =
    \frac{1}{12}
 \end{align}
-Unfortunately, to get this to work for HTML output requires
-(at least temporarily, until the `rmarkdown` package gets fixed)
-some arcane magic in the YAML header (just copy the one for this document).
 
 ## Caching Computation
 
@@ -603,12 +605,11 @@ If computations in an R Markdown take so much time that editing the document
 becomes annoying, you can "cache" the computations by adding the option
 `cache=TRUE` to time consuming code chunks.
 
-This feature is rather smart.  Usually if anything changes in the input
-to the cached computations, the computations will be redone (for example
-if there were a change to the raw data), but if nothing has changed the
+This feature is rather smart.  If anything changes in code for
+the cached computations, then the computations will be redone.
+But if nothing has changed, the
 computations will not be redone (the cached results will be used again)
-and no time is lost.  So the computations are redone if and only if they
-need to be redone.
+and no time is lost.
 
 My Stat 3701 course notes have an example that does caching:
 

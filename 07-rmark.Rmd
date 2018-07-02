@@ -222,7 +222,7 @@ We have already exemplified a lot, but there's more.
 ### Title, Author, Date
 
 Because this document is a chapter in a "book" done by the
-```bookdown``` R package, it does not serve as a complete example
+`bookdown` R package, it does not serve as a complete example
 of a standalone R markdown document.
 
 So we have made a toy example
@@ -369,8 +369,8 @@ summary(out1)
 
 The following figure is produced by the following code
 ```{r fig.align='center', fig.cap='Simple Linear Regression', label='regression'}
-plot(x, y)
-abline(out1)
+mydata <- data.frame(x, y)
+ggplot(mydata, aes(x = x, y = y)) + geom_point() + geom_smooth(method = "lm")
 ```
 Here we use the chunk options
 `fig.align='center', fig.cap='Simple Linear Regression'`
@@ -388,8 +388,8 @@ summary(out3)
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
 ```{r fig.cap="Scatter Plot with Cubic Regression Curve", echo=FALSE, fig.align='center', label='cubic'}
-plot(x, y)
-curve(predict(out3, newdata=data.frame(x=x)), add = TRUE)
+ggplot(mydata, aes(x = x, y = y)) + geom_point() +
+    geom_smooth(method = "lm", se = FALSE, formula = y ~ poly(x, 3))
 ```
 
 This plot is made by a hidden code chunk that uses the option `echo=FALSE`
@@ -437,7 +437,7 @@ First we have to figure out what the output of the R function
 foo <- anova(out1, out2, out3)
 class(foo)
 ```
-So now we are ready to turn the matrix `foo`
+So now we are ready to turn the data frame `foo` into a table
 and the simplest way to do that seems to be the `kable` option on
 our R chunk
 ```{r kable, echo = FALSE}
@@ -496,9 +496,6 @@ then
    & =
    \frac{1}{12}
 \end{align}
-Unfortunately, to get this to work for HTML output requires
-(at least temporarily, until the `rmarkdown` package gets fixed)
-some arcane magic in the YAML header (just copy the one for this document).
 
 ## Caching Computation
 
@@ -506,12 +503,11 @@ If computations in an R Markdown take so much time that editing the document
 becomes annoying, you can "cache" the computations by adding the option
 `cache=TRUE` to time consuming code chunks.
 
-This feature is rather smart.  Usually if anything changes in the input
-to the cached computations, the computations will be redone (for example
-if there were a change to the raw data), but if nothing has changed the
+This feature is rather smart.  If anything changes in code for
+the cached computations, then the computations will be redone.
+But if nothing has changed, the
 computations will not be redone (the cached results will be used again)
-and no time is lost.  So the computations are redone if and only if they
-need to be redone.
+and no time is lost.
 
 My Stat 3701 course notes have an example that does caching:
 
