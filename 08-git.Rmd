@@ -45,7 +45,8 @@ I use it for
  * papers (versions of the paper, tech reports, data, R scripts for data
     analysis),
 
- * R packages (the traditional source code control, although there is a lot
+ * R packages (the traditional use of source code control,
+    although there is a lot
     besides source code in an R package),
 
  * notes (long before they turn into papers, I put them under version
