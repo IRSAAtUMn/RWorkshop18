@@ -228,7 +228,7 @@ of a standalone R markdown document.
 So we have made a toy example
 https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.Rmd,
 which renders as
-https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/foo/foo.html.
+http://htmlpreview.github.io/?https://github.com/IRSAAtUMn/RWorkshop18/blob/master/foo/foo.html
 
 That document shows how to put in a title, author, and date using
 the YAML comment block (set off by lines of hyphens at the top of

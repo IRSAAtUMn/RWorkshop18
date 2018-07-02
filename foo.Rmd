@@ -1,9 +1,0 @@
----
-title: "An Example with YAML"
-author: "Charles J. Geyer"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
----
-
-# Level 1 Heading
-
-Blah, blah, blah.
