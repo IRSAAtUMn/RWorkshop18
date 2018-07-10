@@ -12,7 +12,7 @@ Attribution-ShareAlike 4.0 International License
 
 ## R
 
- * The version of R used to make this document is 3.5.0.
+ * The version of R used to make this document is 3.5.1.
 
  * The version of the `rmarkdown` package used to make this document is 1.10.
 

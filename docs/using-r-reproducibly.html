@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="quantile-regression-in-r.html">
+<link rel="prev" href="logistic-regression-in-r.html">
 <link rel="next" href="an-r-markdown-demo.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -172,15 +172,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="quantile-regression-in-r.html"><a href="quantile-regression-in-r.html"><i class="fa fa-check"></i><b>5</b> Quantile Regression in R</a><ul>
-<li class="chapter" data-level="5.1" data-path="quantile-regression-in-r.html"><a href="quantile-regression-in-r.html#goals"><i class="fa fa-check"></i><b>5.1</b> Goals</a></li>
-<li class="chapter" data-level="5.2" data-path="quantile-regression-in-r.html"><a href="quantile-regression-in-r.html#r-package-quantreg"><i class="fa fa-check"></i><b>5.2</b> R Package quantreg</a></li>
-<li class="chapter" data-level="5.3" data-path="quantile-regression-in-r.html"><a href="quantile-regression-in-r.html#fitting-linear-quantile-regression-in-r"><i class="fa fa-check"></i><b>5.3</b> Fitting linear quantile regression in R</a></li>
-<li class="chapter" data-level="5.4" data-path="quantile-regression-in-r.html"><a href="quantile-regression-in-r.html#example-1-fit-quantile-regression-at-one-quantile-level"><i class="fa fa-check"></i><b>5.4</b> Example 1: Fit quantile regression at one quantile level</a></li>
-<li class="chapter" data-level="5.5" data-path="quantile-regression-in-r.html"><a href="quantile-regression-in-r.html#example-2-fit-quantile-regression-at-multiple-quantile-levels-simultaneously"><i class="fa fa-check"></i><b>5.5</b> Example 2: Fit quantile regression at multiple quantile levels simultaneously</a></li>
-<li class="chapter" data-level="5.6" data-path="quantile-regression-in-r.html"><a href="quantile-regression-in-r.html#inference-on-linear-quantile-regression-in-r"><i class="fa fa-check"></i><b>5.6</b> Inference on linear quantile regression in R</a></li>
-<li class="chapter" data-level="5.7" data-path="quantile-regression-in-r.html"><a href="quantile-regression-in-r.html#resampling-methods-for-inference-on-quantile-regression"><i class="fa fa-check"></i><b>5.7</b> Resampling methods for inference on quantile regression</a></li>
-<li class="chapter" data-level="5.8" data-path="quantile-regression-in-r.html"><a href="quantile-regression-in-r.html#pointwise-confidence-intervals"><i class="fa fa-check"></i><b>5.8</b> Pointwise confidence intervals</a></li>
+<li class="chapter" data-level="5" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html"><i class="fa fa-check"></i><b>5</b> Logistic Regression in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#goals"><i class="fa fa-check"></i><b>5.1</b> Goals</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html"><i class="fa fa-check"></i><b>6</b> Using R Reproducibly</a><ul>
 <li class="chapter" data-level="6.1" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#types-of-reproducibility"><i class="fa fa-check"></i><b>6.1</b> Types of Reproducibility</a></li>
@@ -420,7 +413,7 @@ To ensure your code can be run in long after your current laptop is functioning,
 <br />
 Capturing your session info does a lot of this for you:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
-<pre><code>## R version 3.5.0 (2018-04-23)
+<pre><code>## R version 3.5.1 (2018-07-02)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 16.04.4 LTS
 ## 
@@ -440,9 +433,9 @@ Capturing your session info does a lot of this for you:</p>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_3.5.0  backports_1.1.2 bookdown_0.7    magrittr_1.5   
-##  [5] rprojroot_1.3-2 tools_3.5.0     htmltools_0.3.6 Rcpp_0.12.17   
-##  [9] stringi_1.2.3   rmarkdown_1.10  knitr_1.20      xfun_0.2       
+##  [1] compiler_3.5.1  backports_1.1.2 bookdown_0.7    magrittr_1.5   
+##  [5] rprojroot_1.3-2 tools_3.5.1     htmltools_0.3.6 Rcpp_0.12.17   
+##  [9] stringi_1.2.3   rmarkdown_1.10  knitr_1.20      xfun_0.3       
 ## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.10.1</code></pre>
 </div>
 <div id="document-your-analysis" class="section level3">
@@ -580,9 +573,9 @@ djm1</code></pre></div>
 Set seed when doing any random number generations</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#take a random sample twice</span>
 <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">size=</span><span class="dv">10</span>)</code></pre></div>
-<pre><code>##  [1]  6 94 33 71 47 86 95  9 91 93</code></pre>
+<pre><code>##  [1]  5 87 76 62 44 88 31 21 96 69</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">size=</span><span class="dv">10</span>)</code></pre></div>
-<pre><code>##  [1]  1  4 66 78 30 26 25 53 43 84</code></pre>
+<pre><code>##  [1] 90 59 15 87 63 14 31 41  9 81</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#set seed before hand to ensure the random numbers are consistent</span>
 <span class="kw">set.seed</span>(<span class="dt">seed=</span><span class="dv">42</span>)
 <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">size=</span><span class="dv">10</span>)</code></pre></div>
@@ -629,7 +622,7 @@ g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(election, <span c
           </div>
         </div>
       </div>
-<a href="quantile-regression-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="logistic-regression-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="an-r-markdown-demo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

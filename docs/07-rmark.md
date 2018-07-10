@@ -11,13 +11,13 @@ Attribution-ShareAlike 4.0 International License
 
 ## R
 
- * The version of R used to make this document is 3.5.0.
+ * The version of R used to make this document is 3.5.1.
 
  * The version of the `rmarkdown` package used to make this document is 1.10.
 
  * The version of the `knitr` package used to make this document is 1.20.
 
- * The version of the `ggplot2` package used to make this document is 2.2.1.
+ * The version of the `ggplot2` package used to make this document is 3.0.0.
 
 
 ```r
@@ -38,17 +38,11 @@ render("07-rmark.Rmd")
 ```
 
 The same rendering can be accomplished in RStudio by loading the document
-into Rstudio and clicking the "Knit" button (this also does not seem to
-need the `rmarkdown` package).
+into Rstudio and clicking the "Knit" button.
 
-If instead you wish to make a PDF document or some other output format
-(many are possible), use the optional argument `output_format` to the
-`render` function.
-
-```r
-render("rmark.Rmd", output_format="pdf_document")
-```
-Many other output formats are
+R markdown can also be converted to output formats other than HTML.
+Among these are PDF, Microsoft Word, and e-book formats.
+Other output formats are
 [explained in the Rmarkdown documentation](http://rmarkdown.rstudio.com/lesson-9.html).
 
 ## Markdown
@@ -140,7 +134,7 @@ Many are now saying there is a "replication crisis" in science
 
 There are many issues affecting this "crisis."
 
- * There are scientific issues, such has what experiments are done
+ * There are scientific issues, such as what experiments are done
    and how they are interpreted.
 
  * There are statistical issues, such as too small sample sizes
@@ -398,18 +392,18 @@ summary(out1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -32.037 -15.911   2.137  11.354  34.469 
+## -30.639  -9.598  -2.588   8.607  35.228 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   3.0363     5.4680   0.555    0.581    
-## x             1.6273     0.1866   8.720 1.84e-11 ***
+## (Intercept)   0.9497     4.5437   0.209    0.835    
+## x             1.6593     0.1551  10.700 2.64e-14 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 19.04 on 48 degrees of freedom
-## Multiple R-squared:  0.613,	Adjusted R-squared:  0.605 
-## F-statistic: 76.04 on 1 and 48 DF,  p-value: 1.838e-11
+## Residual standard error: 15.82 on 48 degrees of freedom
+## Multiple R-squared:  0.7046,	Adjusted R-squared:  0.6984 
+## F-statistic: 114.5 on 1 and 48 DF,  p-value: 2.639e-14
 ```
 
 #### Figure with Code to Make It Shown
@@ -451,19 +445,21 @@ summary(out3)
 ## lm(formula = y ~ x + I(x^2) + I(x^3))
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -33.970 -17.275   2.848  11.725  32.946 
+##      Min       1Q   Median       3Q      Max 
+## -26.4369 -11.3186  -0.8124   9.2509  27.1769 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)
-## (Intercept) -7.2636866 11.7273596  -0.619    0.539
-## x            3.2299993  1.9717572   1.638    0.108
-## I(x^2)      -0.0561048  0.0893608  -0.628    0.533
-## I(x^3)       0.0005413  0.0011525   0.470    0.641
+##               Estimate Std. Error t value Pr(>|t|)  
+## (Intercept) 17.4621546  9.4222155   1.853   0.0703 .
+## x           -1.0091580  1.5841862  -0.637   0.5273  
+## I(x^2)       0.0977973  0.0717959   1.362   0.1798  
+## I(x^3)      -0.0009973  0.0009259  -1.077   0.2870  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 19.2 on 46 degrees of freedom
-## Multiple R-squared:  0.6232,	Adjusted R-squared:  0.5986 
-## F-statistic: 25.36 on 3 and 46 DF,  p-value: 7.848e-10
+## Residual standard error: 15.42 on 46 degrees of freedom
+## Multiple R-squared:  0.7311,	Adjusted R-squared:  0.7135 
+## F-statistic: 41.68 on 3 and 46 DF,  p-value: 3.609e-13
 ```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
@@ -492,9 +488,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
--0.0561048
+$0.0977973$
 and
-5.4128053\times 10^{-4}.
+$-9.9733918\times 10^{-4}$.
 Magic!
 See the source for this document to see how the magic works.
 
@@ -517,10 +513,12 @@ anova(out1, out2, out3)
 ## Model 1: y ~ x
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
-##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
-## 1     48 17407                           
-## 2     47 17032  1    374.25 1.0156 0.3188
-## 3     46 16951  1     81.29 0.2206 0.6408
+##   Res.Df   RSS Df Sum of Sq      F  Pr(>F)  
+## 1     48 12019                              
+## 2     47 11218  1    800.98 3.3672 0.07298 .
+## 3     46 10942  1    275.98 1.1602 0.28704  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 We want to turn that into a table in output format we are creating.
@@ -543,9 +541,9 @@ Table: (\#tab:kable)ANOVA Table
 
  Res.Df     RSS   Df   Sum of Sq      F   Pr(>F)
 -------  ------  ---  ----------  -----  -------
-     48   17407                                 
-     47   17033    1         374   1.02    0.319
-     46   16951    1          81   0.22    0.641
+     48   12019                                 
+     47   11218    1         801   3.37    0.073
+     46   10942    1         276   1.16    0.287
 
 ## LaTeX Math
 

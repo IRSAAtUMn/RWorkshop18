@@ -175,7 +175,7 @@ sessionInfo()
 ```
 
 ```
-## R version 3.5.0 (2018-04-23)
+## R version 3.5.1 (2018-07-02)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 16.04.4 LTS
 ## 
@@ -195,9 +195,9 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_3.5.0  backports_1.1.2 bookdown_0.7    magrittr_1.5   
-##  [5] rprojroot_1.3-2 tools_3.5.0     htmltools_0.3.6 Rcpp_0.12.17   
-##  [9] stringi_1.2.3   rmarkdown_1.10  knitr_1.20      xfun_0.2       
+##  [1] compiler_3.5.1  backports_1.1.2 bookdown_0.7    magrittr_1.5   
+##  [5] rprojroot_1.3-2 tools_3.5.1     htmltools_0.3.6 Rcpp_0.12.17   
+##  [9] stringi_1.2.3   rmarkdown_1.10  knitr_1.20      xfun_0.3       
 ## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.10.1
 ```
 
@@ -406,7 +406,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1]  6 94 33 71 47 86 95  9 91 93
+##  [1]  5 87 76 62 44 88 31 21 96 69
 ```
 
 ```r
@@ -414,7 +414,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1]  1  4 66 78 30 26 25 53 43 84
+##  [1] 90 59 15 87 63 14 31 41  9 81
 ```
 
 ```r

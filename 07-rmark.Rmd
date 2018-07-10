@@ -36,16 +36,11 @@ render("07-rmark.Rmd")
 ```
 
 The same rendering can be accomplished in RStudio by loading the document
-into Rstudio and clicking the "Knit" button (this also does not seem to
-need the `rmarkdown` package).
+into Rstudio and clicking the "Knit" button.
 
-If instead you wish to make a PDF document or some other output format
-(many are possible), use the optional argument `output_format` to the
-`render` function.
-```{r eval=FALSE}
-render("rmark.Rmd", output_format="pdf_document")
-```
-Many other output formats are
+R markdown can also be converted to output formats other than HTML.
+Among these are PDF, Microsoft Word, and e-book formats.
+Other output formats are
 [explained in the Rmarkdown documentation](http://rmarkdown.rstudio.com/lesson-9.html).
 
 ## Markdown
@@ -126,7 +121,7 @@ Many are now saying there is a "replication crisis" in science
 
 There are many issues affecting this "crisis."
 
- * There are scientific issues, such has what experiments are done
+ * There are scientific issues, such as what experiments are done
    and how they are interpreted.
 
  * There are statistical issues, such as too small sample sizes
@@ -412,9 +407,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
-`r out3$coef[3]`
+$`r out3$coef[3]`$
 and
-`r out3$coef[4]`.
+$`r out3$coef[4]`$.
 Magic!
 See the source for this document to see how the magic works.
 
