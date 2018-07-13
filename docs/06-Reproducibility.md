@@ -190,10 +190,10 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_3.5.0  backports_1.1.2 bookdown_0.7    magrittr_1.5   
-##  [5] rprojroot_1.3-2 tools_3.5.0     htmltools_0.3.6 Rcpp_0.12.16   
-##  [9] stringi_1.2.2   rmarkdown_1.9   knitr_1.20      xfun_0.2       
-## [13] stringr_1.3.0   digest_0.6.15   evaluate_0.10.1
+##  [1] compiler_3.5.0  backports_1.1.2 magrittr_1.5    rprojroot_1.3-2
+##  [5] tools_3.5.0     htmltools_0.3.6 Rcpp_0.12.16    stringi_1.2.2  
+##  [9] rmarkdown_1.9   knitr_1.20      stringr_1.3.0   digest_0.6.15  
+## [13] evaluate_0.10.1
 ```
 
 
@@ -401,7 +401,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 31 65 35 69  5 84 93 11 81 80
+##  [1] 58 61 98 87 48 64 46  3 52 93
 ```
 
 ```r
@@ -409,7 +409,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 78 53 61 25  1 89 50 68 94 26
+##  [1] 69 68 73 43 93 17 72 23 24 98
 ```
 
 ```r
