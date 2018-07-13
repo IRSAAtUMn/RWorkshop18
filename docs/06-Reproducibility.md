@@ -175,30 +175,25 @@ sessionInfo()
 ```
 
 ```
-## R version 3.5.1 (2018-07-02)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 16.04.4 LTS
+## R version 3.5.0 (2018-04-23)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS High Sierra 10.13.6
 ## 
 ## Matrix products: default
-## BLAS: /home/geyer/local/current/lib/R/lib/libRblas.so
-## LAPACK: /home/geyer/local/current/lib/R/lib/libRlapack.so
+## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_3.5.1  backports_1.1.2 bookdown_0.7    magrittr_1.5   
-##  [5] rprojroot_1.3-2 tools_3.5.1     htmltools_0.3.6 Rcpp_0.12.17   
-##  [9] stringi_1.2.3   rmarkdown_1.10  knitr_1.20      xfun_0.3       
-## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.10.1
+##  [1] compiler_3.5.0  backports_1.1.2 bookdown_0.7    magrittr_1.5   
+##  [5] rprojroot_1.3-2 tools_3.5.0     htmltools_0.3.6 Rcpp_0.12.16   
+##  [9] stringi_1.2.2   rmarkdown_1.9   knitr_1.20      xfun_0.2       
+## [13] stringr_1.3.0   digest_0.6.15   evaluate_0.10.1
 ```
 
 
@@ -406,7 +401,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 84 23 66 41  5 18 30 10 46 92
+##  [1] 31 65 35 69  5 84 93 11 81 80
 ```
 
 ```r
@@ -414,7 +409,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 75 48 33 34 55 22 57 89 73 77
+##  [1] 78 53 61 25  1 89 50 68 94 26
 ```
 
 ```r
@@ -442,16 +437,15 @@ If you save any outputs, make sure they are done by your script. ggsave(), png()
 
 ```r
 # Base R: Creates "Figure1.png" in the working directory
-png(file="Figure1.png")
-ggplot(election, aes(x=winrep_2016)) + 
+(g <- ggplot(election, aes(x=winrep_2016)) + 
     geom_bar() +
-    labs(x="Trump win", y="Number of counties")
+    labs(x="Trump win", y="Number of counties"))
+
+png(file="Figure1.png")
+g
 dev.off()
 
 #ggplot2: Creates "Figure1.png" in working directory
-g <- ggplot(election, aes(x=winrep_2016)) + 
-    geom_bar() +
-    labs(x="Trump win", y="Number of counties")
 ggsave(filename="Figure1.png", plot=g, device="png")
 ```
  
@@ -471,7 +465,9 @@ Do not save your "R workspace" at the end of your R sessions. The R workspace co
 </div>
 </center>
 
-You can also clear your environment at any time with the broom icon in the Environment window. 
+You can also clear your environment at any time with the broom icon in the Environment window, or by typing rm(list=ls()) in the console. 
+
+If you use R studio, it's a good idea to start your script with rm(list=ls()) to make sure you are working from a clean environment. 
 
 <center>
 <div class="image">

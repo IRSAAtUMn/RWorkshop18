@@ -383,16 +383,15 @@ sample(1:100, size=10)
 If you save any outputs, make sure they are done by your script. ggsave(), png(), pdf()
 ```{r, eval=FALSE}
 # Base R: Creates "Figure1.png" in the working directory
-png(file="Figure1.png")
-ggplot(election, aes(x=winrep_2016)) + 
+(g <- ggplot(election, aes(x=winrep_2016)) + 
     geom_bar() +
-    labs(x="Trump win", y="Number of counties")
+    labs(x="Trump win", y="Number of counties"))
+
+png(file="Figure1.png")
+g
 dev.off()
 
 #ggplot2: Creates "Figure1.png" in working directory
-g <- ggplot(election, aes(x=winrep_2016)) + 
-    geom_bar() +
-    labs(x="Trump win", y="Number of counties")
 ggsave(filename="Figure1.png", plot=g, device="png")
 ```
  
@@ -412,7 +411,9 @@ Do not save your "R workspace" at the end of your R sessions. The R workspace co
 </div>
 </center>
 
-You can also clear your environment at any time with the broom icon in the Environment window. 
+You can also clear your environment at any time with the broom icon in the Environment window, or by typing rm(list=ls()) in the console. 
+
+If you use R studio, it's a good idea to start your script with rm(list=ls()) to make sure you are working from a clean environment. 
 
 <center>
 <div class="image">
