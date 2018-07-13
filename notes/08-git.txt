@@ -1,0 +1,110 @@
+
+These are notes on how to use git the dumb way using RStudio and github.
+
+This can't go in the chapter because it involves a lot of punching buttons.
+
+In your Github account
+
+ * Make a new repo that we can trash later (just for messing around).
+
+   - Log in to Github
+
+   - Click on the green button that says "New repository"
+
+   - Give it a name (of course) and maybe a description.
+
+   - Do not add .gitignore or a license (maybe do that later)
+
+   - Ignore all the helpful advice on the next page (none of it
+     is for RStudio)
+
+In RStudio
+
+ * On the File menu
+
+   - select "New project..."
+
+   - then select "Version Control"
+
+   - then select "Git"
+
+     + the "Repository URL" is something like "https://github.com/cjgeyer/junk"
+
+     + the "Project directory name" is something like "junk"
+
+     + the "Create project as subdirectory of" is done with file browser
+
+     + I also did "Open in new session"
+
+   - then punch "Create Project"
+
+ * We're in business !!!!!
+
+ * Note that RStudio creates 2 files automagically (.gitignore and *.Rproj)
+   we may have to edit the former to do what we want.
+
+ * Before we do any commits, do Section 8.5 of the chapter
+   http://htmlpreview.github.com/?https://github.com/IRSAAtUMn/RWorkshop18/blob/master/docs/git-version-control.html#tell-git-who-you-are
+
+   - On the Tools menu
+
+     + select "Terminal"
+
+     + then select "New Terminal"
+
+     + then you can do
+
+       & git config --global user.name 'Your Name'
+
+       & git config --global user.email 'your@email.com'
+
+       (I don't have to do this because I did it long ago)
+
+     + Then click on the "Console" button to get back to the R console
+
+ * Open a new file
+
+   - On the File menu
+
+     + select "New File"
+
+     + then select "R Markdown"
+
+       & and in the window that comes up fill in a title and author
+
+       & and click the "OK" button
+
+ * RStudio then gives you a simple example R Markdown file
+
+ * click the "Knit" button (in the upper left pane) and it first asks you
+   to save the file (by default in the directory for our project).  Do
+   that: give it a name ending in .Rmd, for example, mess.Rmd
+
+ * Now we are really in business !!!!!
+
+ * Now do a git commit (either using the command line) or using the "Git"
+   button in the upper right pane in RStudio
+
+   - in the window that comes up click to stage at least the *.Rproj
+     *.Rmd and .gitignore files
+
+   - and type in a commit message
+
+   - and click the "commit" button
+
+ * If we go to the command line and do "git status" or "git log" we see that
+   we have indeed done a commit.
+
+ * Now we do a push using the "Push" button in the upper right panel
+   (oh garbage!  We have to type user name and password every time we
+   do anything!  This sucks!  RStudio is infinitely inferior to the
+   command line in this respect.  See the chapter.)
+
+   Nevertheless, we have done a commit and push.  As can be seen by
+   looking on the repo on Github.
+
+ * Now we can make all the changes we want to the "project" and
+   commit and push whenever we want and if we had collaborators
+   we could also pull from them (I assume).  We definitely could
+   if we were using the command line.
+
