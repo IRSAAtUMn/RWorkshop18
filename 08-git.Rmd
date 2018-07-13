@@ -211,30 +211,14 @@ think.
 
 #### With RStudio
 
-On the "File" menu select "New Project" and then select "Version Control" and
-then select "Git".
+It is hopeless to try to describe how to do anything with
+a [WIMP application](http://www.catb.org/jargon/html/W/WIMP-environment.html) 
+like RStudio.  If it isn't obvious, you're in trouble.
 
-Then you fill in the "Repository URL" which is something like
-```
-git@github.umn.edu:geyer/Foo.git
-```
-(more on this later, Section [GitHub and SSH keys](#keys) below)
-and "Create project as a subdirectory of".  The latter
-is the directory (which Windows and Macintosh call "folder") into which
-you want to put the Git repository.
-
-Then click "Create Project", and you have an R project that both RStudio
-and GitHub know about.
-
-The "Repository URL" can also be something like
-```
-https://github.umn.edu/geyer/Foo.git
-```
-(This is easier to use in the beginning but rapidly becomes a nuisance.
-More on this later.  Section [GitHub and SSH keys](#keys) below.)
-
-In RStudio, you can also get a UNIX command line to execute commands.
-The "Shell" item on the "Tools" menu, gives you a UNIX command line.
+Nevertheless, I made detailed instructions for how to avoid almost everything
+below and just use RStudio to do the simplest baby project.
+They are
+https://github.com/IRSAAtUMn/RWorkshop18/notes/08-git.txt.
 
 ## Tell Git Who You Are
 

@@ -119,7 +119,7 @@ Many well known open-source projects are on git.  The Linux kernel (of course
 since Linus Torvalds wrote git to be the VCS for the kernel), android (as in
 phones), Python, Go, Ruby on Rails, Gnome, Qt, KDE, X, Perl, Vim, and GNU Emacs.
 
-Some aren't.  R is still on Subversion.  Firefox is on Mercurial.
+Some aren't.  R is still on Subversion.  Firefox is still on Mercurial.
 
 ## Git
 
@@ -211,30 +211,14 @@ think.
 
 #### With RStudio
 
-On the "File" menu select "New Project" and then select "Version Control" and
-then select "Git".
+It is hopeless to try to describe how to do anything with
+a [WIMP application](http://www.catb.org/jargon/html/W/WIMP-environment.html) 
+like RStudio.  If it isn't obvious, you're in trouble.
 
-Then you fill in the "Repository URL" which is something like
-```
-git@github.umn.edu:geyer/Foo.git
-```
-(more on this later, Section [GitHub and SSH keys](#keys) below)
-and "Create project as a subdirectory of".  The latter
-is the directory (which Windows and Macintosh call "folder") into which
-you want to put the Git repository.
-
-Then click "Create Project", and you have an R project that both RStudio
-and GitHub know about.
-
-The "Repository URL" can also be something like
-```
-https://github.umn.edu/geyer/Foo.git
-```
-(This is easier to use in the beginning but rapidly becomes a nuisance.
-More on this later.  Section [GitHub and SSH keys](#keys) below.)
-
-In RStudio, you can also get a UNIX command line to execute commands.
-The "Shell" item on the "Tools" menu, gives you a UNIX command line.
+Nevertheless, I made detailed instructions for how to avoid almost everything
+below and just use RStudio to do the simplest baby project.
+They are
+https://github.com/IRSAAtUMn/RWorkshop18/notes/08-git.txt.
 
 ## Tell Git Who You Are
 
@@ -314,9 +298,9 @@ but we won't cover that).
 If you don't do this, you will have to type your GitHub password frequently
 to use Git.  This is a nuisance.
 
-Recent updates of Microsoft Windows 10 do have an OpenSSH client.
+Recent updates of Microsoft Windows 10 have an OpenSSH client.
 AFAICS it works like it does on UNIX (Linux or OS X).  It is a command
-line too.
+line tool.
 
 To make keys, you do from the command line
 ```

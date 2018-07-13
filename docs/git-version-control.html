@@ -394,7 +394,7 @@ asterLA.9-11.tex</code></pre>
 <p>Starting from nowhere in 2005, <code>git</code> and GitHub (<a href="https://github.com/" class="uri">https://github.com/</a>) have gotten dominant mindshare, at least among free and open source systems.</p>
 <p>In <a href="http://www.google.com/trends/explore#q=%2Fm%2F05vqwg%2C%20%2Fm%2F012ct9%2C%20%2Fm%2F09d6g%2C%20%2Fm%2F08441_%2C%20%2Fm%2F04g0kcw&amp;cmpt=q&amp;tz=">Google Trends</a>, the only searches that are trending up are for <code>git</code> and github. Searches for competing version control systems are trending down.</p>
 <p>Many well known open-source projects are on git. The Linux kernel (of course since Linus Torvalds wrote git to be the VCS for the kernel), android (as in phones), Python, Go, Ruby on Rails, Gnome, Qt, KDE, X, Perl, Vim, and GNU Emacs.</p>
-<p>Some aren’t. R is still on Subversion. Firefox is on Mercurial.</p>
+<p>Some aren’t. R is still on Subversion. Firefox is still on Mercurial.</p>
 </div>
 </div>
 <div id="git" class="section level2">
@@ -452,15 +452,8 @@ sudo apt-get install git</code></pre>
 </div>
 <div id="with-rstudio" class="section level4">
 <h4><span class="header-section-number">8.4.5.3</span> With RStudio</h4>
-<p>On the “File” menu select “New Project” and then select “Version Control” and then select “Git”.</p>
-<p>Then you fill in the “Repository URL” which is something like</p>
-<pre><code>git@github.umn.edu:geyer/Foo.git</code></pre>
-<p>(more on this later, Section <a href="git-version-control.html#keys">GitHub and SSH keys</a> below) and “Create project as a subdirectory of”. The latter is the directory (which Windows and Macintosh call “folder”) into which you want to put the Git repository.</p>
-<p>Then click “Create Project”, and you have an R project that both RStudio and GitHub know about.</p>
-<p>The “Repository URL” can also be something like</p>
-<pre><code>https://github.umn.edu/geyer/Foo.git</code></pre>
-<p>(This is easier to use in the beginning but rapidly becomes a nuisance. More on this later. Section <a href="git-version-control.html#keys">GitHub and SSH keys</a> below.)</p>
-<p>In RStudio, you can also get a UNIX command line to execute commands. The “Shell” item on the “Tools” menu, gives you a UNIX command line.</p>
+<p>It is hopeless to try to describe how to do anything with a <a href="http://www.catb.org/jargon/html/W/WIMP-environment.html">WIMP application</a> like RStudio. If it isn’t obvious, you’re in trouble.</p>
+<p>Nevertheless, I made detailed instructions for how to avoid almost everything below and just use RStudio to do the simplest baby project. They are <a href="https://github.com/IRSAAtUMn/RWorkshop18/notes/08-git.txt" class="uri">https://github.com/IRSAAtUMn/RWorkshop18/notes/08-git.txt</a>.</p>
 </div>
 </div>
 </div>
@@ -502,7 +495,7 @@ git init</code></pre>
 <h2><span class="header-section-number">8.9</span> GitHub and SSH keys</h2>
 <p>To use GitHub productively, you need to make an SSH key pair and tell GitHub about the public key. This allows you to only type the SSH passphrase for the key once per reboot of your computer. This is secure. Your computer remembers what it needs to remember to access github (or use SSH in other ways without typing a password or passphrase, but we won’t cover that).</p>
 <p>If you don’t do this, you will have to type your GitHub password frequently to use Git. This is a nuisance.</p>
-<p>Recent updates of Microsoft Windows 10 do have an OpenSSH client. AFAICS it works like it does on UNIX (Linux or OS X). It is a command line too.</p>
+<p>Recent updates of Microsoft Windows 10 have an OpenSSH client. AFAICS it works like it does on UNIX (Linux or OS X). It is a command line tool.</p>
 <p>To make keys, you do from the command line</p>
 <pre><code>ssh-keygen</code></pre>
 <p>(this is one UNIX command, the hyphen is part of the name). Do what it says (successfully type the same passphrase twice and after having accepted the default location for the keys or having specified another location).</p>

@@ -392,18 +392,18 @@ summary(out1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -46.471 -14.947   3.278  11.729  48.562 
+## -38.267  -8.741  -0.507   9.241  33.507 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  -3.0733     5.5506  -0.554    0.582    
-## x             1.7528     0.1894   9.252 3.03e-12 ***
+## (Intercept)   3.2595     4.5870   0.711    0.481    
+## x             1.4138     0.1566   9.031 6.39e-12 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 19.33 on 48 degrees of freedom
-## Multiple R-squared:  0.6407,	Adjusted R-squared:  0.6332 
-## F-statistic:  85.6 on 1 and 48 DF,  p-value: 3.027e-12
+## Residual standard error: 15.97 on 48 degrees of freedom
+## Multiple R-squared:  0.6295,	Adjusted R-squared:  0.6218 
+## F-statistic: 81.56 on 1 and 48 DF,  p-value: 6.386e-12
 ```
 
 #### Figure with Code to Make It Shown
@@ -446,20 +446,18 @@ summary(out3)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -40.863 -12.052   2.148  10.149  33.233 
+## -37.711  -9.289  -0.339   8.444  34.060 
 ## 
 ## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)  
-## (Intercept) 15.848223  11.600027   1.366   0.1785  
-## x           -2.005405   1.950348  -1.028   0.3092  
-## I(x^2)       0.167534   0.088391   1.895   0.0643 .
-## I(x^3)      -0.002058   0.001140  -1.806   0.0775 .
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##               Estimate Std. Error t value Pr(>|t|)
+## (Intercept)  3.3465528  9.9572995   0.336    0.738
+## x            1.2438352  1.6741516   0.743    0.461
+## I(x^2)       0.0128628  0.0758732   0.170    0.866
+## I(x^3)      -0.0002090  0.0009785  -0.214    0.832
 ## 
-## Residual standard error: 18.99 on 46 degrees of freedom
-## Multiple R-squared:  0.6678,	Adjusted R-squared:  0.6461 
-## F-statistic: 30.82 on 3 and 46 DF,  p-value: 4.459e-11
+## Residual standard error: 16.3 on 46 degrees of freedom
+## Multiple R-squared:  0.6304,	Adjusted R-squared:  0.6063 
+## F-statistic: 26.15 on 3 and 46 DF,  p-value: 5.052e-10
 ```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
@@ -488,9 +486,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
-$0.1675337$
+$0.0128628$
 and
-$-0.0020582$.
+$-2.0900563\times 10^{-4}$.
 Magic!
 
 See the source for this document to see how the magic works.
@@ -519,12 +517,10 @@ anova(out1, out2, out3)
 ## Model 1: y ~ x
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
-##   Res.Df   RSS Df Sum of Sq      F  Pr(>F)  
-## 1     48 17937                              
-## 2     47 17760  1    176.19 0.4887 0.48804  
-## 3     46 16585  1   1175.32 3.2598 0.07754 .
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
+## 1     48 12249                           
+## 2     47 12232  1    16.933 0.0637 0.8018
+## 3     46 12220  1    12.120 0.0456 0.8318
 ```
 
 We want to turn that into a table in output format we are creating.
@@ -547,9 +543,9 @@ Table: (\#tab:kable)ANOVA Table
 
  Res.Df     RSS   Df   Sum of Sq      F   Pr(>F)
 -------  ------  ---  ----------  -----  -------
-     48   17937                                 
-     47   17760    1         176   0.49    0.488
-     46   16585    1        1175   3.26    0.078
+     48   12249                                 
+     47   12232    1          17   0.06    0.802
+     46   12220    1          12   0.05    0.832
 
 ## LaTeX Math
 
