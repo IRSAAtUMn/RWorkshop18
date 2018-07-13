@@ -411,7 +411,13 @@ $`r out3$coef[3]`$
 and
 $`r out3$coef[4]`$.
 Magic!
+
 See the source for this document to see how the magic works.
+The dollar signs around the in-line R chunks are required by the
+way R markdown handles scientific notation.  It outputs LaTeX,
+which is explained in [Section 7.8](#latex-math) below.
+It thus forces you to understand at least that much LaTeX.
+(Sorry about that!)
 
 If you never snarf and barf, and everything in your document is computed
 by R, then everything is always as claimed.

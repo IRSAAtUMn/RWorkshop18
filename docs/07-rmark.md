@@ -392,18 +392,18 @@ summary(out1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -30.639  -9.598  -2.588   8.607  35.228 
+## -46.471 -14.947   3.278  11.729  48.562 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   0.9497     4.5437   0.209    0.835    
-## x             1.6593     0.1551  10.700 2.64e-14 ***
+## (Intercept)  -3.0733     5.5506  -0.554    0.582    
+## x             1.7528     0.1894   9.252 3.03e-12 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 15.82 on 48 degrees of freedom
-## Multiple R-squared:  0.7046,	Adjusted R-squared:  0.6984 
-## F-statistic: 114.5 on 1 and 48 DF,  p-value: 2.639e-14
+## Residual standard error: 19.33 on 48 degrees of freedom
+## Multiple R-squared:  0.6407,	Adjusted R-squared:  0.6332 
+## F-statistic:  85.6 on 1 and 48 DF,  p-value: 3.027e-12
 ```
 
 #### Figure with Code to Make It Shown
@@ -445,21 +445,21 @@ summary(out3)
 ## lm(formula = y ~ x + I(x^2) + I(x^3))
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -26.4369 -11.3186  -0.8124   9.2509  27.1769 
+##     Min      1Q  Median      3Q     Max 
+## -40.863 -12.052   2.148  10.149  33.233 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)  
-## (Intercept) 17.4621546  9.4222155   1.853   0.0703 .
-## x           -1.0091580  1.5841862  -0.637   0.5273  
-## I(x^2)       0.0977973  0.0717959   1.362   0.1798  
-## I(x^3)      -0.0009973  0.0009259  -1.077   0.2870  
+##              Estimate Std. Error t value Pr(>|t|)  
+## (Intercept) 15.848223  11.600027   1.366   0.1785  
+## x           -2.005405   1.950348  -1.028   0.3092  
+## I(x^2)       0.167534   0.088391   1.895   0.0643 .
+## I(x^3)      -0.002058   0.001140  -1.806   0.0775 .
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 15.42 on 46 degrees of freedom
-## Multiple R-squared:  0.7311,	Adjusted R-squared:  0.7135 
-## F-statistic: 41.68 on 3 and 46 DF,  p-value: 3.609e-13
+## Residual standard error: 18.99 on 46 degrees of freedom
+## Multiple R-squared:  0.6678,	Adjusted R-squared:  0.6461 
+## F-statistic: 30.82 on 3 and 46 DF,  p-value: 4.459e-11
 ```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
@@ -488,11 +488,17 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
-$0.0977973$
+$0.1675337$
 and
-$-9.9733918\times 10^{-4}$.
+$-0.0020582$.
 Magic!
+
 See the source for this document to see how the magic works.
+The dollar signs around the in-line R chunks are required by the
+way R markdown handles scientific notation.  It outputs LaTeX,
+which is explained in [Section 7.8](#latex-math) below.
+It thus forces you to understand at least that much LaTeX.
+(Sorry about that!)
 
 If you never snarf and barf, and everything in your document is computed
 by R, then everything is always as claimed.
@@ -514,9 +520,9 @@ anova(out1, out2, out3)
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
 ##   Res.Df   RSS Df Sum of Sq      F  Pr(>F)  
-## 1     48 12019                              
-## 2     47 11218  1    800.98 3.3672 0.07298 .
-## 3     46 10942  1    275.98 1.1602 0.28704  
+## 1     48 17937                              
+## 2     47 17760  1    176.19 0.4887 0.48804  
+## 3     46 16585  1   1175.32 3.2598 0.07754 .
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -541,9 +547,9 @@ Table: (\#tab:kable)ANOVA Table
 
  Res.Df     RSS   Df   Sum of Sq      F   Pr(>F)
 -------  ------  ---  ----------  -----  -------
-     48   12019                                 
-     47   11218    1         801   3.37    0.073
-     46   10942    1         276   1.16    0.287
+     48   17937                                 
+     47   17760    1         176   0.49    0.488
+     46   16585    1        1175   3.26    0.078
 
 ## LaTeX Math
 

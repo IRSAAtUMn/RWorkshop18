@@ -117,10 +117,9 @@ Searches for competing version control systems are trending down.
 
 Many well known open-source projects are on git.  The Linux kernel (of course
 since Linus Torvalds wrote git to be the VCS for the kernel), android (as in
-phones), Ruby on Rails, Gnome, Qt, KDE, X, Perl, and GNU Emacs.
+phones), Python, Go, Ruby on Rails, Gnome, Qt, KDE, X, Perl, Vim, and GNU Emacs.
 
-Some aren't.  R is still on Subversion.  Firefox, Go, Python, Vim are
-on Mercurial.
+Some aren't.  R is still on Subversion.  Firefox is on Mercurial.
 
 ## Git
 
@@ -132,8 +131,9 @@ used by itself (and, in fact, is best used that way).
 [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface) applications
 are available on all platforms to dumb down Git with menus and buttons.
 
-GitHub is a company, like Facebook or Google, that is just as famous as them
-in the geek world.  It offers "social coding."  Thus it is something like
+GitHub is a company (recently purchased by Microsoft) that is just
+as famous as Facebook or Google in the geek world.
+It offers "social coding."  Thus it is something like
 Facebook for software developers.  You can use `git` without GitHub (or one
 of its competitors) but GitHub helps you show the world what you do and
 collaborate with the world.
@@ -314,11 +314,11 @@ but we won't cover that).
 If you don't do this, you will have to type your GitHub password frequently
 to use Git.  This is a nuisance.
 
-Since Microsoft Windows does not come with SSH, extra work is needed to make
-SSH work there.  [This web page](http://guides.beanstalkapp.com/version-control/git-on-windows.html#installing-ssh-keys) explains.
+Recent updates of Microsoft Windows 10 do have an OpenSSH client.
+AFAICS it works like it does on UNIX (Linux or OS X).  It is a command
+line too.
 
-Having gotten set up on Windows, or if you are using UNIX (Linux or OS X),
-where SSH just works.  You do from the UNIX command line
+To make keys, you do from the command line
 ```
 ssh-keygen
 ```
