@@ -319,11 +319,9 @@ Load all data in one spot. Again, if you are loading through the interface windo
 
 Use sections in R Studio to organize and quickly navigate your code. Press cmd-shift-R on a Mac or cntrl-shift-R on a PC to insert a section. 
 
-<center>
-<div class="image">
-<img src="images/rscriptsections.png" style="width: 475px"/>
-</div>
-</center>
+```{r, fig.align='center', echo=FALSE}
+knitr::include_graphics(path="images/rscriptsections.jpg")
+```
 
 \
 
