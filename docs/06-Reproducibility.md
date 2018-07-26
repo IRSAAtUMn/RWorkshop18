@@ -346,7 +346,7 @@ Load all data in one spot. Again, if you are loading through the interface windo
 
 Use sections in R Studio to organize and quickly navigate your code. Press cmd-shift-R on a Mac or cntrl-shift-R on a PC to insert a section. 
 
-<img src="images/rscriptsections.png" style="display: block; margin: auto;" />
+<img src="images/rscriptsections.jpg" style="display: block; margin: auto;" />
 
 \
 
@@ -397,7 +397,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 75 55 81 73 74 41 39 31 15 80
+##  [1] 47  8 79 85 51 34 39 97  1 14
 ```
 
 ```r
@@ -405,7 +405,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 10 55 98 30 78 14 80 83 67 66
+##  [1] 25 27 52 53 86 97 96 10 87 68
 ```
 
 ```r
