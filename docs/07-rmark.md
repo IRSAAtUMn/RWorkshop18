@@ -13,11 +13,11 @@ Attribution-ShareAlike 4.0 International License
 
  * The version of R used to make this document is 3.5.1.
 
- * The version of the `rmarkdown` package used to make this document is 1.9.
+ * The version of the `rmarkdown` package used to make this document is 1.10.
 
  * The version of the `knitr` package used to make this document is 1.20.
 
- * The version of the `ggplot2` package used to make this document is 2.2.1.
+ * The version of the `ggplot2` package used to make this document is 3.0.0.
 
 
 ```r
@@ -31,7 +31,7 @@ The source for this file is
 https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/07-rmark.Rmd.
 
 This is a demo for using the R package `rmarkdown`.  To turn this file
-into HTML, after you have downloaded it, use the R commands
+into HTML, after you have downloaded it, use the R command
 
 ```r
 render("07-rmark.Rmd")
@@ -308,9 +308,9 @@ We will be more interested in [tables created by R](#rtables).
 
 ### Code Chunks
 
-Code chunks begin with ` ```{r} ` and end with ` ``` `.
+Code chunks begin with ` ```{r} ` and end with ` ``` `
 ([documentation](http://rmarkdown.rstudio.com/lesson-3.html)).
-The delimiters have to begin in column one (I think).
+These delimiters have to begin in column one (I think).
 
 Here is an example.
 
@@ -392,18 +392,18 @@ summary(out1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -36.231 -11.285  -0.096  11.380  43.039 
+## -37.606 -13.453  -1.338  14.775  45.118 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  -0.6649     5.2993  -0.125    0.901    
-## x             1.5540     0.1809   8.592 2.85e-11 ***
+## (Intercept)   5.9945     5.4243   1.105    0.275    
+## x             1.4079     0.1851   7.605 8.75e-10 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 18.46 on 48 degrees of freedom
-## Multiple R-squared:  0.606,	Adjusted R-squared:  0.5978 
-## F-statistic: 73.83 on 1 and 48 DF,  p-value: 2.847e-11
+## Residual standard error: 18.89 on 48 degrees of freedom
+## Multiple R-squared:  0.5465,	Adjusted R-squared:  0.537 
+## F-statistic: 57.83 on 1 and 48 DF,  p-value: 8.751e-10
 ```
 
 #### Figure with Code to Make It Shown
@@ -412,7 +412,13 @@ The following figure is produced by the following code
 
 ```r
 mydata <- data.frame(x, y)
-ggplot(mydata, aes(x = x, y = y)) + geom_point() + geom_smooth(method = "lm")
+ggplot(mydata, aes(x = x, y = y)) + geom_point() +
+    geom_smooth(method = "lm")
+```
+
+```
+## Warning in grid.Call.graphics(C_polygon, x$x, x$y, index): semi-
+## transparency is not supported on this device: reported only once per page
 ```
 
 <div class="figure" style="text-align: center">
@@ -441,18 +447,18 @@ summary(out3)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -38.159  -7.585  -1.458   8.583  41.261 
+## -33.403 -13.431  -0.574  11.960  41.480 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(>|t|)
-## (Intercept)  6.2155156 11.0232666   0.564    0.576
-## x            1.2962363  1.8533759   0.699    0.488
-## I(x^2)      -0.0268926  0.0839957  -0.320    0.750
-## I(x^3)       0.0007006  0.0010833   0.647    0.521
+## (Intercept) -2.688e+00  1.159e+01  -0.232    0.818
+## x            2.471e+00  1.948e+00   1.269    0.211
+## I(x^2)      -2.450e-02  8.828e-02  -0.277    0.783
+## I(x^3)       8.007e-05  1.138e-03   0.070    0.944
 ## 
-## Residual standard error: 18.04 on 46 degrees of freedom
-## Multiple R-squared:  0.6391,	Adjusted R-squared:  0.6155 
-## F-statistic: 27.15 on 3 and 46 DF,  p-value: 2.945e-10
+## Residual standard error: 18.96 on 46 degrees of freedom
+## Multiple R-squared:  0.562,	Adjusted R-squared:  0.5334 
+## F-statistic: 19.67 on 3 and 46 DF,  p-value: 2.377e-08
 ```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
@@ -481,9 +487,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
-$-0.0268926$
+$-0.0244968$
 and
-$7.0064352\times 10^{-4}$.
+$8.0065663\times 10^{-5}$.
 Magic!
 
 See the source for this document to see how the magic works.
@@ -512,12 +518,10 @@ anova(out1, out2, out3)
 ## Model 1: y ~ x
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
-##   Res.Df   RSS Df Sum of Sq      F Pr(>F)  
-## 1     48 16349                             
-## 2     47 15113  1    1235.8 3.7956 0.0575 .
-## 3     46 14977  1     136.2 0.4183 0.5210  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
+## 1     48 17129                           
+## 2     47 16545  1    584.80 1.6261 0.2086
+## 3     46 16543  1      1.78 0.0049 0.9442
 ```
 
 We want to turn that into a table in output format we are creating.
@@ -540,9 +544,9 @@ Table: (\#tab:kable)ANOVA Table
 
  Res.Df     RSS   Df   Sum of Sq      F   Pr(>F)
 -------  ------  ---  ----------  -----  -------
-     48   16349                                 
-     47   15113    1        1236   3.80    0.058
-     46   14977    1         136   0.42    0.521
+     48   17129                                 
+     47   16545    1         585   1.63    0.209
+     46   16543    1           2   0.00    0.944
 
 ## LaTeX Math
 

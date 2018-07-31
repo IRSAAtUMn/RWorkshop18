@@ -14,7 +14,7 @@ Attribution-ShareAlike 4.0 International License
 
  * The version of R used to make this document is 3.5.1.
 
- * The version of the `rmarkdown` package used to make this document is 1.9.
+ * The version of the `rmarkdown` package used to make this document is 1.10.
 
  * The version of the `knitr` package used to make this document is 1.20.
 
@@ -257,7 +257,7 @@ The rest of the directory is where you work.
 If you have created the project using RStudio (as discussed above), then
 RStudio has run `git init` for you so you do not have to do it yourself.
 
-## Starting a R Project that will be a CRAN Package
+## Starting an R Project that will be a CRAN Package
 
 If you are starting an R Project that will provide an R package,
 especially one intended to eventually be on [CRAN](https://cran.r-project.org),

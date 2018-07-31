@@ -239,7 +239,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="git-version-control.html"><a href="git-version-control.html#tell-git-who-you-are"><i class="fa fa-check"></i><b>8.5</b> Tell Git Who You Are</a></li>
 <li class="chapter" data-level="8.6" data-path="git-version-control.html"><a href="git-version-control.html#starting-a-new-project-locally"><i class="fa fa-check"></i><b>8.6</b> Starting a New Project Locally</a></li>
-<li class="chapter" data-level="8.7" data-path="git-version-control.html"><a href="git-version-control.html#starting-a-r-project-that-will-be-a-cran-package"><i class="fa fa-check"></i><b>8.7</b> Starting a R Project that will be a CRAN Package</a></li>
+<li class="chapter" data-level="8.7" data-path="git-version-control.html"><a href="git-version-control.html#starting-an-r-project-that-will-be-a-cran-package"><i class="fa fa-check"></i><b>8.7</b> Starting an R Project that will be a CRAN Package</a></li>
 <li class="chapter" data-level="8.8" data-path="git-version-control.html"><a href="git-version-control.html#cloning-an-existing-project"><i class="fa fa-check"></i><b>8.8</b> Cloning an Existing Project</a></li>
 <li class="chapter" data-level="8.9" data-path="git-version-control.html"><a href="git-version-control.html#keys"><i class="fa fa-check"></i><b>8.9</b> GitHub and SSH keys</a></li>
 <li class="chapter" data-level="8.10" data-path="git-version-control.html"><a href="git-version-control.html#halftime-summary"><i class="fa fa-check"></i><b>8.10</b> Halftime Summary</a></li>
@@ -285,7 +285,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">8.2</span> R</h2>
 <ul>
 <li><p>The version of R used to make this document is 3.5.1.</p></li>
-<li><p>The version of the <code>rmarkdown</code> package used to make this document is 1.9.</p></li>
+<li><p>The version of the <code>rmarkdown</code> package used to make this document is 1.10.</p></li>
 <li><p>The version of the <code>knitr</code> package used to make this document is 1.20.</p></li>
 </ul>
 </div>
@@ -477,8 +477,8 @@ git init</code></pre>
 <p>shows that there is a new directory <code>.git</code> that is the hallmark of a git repository (“repo” for short). Now all Git subcommands work in this directory. The <code>.git</code> subdirectory is where Git stores all information it keeps track of. The rest of the directory is where you work.</p>
 <p>If you have created the project using RStudio (as discussed above), then RStudio has run <code>git init</code> for you so you do not have to do it yourself.</p>
 </div>
-<div id="starting-a-r-project-that-will-be-a-cran-package" class="section level2">
-<h2><span class="header-section-number">8.7</span> Starting a R Project that will be a CRAN Package</h2>
+<div id="starting-an-r-project-that-will-be-a-cran-package" class="section level2">
+<h2><span class="header-section-number">8.7</span> Starting an R Project that will be a CRAN Package</h2>
 <p>If you are starting an R Project that will provide an R package, especially one intended to eventually be on <a href="https://cran.r-project.org">CRAN</a>, put the directory that contains the package <em>in</em> the Git repo. Do not try to make the Git repo the same directory as the R package. A Git repo contains a lot of stuff that an R package is not allowed to have.</p>
 </div>
 <div id="cloning-an-existing-project" class="section level2">

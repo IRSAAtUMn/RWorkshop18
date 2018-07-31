@@ -176,24 +176,29 @@ sessionInfo()
 
 ```
 ## R version 3.5.1 (2018-07-02)
-## Platform: x86_64-apple-darwin15.6.0 (64-bit)
-## Running under: macOS High Sierra 10.13.6
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 16.04.5 LTS
 ## 
 ## Matrix products: default
-## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+## BLAS: /home/geyer/local/current/lib/R/lib/libRblas.so
+## LAPACK: /home/geyer/local/current/lib/R/lib/libRlapack.so
 ## 
 ## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] compiler_3.5.1  backports_1.1.2 bookdown_0.7    magrittr_1.5   
-##  [5] rprojroot_1.3-2 tools_3.5.1     htmltools_0.3.6 Rcpp_0.12.16   
-##  [9] stringi_1.2.2   rmarkdown_1.9   knitr_1.20      xfun_0.2       
-## [13] stringr_1.3.0   digest_0.6.15   evaluate_0.10.1
+##  [5] rprojroot_1.3-2 tools_3.5.1     htmltools_0.3.6 Rcpp_0.12.18   
+##  [9] stringi_1.2.4   rmarkdown_1.10  knitr_1.20      xfun_0.3       
+## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.11
 ```
 
 
@@ -397,7 +402,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 47  8 79 85 51 34 39 97  1 14
+##  [1] 52 27 14 51 36 29 22 94 41 20
 ```
 
 ```r
@@ -405,7 +410,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 25 27 52 53 86 97 96 10 87 68
+##  [1] 77  8 92 36 85 93 78 24 90 59
 ```
 
 ```r
