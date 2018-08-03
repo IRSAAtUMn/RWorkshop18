@@ -7,7 +7,70 @@
 
 ## Goals
 
+In this chapter, we will cover how to...
+
 * Fit a logistic regression model in R.
+* Interpret the model using odds.
 * Test the significance of regression coefficients.
 * Create and interpret confidence intervals.
 
+R's **glm** (linear model) function will be the primary tool used in the chapter.
+
+
+
+## Horseshoe Crab Data 
+
+### Overview
+
+
+
+
+
+### Load and Look at the Data
+
+```{r}
+library(glmbb)
+data(crabs)
+head(crabs)
+```
+
+
+
+## Simple Linear Regression
+
+### Fit the Model
+
+Consider a logistic regression model of the form
+\[
+\log \left( \dfrac{p_i}{1-p_i} \right) = \beta_0 + \beta_1 x_i 
+\]
+where $p_i$ is the probability of ..., $x_i$ is ... (predictor), $\beta_0$ is the unknown regression intercept, and $\beta_1$ is the unknown regression slope. To fit the model, we can use the **glm** function
+```{r}
+mod <- glm(y ~ color, family = binomial, data = crabs)
+```
+The first input is the regression formula (Response ~ Predictor), and the second input is the data frame containing the variables in the regression formula. Note that *mod* is an object of class *glm*, which is a list containing information about the fit model. 
+```{r}
+class(mod)
+names(mod)
+```
+For example, the *$coefficients* element contains the estimated regression coefficients
+```{r}
+mod$coefficients
+```
+
+
+### Inference Information
+
+To obtain a more detailed summary of the fit model, use the **summary** function
+```{r}
+modsum <- summary(mod)
+names(modsum)
+modsum
+```
+Note that summarizing a *glm* object returns ...
+
+Use the **confint** function to obtain confidence intervals for regression coefficients
+```{r}
+confint(mod)
+```
+The 95% confidence interval for $\beta_1$ reveals that ...
