@@ -5,29 +5,41 @@
 \
 \
 
-The following data set on the 2016 election is stored as a *csv* file at [https://www.macalester.edu/~ajohns24/data/IMAdata1.csv](https://www.macalester.edu/~ajohns24/data/IMAdata1.csv):
+The following data set on the 2016 election is stored as a *csv* file at [https://www.macalester.edu/~ajohns24/Data/electionDemographics16.csv](https://www.macalester.edu/~ajohns24/Data/electionDemographics16.csv):
 
+
+\
+\
+\
 
 
 ```{r echo=FALSE}
 suppressPackageStartupMessages(library(DT))
-election <- read.csv("https://www.macalester.edu/~ajohns24/data/IMAdata1.csv")
+election <- read.csv("https://www.macalester.edu/~ajohns24/Data/electionDemographics16.csv")
 DT::datatable(election, options = list(pageLength = 10))
 ```
 
 
 \
 \
+\
+\
+\
+
+
 
 This data set combines the county level election results provided by Tony McGovern (shared on [github](https://github.com/tonmcg/County_Level_Election_Results_12-16)), county level demographic data from the `df_county_demographics` data set within the `choroplethr` R package, and historical information about red/blue/purple states.  Let's take a quick look:
 
 ```{r collapse=TRUE}
-#use read.csv() to import the csv file
+# Use read.csv() to import the csv file
 election <- read.csv("https://www.macalester.edu/~ajohns24/data/IMAdata1.csv")
+```
 
-dim(election)       #dimensions 
-head(election, 2)   #first 2 rows
-names(election)     #variable names
+```{r eval = FALSE}
+# Check it out!
+dim(election)       # dimensions 
+head(election, 2)   # first 2 rows
+names(election)     # variable names
 ```
 
 
@@ -121,17 +133,17 @@ A bar chart provides a visualization of this table.  Try out the code below that
 
 
 ```{r eval=FALSE}
-#set up a plotting frame
-ggplot(election, aes(x=winrep_2016))
+# Set up a plotting frame
+ggplot(election, aes(x = winrep_2016))
 
-#add a layer with the bars
-ggplot(election, aes(x=winrep_2016)) + 
+# Add a layer with bars
+ggplot(election, aes(x = winrep_2016)) + 
     geom_bar()
 
-#add axis labels
-ggplot(election, aes(x=winrep_2016)) + 
+# Add axis labels
+ggplot(election, aes(x = winrep_2016)) + 
     geom_bar() +
-    labs(x="Trump win", y="Number of counties")
+    labs(x = "Trump win", y = "Number of counties")
 ```
 
 \
@@ -164,27 +176,27 @@ The quantitative `perrep_2016` variable summarizes Trump's percent of the vote i
 **Histograms** are constructed by (1) dividing up the observed range of the variable into 'bins' of equal width; and (2) counting up the number of cases that fall into each bin.  Try out the code below. 
 
 ```{r eval=FALSE}
-#set up a plotting frame
-ggplot(election, aes(x=perrep_2016))
+# Set up a plotting frame
+ggplot(election, aes(x = perrep_2016))
 
-#add a histogram layer
-ggplot(election, aes(x=perrep_2016)) +
+# Add a histogram layer
+ggplot(election, aes(x = perrep_2016)) +
     geom_histogram()
 
-#add axis labels
-ggplot(election, aes(x=perrep_2016)) +
+# Add axis labels
+ggplot(election, aes(x = perrep_2016)) +
     geom_histogram() +
-    labs(x="Trump vote (%)", y="Number of counties")
+    labs(x = "Trump vote (%)", y = "Number of counties")
 
-#change the border colors
-ggplot(election, aes(x=perrep_2016)) +
-    geom_histogram(color="white") +
-    labs(x="Trump vote (%)", y="Number of counties")
+# Change the border colors
+ggplot(election, aes(x = perrep_2016)) +
+    geom_histogram(color = "white") +
+    labs(x = "Trump vote (%)", y = "Number of counties")
 
-#change the bin width
-ggplot(election, aes(x=perrep_2016)) +
-    geom_histogram(color="white", binwidth=0.10) +
-    labs(x="Trump vote (%)", y="Number of counties")
+# Change the bin width
+ggplot(election, aes(x = perrep_2016)) +
+    geom_histogram(color = "white", binwidth = 0.10) +
+    labs(x = "Trump vote (%)", y = "Number of counties")
 ```
 
 
@@ -194,7 +206,7 @@ ggplot(election, aes(x=perrep_2016)) +
 
 In summary: 
 
-```{r echo=FALSE,fig.width=8, fig.height=6, warning=FALSE}
+```{r echo=FALSE,fig.width=8, fig.height=6, warning=FALSE, message = FALSE}
 g0=ggplot(election, aes(x=perrep_2016))
 g1= g0 + geom_histogram()
 g2 = g1 +labs(x="Trump vote (%)", y="Number of counties")
@@ -218,22 +230,12 @@ grid.arrange(g0,g1,g2,g3,g4,ncol=3)
 **Density plots** are essentially smooth versions of the histogram.  Instead of sorting cases into discrete bins, the "density" of cases is calculated across the entire range of values.  The greater the number of cases, the greater the density!  The density is then scaled so that the area under the density curve **always equals 1** and the area under any fraction of the curve represents the fraction of cases that lie in that range.    
 
 ```{r eval=FALSE}
-#set up the plotting frame
-ggplot(election, aes(x=perrep_2016))
+# Set up the plotting frame
+ggplot(election, aes(x = perrep_2016))
 
-#add a density curve
-ggplot(election, aes(x=perrep_2016)) +
+# Add a density curve
+ggplot(election, aes(x = perrep_2016)) +
     geom_density()
-
-#add axis labels
-ggplot(election, aes(x=perrep_2016)) +
-    geom_density() +
-    labs(x="Trump vote (%)")
-
-#add a fill color
-ggplot(election, aes(x=perrep_2016)) +
-    geom_density(fill="red") +
-    labs(x="Trump vote (%)")
 ```
 
 \
@@ -245,11 +247,7 @@ In summary:
 ```{r echo=FALSE, fig.width=8, fig.height=6, warning=FALSE}
 g1= ggplot(election, aes(x=perrep_2016))
 g2= g1 + geom_density()
-g3=g2 + labs(x="Trump vote (%)")
-g4=ggplot(election, aes(x=perrep_2016)) +
-    geom_density(fill="red") +
-    labs(x="Trump vote (%)")
-grid.arrange(g1,g2,g3,g4,ncol=2)
+grid.arrange(g1,g2,ncol=2)
 ```
 
 \
@@ -303,15 +301,19 @@ Each quantitative variable has an axis.  Each case is represented by a dot.
 
 
 ```{r eval=FALSE}
-#just a graphics frame
-ggplot(election, aes(y=perrep_2016, x=perrep_2012))
+# Just a graphics frame
+ggplot(election, aes(y = perrep_2016, x = perrep_2012))
 
-#add a scatterplot layer
-ggplot(election, aes(y=perrep_2016, x=perrep_2012)) +
+# Add a scatterplot layer
+ggplot(election, aes(y = perrep_2016, x = perrep_2012)) +
     geom_point()
 
-#another predictor
-ggplot(election, aes(y=perrep_2016, x=median_rent)) +
+# Add a scatterplot layer: label by state
+ggplot(election, aes(y = perrep_2016, x = perrep_2012)) +
+    geom_text(aes(label = abb))
+
+# Another predictor
+ggplot(election, aes(y = perrep_2016, x = median_rent)) +
     geom_point()
 ```
 
@@ -325,9 +327,11 @@ In summary:
 g1=ggplot(election, aes(y=perrep_2016, x=perrep_2012))
 g2=ggplot(election, aes(y=perrep_2016, x=perrep_2012)) +
     geom_point()
+g2a=ggplot(election, aes(y = perrep_2016, x = perrep_2012)) +
+    geom_text(aes(label = abb))
 g3=ggplot(election, aes(y=perrep_2016, x=median_rent)) +
     geom_point()
-grid.arrange(g1,g2,g3,ncol=3)
+grid.arrange(g1,g2,g2a,g3,ncol=2)
 ```
 
 \
@@ -340,22 +344,22 @@ grid.arrange(g1,g2,g3,ncol=3)
 **Side-by-side plots of 1 quantitative variable vs 1 categorical variable**
 
 ```{r eval=FALSE}
-#density plots by group
-ggplot(election, aes(x=perrep_2016, fill=StateColor)) +
+# Density plots by group
+ggplot(election, aes(x = perrep_2016, fill = StateColor)) +
     geom_density()
 
-#to see better: add transparency
-ggplot(election, aes(x=perrep_2016, fill=StateColor)) +
-    geom_density(alpha=0.5)
+# To see better: add transparency
+ggplot(election, aes(x = perrep_2016, fill = StateColor)) +
+    geom_density(alpha = 0.5)
 
-#fix the color scale!
-ggplot(election, aes(x=perrep_2016, fill=StateColor)) +
-    geom_density(alpha=0.5) +
-    scale_fill_manual(values=c("blue","purple","red"))
+# Fix the color scale!
+ggplot(election, aes(x = perrep_2016, fill = StateColor)) +
+    geom_density(alpha = 0.5) +
+    scale_fill_manual(values = c("blue","purple","red"))
 
-#to see better: split groups into separate plots
-ggplot(election, aes(x=perrep_2016, fill=StateColor)) +
-    geom_density(alpha=0.5) +
+# To see better: split groups into separate plots
+ggplot(election, aes(x = perrep_2016, fill = StateColor)) +
+    geom_density(alpha = 0.5) +
     facet_wrap( ~ StateColor) +
     scale_fill_manual(values=c("blue","purple","red"))
 
@@ -396,21 +400,16 @@ grid.arrange(g1,g2,g3,g4,ncol=2)
 If `median_rent` and `StateColor` both explain some of the variability in `perrep_2016`, why not include both in our analysis?!  Let's.
 
 ```{r eval=FALSE}
-#scatterplot: id groups using color
-ggplot(election, aes(y=perrep_2016, x=median_rent, color=StateColor)) +
-    geom_point(alpha=0.5) 
+# Scatterplot: id groups using color
+ggplot(election, aes(y = perrep_2016, x = median_rent, color = StateColor)) +
+    geom_point(alpha = 0.5) 
 
-#fix the color scale!
-ggplot(election, aes(y=perrep_2016, x=median_rent, color=StateColor)) +
-    geom_point(alpha=0.5) + 
-    scale_color_manual(values=c("blue","purple","red"))
+# Fix the color scale!
+ggplot(election, aes(y = perrep_2016, x = median_rent, color = StateColor)) +
+    geom_point(alpha = 0.5) + 
+    scale_color_manual(values = c("blue","purple","red"))
 
-#scatterplot: id groups using shape
-ggplot(election, aes(y=perrep_2016, x=median_rent, shape=StateColor)) +
-    geom_point(alpha=0.5) + 
-    scale_color_manual(values=c("blue","purple","red"))
-
-#scatterplot: split/facet by group
+# Scatterplot: split/facet by group
 ggplot(election, aes(y=perrep_2016, x=median_rent, color=StateColor)) +
     geom_point(alpha=0.5) +
     facet_wrap( ~ StateColor) + 
@@ -431,14 +430,11 @@ g1=ggplot(election, aes(y=perrep_2016, x=median_rent, color=StateColor)) +
 g2=ggplot(election, aes(y=perrep_2016, x=median_rent, color=StateColor)) +
     geom_point(alpha=0.5) + 
     scale_color_manual(values=c("blue","purple","red"))
-g3=ggplot(election, aes(y=perrep_2016, x=median_rent, shape=StateColor)) +
-    geom_point(alpha=0.5) + 
-    scale_color_manual(values=c("blue","purple","red"))
 g4=ggplot(election, aes(y=perrep_2016, x=median_rent, color=StateColor)) +
     geom_point(alpha=0.5) +
     facet_wrap( ~ StateColor) + 
     scale_color_manual(values=c("blue","purple","red"))
-grid.arrange(g1,g2,g3,g4,ncol=2)
+grid.arrange(g1,g2,g4,ncol=3)
 
 ```
 
@@ -451,13 +447,17 @@ grid.arrange(g1,g2,g3,g4,ncol=2)
 
 
 ```{r eval=FALSE}
-#scatterplot: represent third variable using color
-ggplot(election, aes(y=perrep_2016, x=median_rent, color=perrep_2012)) +
-    geom_point(alpha=0.5)
+# Scatterplot: represent third variable using color
+ggplot(election, aes(y = perrep_2016, x = median_rent, color = perrep_2012)) +
+    geom_point(alpha = 0.5)
 
-#scatterplot: discretize the third variable into 2 groups & represent with color
-ggplot(election, aes(y=perrep_2016, x=median_rent, color=cut(perrep_2012,2))) +
-    geom_point(alpha=0.5)
+# Scatterplot: represent third variable using size
+ggplot(election, aes(y = perrep_2016, x = median_rent, size = perrep_2012)) +
+    geom_point(alpha = 0.5)
+
+# Scatterplot: discretize the third variable 
+ggplot(election, aes(y = perrep_2016, x = median_rent, color = cut(perrep_2012,3))) +
+    geom_point(alpha = 0.5)
 
 ```
 
@@ -473,9 +473,11 @@ In summary:
 ```{r echo=FALSE, fig.width=8, fig.height=3, warning=FALSE}
 g1=ggplot(election, aes(y=perrep_2016, x=median_rent, color=perrep_2012)) +
     geom_point(alpha=0.5)
+g1a=ggplot(election, aes(y = perrep_2016, x = median_rent, size = perrep_2012)) +
+    geom_point(alpha = 0.5)
 g2=ggplot(election, aes(y=perrep_2016, x=median_rent, color=cut(perrep_2012,2))) +
     geom_point(alpha=0.5)
-grid.arrange(g1,g2,ncol=2)
+grid.arrange(g1,g1a,g2,ncol=3)
 
 ```
 
