@@ -174,6 +174,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="5" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html"><i class="fa fa-check"></i><b>5</b> Logistic Regression in R</a><ul>
 <li class="chapter" data-level="5.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#goals"><i class="fa fa-check"></i><b>5.1</b> Goals</a></li>
+<li class="chapter" data-level="5.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#horseshoe-crab-data"><i class="fa fa-check"></i><b>5.2</b> Horseshoe Crab Data</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#overview-4"><i class="fa fa-check"></i><b>5.2.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#load-and-look-at-the-data-1"><i class="fa fa-check"></i><b>5.2.2</b> Load and Look at the Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>5.3</b> Simple Linear Regression</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#fit-the-model-1"><i class="fa fa-check"></i><b>5.3.1</b> Fit the Model</a></li>
+<li class="chapter" data-level="5.3.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#inference-information-1"><i class="fa fa-check"></i><b>5.3.2</b> Inference Information</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html"><i class="fa fa-check"></i><b>6</b> Using R Reproducibly</a><ul>
 <li class="chapter" data-level="6.1" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#types-of-reproducibility"><i class="fa fa-check"></i><b>6.1</b> Types of Reproducibility</a></li>
@@ -484,18 +492,18 @@ out1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op"
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -37.606 -13.453  -1.338  14.775  45.118 
+## -35.611  -7.777   1.586   9.819  40.200 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   5.9945     5.4243   1.105    0.275    
-## x             1.4079     0.1851   7.605 8.75e-10 ***
+## (Intercept)   8.4600     4.7888   1.767   0.0836 .  
+## x             1.3598     0.1634   8.320 7.27e-11 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 18.89 on 48 degrees of freedom
-## Multiple R-squared:  0.5465, Adjusted R-squared:  0.537 
-## F-statistic: 57.83 on 1 and 48 DF,  p-value: 8.751e-10</code></pre>
+## Residual standard error: 16.68 on 48 degrees of freedom
+## Multiple R-squared:  0.5905, Adjusted R-squared:  0.582 
+## F-statistic: 69.22 on 1 and 48 DF,  p-value: 7.27e-11</code></pre>
 </div>
 <div id="figure-with-code-to-make-it-shown" class="section level4">
 <h4><span class="header-section-number">7.7.3.2</span> Figure with Code to Make It Shown</h4>
@@ -525,18 +533,18 @@ Figure 7.2: Simple Linear Regression
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -33.403 -13.431  -0.574  11.960  41.480 
+## -35.206  -8.280   1.658   9.114  38.035 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept) -2.688e+00  1.159e+01  -0.232    0.818
-## x            2.471e+00  1.948e+00   1.269    0.211
-## I(x^2)      -2.450e-02  8.828e-02  -0.277    0.783
-## I(x^3)       8.007e-05  1.138e-03   0.070    0.944
+## (Intercept)  2.1556204 10.3542282   0.208    0.836
+## x            2.5094480  1.7408884   1.441    0.156
+## I(x^2)      -0.0477037  0.0788977  -0.605    0.548
+## I(x^3)       0.0005518  0.0010175   0.542    0.590
 ## 
-## Residual standard error: 18.96 on 46 degrees of freedom
-## Multiple R-squared:  0.562,  Adjusted R-squared:  0.5334 
-## F-statistic: 19.67 on 3 and 46 DF,  p-value: 2.377e-08</code></pre>
+## Residual standard error: 16.95 on 46 degrees of freedom
+## Multiple R-squared:  0.5947, Adjusted R-squared:  0.5683 
+## F-statistic:  22.5 on 3 and 46 DF,  p-value: 4.096e-09</code></pre>
 Then we plot this figure with a hidden code chunk (so the R commands to make it do not appear in the document).
 <div class="figure" style="text-align: center"><span id="fig:cubic"></span>
 <img src="07-rmark_files/figure-html/cubic-1.png" alt="Scatter Plot with Cubic Regression Curve" width="672" />
@@ -552,7 +560,7 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 <h3><span class="header-section-number">7.7.4</span> R in Text</h3>
 <p>The <em>no snarf and barf</em> rule must be adhered to strictly. None at all!</p>
 <p>When you want to refer to some number in R printout, either make a code chunk that contains the printout you want, or, much nicer looking, you can “inline” R printout.</p>
-<p>Here we show how to do that. The quadratic and cubic regression coefficients in the preceding regression were <span class="math inline">\(-0.0244968\)</span> and <span class="math inline">\(8.0065663\times 10^{-5}\)</span>. Magic!</p>
+<p>Here we show how to do that. The quadratic and cubic regression coefficients in the preceding regression were <span class="math inline">\(-0.0477037\)</span> and <span class="math inline">\(5.5182199\times 10^{-4}\)</span>. Magic!</p>
 <p>See the source for this document to see how the magic works. The dollar signs around the in-line R chunks are required by the way R markdown handles scientific notation. It outputs LaTeX, which is explained in <a href="an-r-markdown-demo.html#latex-math">Section 7.8</a> below. It thus forces you to understand at least that much LaTeX. (Sorry about that!)</p>
 <p>If you never snarf and barf, and everything in your document is computed by R, then everything is always as claimed.</p>
 </div>
@@ -567,9 +575,9 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
 ##   Res.Df   RSS Df Sum of Sq      F Pr(&gt;F)
-## 1     48 17129                           
-## 2     47 16545  1    584.80 1.6261 0.2086
-## 3     46 16543  1      1.78 0.0049 0.9442</code></pre>
+## 1     48 13351                           
+## 2     47 13298  1    52.210 0.1817 0.6719
+## 3     46 13214  1    84.488 0.2941 0.5902</code></pre>
 <p>We want to turn that into a table in output format we are creating. First we have to figure out what the output of the R function <code>anova</code> is and capture it so we can use it.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span><span class="kw">anova</span>(out1, out2, out3)
 <span class="kw">class</span>(foo)</code></pre></div>
@@ -590,7 +598,7 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 <tbody>
 <tr class="odd">
 <td align="right">48</td>
-<td align="right">17129</td>
+<td align="right">13350.8</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right"></td>
@@ -598,19 +606,19 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 </tr>
 <tr class="even">
 <td align="right">47</td>
-<td align="right">16545</td>
+<td align="right">13298.5</td>
 <td align="right">1</td>
-<td align="right">585</td>
-<td align="right">1.63</td>
-<td align="right">0.209</td>
+<td align="right">52.21</td>
+<td align="right">0.182</td>
+<td align="right">0.672</td>
 </tr>
 <tr class="odd">
 <td align="right">46</td>
-<td align="right">16543</td>
+<td align="right">13214.1</td>
 <td align="right">1</td>
-<td align="right">2</td>
-<td align="right">0.00</td>
-<td align="right">0.944</td>
+<td align="right">84.49</td>
+<td align="right">0.294</td>
+<td align="right">0.590</td>
 </tr>
 </tbody>
 </table>

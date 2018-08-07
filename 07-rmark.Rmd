@@ -444,7 +444,7 @@ and the simplest way to do that seems to be the `kable` option on
 our R chunk
 ```{r kable, echo = FALSE}
 options(knitr.kable.NA = '')
-knitr::kable(foo, caption = "ANOVA Table", digits = c(0, 0, 2, 0, 2, 3, 3))
+knitr::kable(foo, caption = "ANOVA Table", digits = c(0, 1, 0, 2, 3, 3))
 ```
 
 ## LaTeX Math
