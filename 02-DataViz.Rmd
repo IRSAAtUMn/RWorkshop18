@@ -2,8 +2,10 @@
 
 *Author: Alicia Johnson*
 
+
 \
 \
+
 
 The following data set on the 2016 election is stored as a *csv* file at [https://www.macalester.edu/~ajohns24/Data/electionDemographics16.csv](https://www.macalester.edu/~ajohns24/Data/electionDemographics16.csv):
 
@@ -17,6 +19,7 @@ The following data set on the 2016 election is stored as a *csv* file at [https:
 suppressPackageStartupMessages(library(DT))
 election <- read.csv("https://www.macalester.edu/~ajohns24/Data/electionDemographics16.csv")
 DT::datatable(election, options = list(pageLength = 10))
+library(gridExtra)
 ```
 
 
@@ -139,11 +142,6 @@ ggplot(election, aes(x = winrep_2016))
 # Add a layer with bars
 ggplot(election, aes(x = winrep_2016)) + 
     geom_bar()
-
-# Add axis labels
-ggplot(election, aes(x = winrep_2016)) + 
-    geom_bar() +
-    labs(x = "Trump win", y = "Number of counties")
 ```
 
 \
@@ -155,9 +153,7 @@ In summary:
 ```{r echo=FALSE, fig.height=3.5, fig.width=8, warning=FALSE}
 g1=ggplot(election, aes(x=winrep_2016))
 g2=g1 + geom_bar()
-g3=g2 + labs(x="Trump win", y="Number of counties")
-suppressPackageStartupMessages(library(gridExtra))
-grid.arrange(g1,g2,g3,ncol=3)
+grid.arrange(g1,g2,ncol=2)
 ```
 
 
@@ -183,20 +179,13 @@ ggplot(election, aes(x = perrep_2016))
 ggplot(election, aes(x = perrep_2016)) +
     geom_histogram()
 
-# Add axis labels
-ggplot(election, aes(x = perrep_2016)) +
-    geom_histogram() +
-    labs(x = "Trump vote (%)", y = "Number of counties")
-
 # Change the border colors
 ggplot(election, aes(x = perrep_2016)) +
-    geom_histogram(color = "white") +
-    labs(x = "Trump vote (%)", y = "Number of counties")
+    geom_histogram(color = "white") 
 
 # Change the bin width
 ggplot(election, aes(x = perrep_2016)) +
-    geom_histogram(color = "white", binwidth = 0.10) +
-    labs(x = "Trump vote (%)", y = "Number of counties")
+    geom_histogram(color = "white", binwidth = 0.10)
 ```
 
 
@@ -209,14 +198,11 @@ In summary:
 ```{r echo=FALSE,fig.width=8, fig.height=6, warning=FALSE, message = FALSE}
 g0=ggplot(election, aes(x=perrep_2016))
 g1= g0 + geom_histogram()
-g2 = g1 +labs(x="Trump vote (%)", y="Number of counties")
 g3=ggplot(election, aes(x=perrep_2016)) +
-    geom_histogram(color="white") +
-    labs(x="Trump vote (%)", y="Number of counties")
+    geom_histogram(color="white") 
 g4=ggplot(election, aes(x=perrep_2016)) +
-    geom_histogram(color="white", binwidth=0.10) +
-    labs(x="Trump vote (%)", y="Number of counties")
-grid.arrange(g0,g1,g2,g3,g4,ncol=3)
+    geom_histogram(color="white", binwidth=0.10) 
+grid.arrange(g0,g1,g3,g4,ncol=2)
 ```
 
 
@@ -364,6 +350,10 @@ ggplot(election, aes(x = perrep_2016, fill = StateColor)) +
     scale_fill_manual(values=c("blue","purple","red"))
 
 
+# Or use boxplots!
+ggplot(election, aes(x = StateColor, y = perrep_2016)) + 
+  geom_boxplot()
+
 ```
 
 
@@ -385,7 +375,9 @@ g4=ggplot(election, aes(x=perrep_2016, fill=StateColor)) +
     geom_density(alpha=0.5) +
     facet_wrap( ~ StateColor) +
     scale_fill_manual(values=c("blue","purple","red"))
-grid.arrange(g1,g2,g3,g4,ncol=2)
+g5 <- ggplot(election, aes(x = StateColor, y = perrep_2016)) + 
+  geom_boxplot()
+grid.arrange(g1,g2,g3,g4,g5,ncol=2)
 ```
 
 \
@@ -424,7 +416,7 @@ ggplot(election, aes(y=perrep_2016, x=median_rent, color=StateColor)) +
 
 In summary: 
 
-```{r echo=FALSE, fig.width=8, fig.height=6, warning=FALSE}
+```{r echo=FALSE, fig.width=8, fig.height=3, warning=FALSE}
 g1=ggplot(election, aes(y=perrep_2016, x=median_rent, color=StateColor)) +
     geom_point(alpha=0.5) 
 g2=ggplot(election, aes(y=perrep_2016, x=median_rent, color=StateColor)) +
@@ -514,13 +506,13 @@ In the previous activity, we investigated the basic features of this data set:
 
 ```{r collapse=TRUE}
 dim(US_births_2000_2014)
-head(US_births_2000_2014)
+head(US_births_2000_2014, 2)
 names(US_births_2000_2014)
 levels(factor(US_births_2000_2014$day_of_week))
 ```
 
 
-Let's graphically explore these variables and the relationships among them!  NOTE: This set of exercises is inspired by the work of Randy Pruim for the MAA [statPREP program](https://dtkaplan.github.io/statPREP/index.html).
+Let's graphically explore these variables and the relationships among them!  **Solutions are below.**   NOTE: This set of exercises is inspired by the work of Randy Pruim for the MAA [statPREP program](https://dtkaplan.github.io/statPREP/index.html).
 
 
 
@@ -532,7 +524,7 @@ Let's graphically explore these variables and the relationships among them!  NOT
 
 1. First, let's focus on 2014:    
     ```{r}
-    Only2014 <- subset(US_births_2000_2014, year==2014)
+    only_2014 <- subset(US_births_2000_2014, year == 2014)
     ```
     Construct a *univariate* visualization of `births`.  Describe the variability in births from day to day in 2014.    
     
@@ -546,15 +538,79 @@ Let's graphically explore these variables and the relationships among them!  NOT
 
 6. Finally, consider only those births that occur on Fridays:    
     ```{r}
-    OnlyFridays <- subset(US_births_2000_2014, day_of_week=="Fri")
+    only_fri <- subset(US_births_2000_2014, day_of_week=="Fri")
     ```
     Define a new variable `fri13` that indicates whether the case falls on a Friday in the 13th date of the month:    
     ```{r}
-    OnlyFridays$fri13 <- (OnlyFridays$date_of_month==13)
+    only_fri$fri13 <- (only_fri$date_of_month == 13)
     ```
     Construct and comment on a plot of that illustrates the distribution of births among Fridays that fall on & off the 13th. Do you see any evidence of superstition?
     
     
+
+
+\
+\
+\
+\
+\
+\
+
+
+
+
+\
+\
+\
+
+
+**SOLUTIONS:**
+
+
+```{r eval = FALSE}
+# 1
+only_2014 <- subset(US_births_2000_2014, year == 2014)
+ggplot(only_2014, aes(x = births)) + 
+  geom_histogram(color = "white")
+ggplot(only_2014, aes(x = births)) + 
+  geom_density()
+
+#2
+ggplot(only_2014, aes(y = births, x = date)) + 
+  geom_point()
+
+#3
+ggplot(only_2014, aes(y = births, x = date, color = day_of_week)) + 
+  geom_point()    
+ggplot(only_2014, aes(y = births, x = date)) +
+    geom_text(aes(label = day_of_week))
+
+#4
+#HOLIDAYS!  For example, Thanksgiving is a Thursday in late November
+
+#5
+ggplot(US_births_2000_2014, aes(y = births, x = date, color = day_of_week)) + 
+  geom_point()    
+
+#6
+only_fri <- subset(US_births_2000_2014, day_of_week=="Fri")
+only_fri$fri13 <- (only_fri$date_of_month == 13)
+ggplot(only_fri, aes(x = births, fill = fri13)) + 
+  geom_density(alpha = 0.5)
+ggplot(only_fri, aes(y = births, x = fri13)) + 
+  geom_boxplot()
+```
+
+    
+    
+    
+\
+\
+\
+\
+
+
+
 
 <br>
 <br>
@@ -565,8 +621,8 @@ We've covered some basic graphics.  However, different types of relationships re
 
 
 ```{r eval=FALSE}
-install.packages("choroplethr", dependencies=TRUE)
-install.packages("choroplethrMaps", dependencies=TRUE)
+install.packages("choroplethr", dependencies = TRUE)
+install.packages("choroplethrMaps", dependencies = TRUE)
 ```
 
 
@@ -575,23 +631,19 @@ install.packages("choroplethrMaps", dependencies=TRUE)
 library(choroplethr)
 library(choroplethrMaps)
 
-#to make a map of Trump support store `perrep_2016` as value
+# Make a map of Trump support
 election$value <- election$perrep_2016
 county_choropleth(election)
 
-#a map of Trump wins
+# A map of Trump wins
 election$value <- election$winrep_2016
 county_choropleth(election)
 
-#a map of state color
-election$value <- election$StateColor
-county_choropleth(election)
-
-#a map of percent white
-election$value <- election$percent_white
-county_choropleth(election)
+# Try another variable of interest to you!!
 
 ```
+
+
 
 
 
