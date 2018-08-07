@@ -10,12 +10,12 @@
 \
 
 
-Consider the *4 V's of Big Data*:
+This workshop is motivated by the increasing need for tools that can be used to elucidate trends, decisions, and stories from data.  This practice is broadly referred to as "data science", a workflow for which is presented by Garrett Grolemund & Hadley Wickham:
 
 <center>
 <div class="image">
-<img src="images/data1.png" style="width: 475px"/>
-<div>source: https://commons.wikimedia.org/wiki/File:Defining-big-data1.png </div>
+<img src="images/tidy1.png" style="width: 475px"/>
+<div>source: http://r4ds.had.co.nz/explore-intro.html </div>
 </div>
 </center>
 
@@ -23,7 +23,52 @@ Consider the *4 V's of Big Data*:
 \
 \
 
-This workshop is motivated in part by the increasing need for tools that can be used to elucidate trends, decisions, and stories from data.  Whether your data are generated via simulation, collected via a survey, observed in a scientific experiment, scraped from the web, etc, you need *software* to explore and construct inferences from these data.  In this workshop, we'll use the **R** statistical software.  Why R?
+
+
+
+**Workshop Outline & Goals**
+
+Our goal is to provide a hands on introduction to navigating the data science pipeline with R and github.  You will walk away with a solid foundation upon which you can build for your own research.  
+
+
+
+\
+
+Day 1:
+
+- Introduction to R & RStudio    
+- Data Visualization    
+- Simple Statistics    
+- Linear Regression    
+
+
+\ 
+
+
+
+Day 2: 
+
+- Logistic regression    
+- Principles of Reproducible Research    
+- R Markdown    
+- Github in R    
+
+
+
+
+
+
+\
+\
+\
+\
+
+
+
+## Getting Started
+
+
+Whether your data are generated via simulation, collected via a survey, observed in a scientific experiment, scraped from the web, etc, you need *software* to explore and construct inferences from these data.  In this workshop, we'll use the **R** statistical software.  Why R?
 
 - it’s free    
 - it’s open source    
@@ -36,48 +81,6 @@ This workshop is motivated in part by the increasing need for tools that can be 
 
 \
 
-**Workshop Outline & Goals**
-
-Our goal is to provide a quick introduction to the power of and principles behind using R for statistical analysis.  You will walk away with a solid foundation upon which you can build in utilizing R for your own research.  
-
-
-
-\
-
-Day 1:
-
-- Introduction to R & RStudio
-
-- Data Visualization
-
-- Simple Statistics 
-
-- Linear Regression
-
-
-\ 
-
-Day 2: 
-
-- Quantile Regression
-
-- Github in R
-
-- R Markdown
-
-- Principles of Reproducible Research
-reproducible research / outline for workshop
-
-
-
-
-\
-\
-\
-\
-
-
-## Getting Started
 
 Before the workshop, you were asked to download/update both R & RStudio:
 
@@ -124,12 +127,14 @@ We can use R as a simple calculator.  Try the following:
 \
 \
 
+
+
 **Comments**    
 
 Once you start saving your work, it's helpful to *comment your code*.  To this end, R ignores anything after `#`.    
 
 ```{r eval=FALSE}
-#calculate 3 squared
+# Calculate 3 squared
 3^2
 ```
 
@@ -148,20 +153,21 @@ R also includes built-in *functions* to which we supply *arguments*: `function(a
 ```{r eval=FALSE}
 sqrt(9)
 
-#the sum function calculates the sum of the listed numbers
-#does the order of arguments matter?
+# The sum() function calculates the sum of the listed numbers
+# Does the order of arguments matter?
 sum(2, 3)
 sum(3, 2)
 
-#what does the rep function do?  does the order of arguments matter?
+# What does the rep() function do?  
+# Does the order of arguments matter?
 rep(2, 3)
 rep(3, 2)
 
-#some arguments also have names
-rep(x=3, times=2)
-rep(times=2, x=3)
+# Arguments have names
+rep(x = 3, times = 2)
+rep(times = 2, x = 3)
 
-#is R case sensitive?  eg: can we spell rep as Rep? 
+# Is R case sensitive?  eg: Can we spell rep() as Rep()? 
 Rep(2, 3)
 ```
 
@@ -182,17 +188,17 @@ Rep(2, 3)
 We can assign & store R output.    
 
 ```{r eval=FALSE}
-#store the result of rep(3, 2) as TwoThrees
-TwoThrees <- rep(3, 2)
+# Store the result of rep(3, 2) as two_threes
+two_threes <- rep(3, 2)
 
-#check out the results
-TwoThrees
+# Check out the results
+two_threes
 
-#do something to the results
-TwoThrees + 5
+# Do something to the results
+two_threes + 5
 
-#Names cannot include spaces!  try this:
-Two Threes <- rep(3,2)
+# Names cannot include spaces!
+two threes <- rep(3,2)
 ```
 
 
@@ -231,15 +237,43 @@ Two Threes <- rep(3,2)
 ## Working with data
 
 
-The following data were utilized in the fivethirtyeight.com article ["The Dollar-And-Cents Case Against Hollywood's Exclusion of Women"](http://fivethirtyeight.com/features/the-dollar-and-cents-case-against-hollywoods-exclusion-of-women/) which analyzes movies that do/don't pass the **Bechdel test**.  A movie passes the test if it meets the following criteria:    
+The following data were utilized in the fivethirtyeight.com article ["The Dollar-And-Cents Case Against Hollywood's Exclusion of Women"](http://fivethirtyeight.com/features/the-dollar-and-cents-case-against-hollywoods-exclusion-of-women/) which analyzes movies that do/don't pass the **Bechdel test**.  Image from Wikipedia:      
+
+
+\
+\
+
+
+
+<img src="images/bechdel.jpg" />
+
+
+
+\
+\
+
+
+
+A movie passes the test if it meets the following criteria:    
 
 - there are $\ge 2$ female characters    
 - the female characters talk to each other    
 - at least 1 time, they talk about something other than a male character
 
+
+
 \
 \
 \
+\
+\
+
+
+
+The fivethirtyeight analysis utilizes the following data:
+
+\
+
 
 ```{r echo=FALSE}
 suppressPackageStartupMessages(library(DT))
@@ -252,6 +286,12 @@ DT::datatable(subb, options = list(pageLength = 10))
 
 \
 \
+\
+\
+
+
+
+
 
 **Data Structure**
 
@@ -265,8 +305,12 @@ DT::datatable(subb, options = list(pageLength = 10))
 
 
 \
+\
+\
+\
 
-Question:  What are the units of observation in the above data?  What are the variables?
+
+**Question**:  What are the units of observation in the above data?  What are the variables?
 
 \
 \
@@ -277,10 +321,10 @@ Question:  What are the units of observation in the above data?  What are the va
 **Accessing / Importing Data**    
 
 
-Data are stored in countless different locations (eg: your computer, Google drive, Wiki, etc) and in countless formats (eg: xls, csv, tables, etc).  Luckily for us, the Bechdel data are already stored within R in the `fivethirtyeight` **package**.  In general, packages developed & shared by R users provide specialized functions and data.  If you didn't install the `fivethirtyeight` package before the workshop, you'll need to do so now:    
+Data are stored in countless different locations (eg: your computer, Google drive, Wiki, etc) and in countless formats (eg: xls, csv, tables, etc).  Luckily for us, the Bechdel data are already stored within R in the `fivethirtyeight` **package**.  In general, packages developed & shared by R users provide specialized functions and data.  **IF AND ONLY IF** you didn't install the `fivethirtyeight` package before the workshop, you'll need to do so now:    
 
 ```{r eval=FALSE}
-install.packages("fivethirtyeight", dependencies=TRUE)
+install.packages("fivethirtyeight", dependencies = TRUE)
 ```
 
 Once you install the package, you can load the package in your R session and access the `bechdel` data:
@@ -320,16 +364,16 @@ You can also access the **codebook** for these data:
 Before we do any data analysis we have to understand the structure of our data.  Try the following.
 
 ```{r eval=FALSE}
-#view the data table in a separate panel
+# View the data table in a separate panel
 View(bechdel)
 
-#check out the first rows in the console
+# Check out the first rows in the console
 head(bechdel)
 
-#obtain the data dimensions: rows x columns
+# Obtain the data dimensions: rows x columns
 dim(bechdel)
 
-#get the variable names
+# Get the variable names
 names(bechdel)
 ```
 
@@ -340,14 +384,16 @@ names(bechdel)
 \
 \
 
+
+
 **Examining Specific Variables**
 
 ```{r eval=FALSE}
-#to access a single variable use the $ notation
+# Access a single variable using "$" 
 bechdel$budget_2013
 bechdel$clean_test
     
-#we can determine the levels/categories of category variables
+# Determine levels/categories of categorical variables
 levels(factor(bechdel$clean_test))
 levels(factor(bechdel$binary))
 ```
@@ -360,32 +406,40 @@ levels(factor(bechdel$binary))
 \
 \
 
+
+
+
 **Subsetting Specific Units of Observation**
 
 We can obtain a subset of observations that satisfy a criterion defined by a variable within the data set:
 
 ```{r eval=FALSE}
-#subset of movies with a 2013 budget under 1 million dollars
-Cheap <- subset(bechdel, budget_2013<1000000)
-dim(Cheap)
-head(Cheap)
+# Subset of movies with a 2013 budget under 1 million dollars
+cheap <- subset(bechdel, budget_2013 < 1000000)
+dim(cheap)
+head(cheap)
 
-#subset of movies that fail the test
-Failures <- subset(bechdel, binary=="FAIL")
-dim(Failures)
-head(Failures)
+# Subset of movies that fail the test
+failures <- subset(bechdel, binary == "FAIL")
+dim(failures)
+head(failures)
 
-#subset of movies that EITHER have a budget under 1 million dollars OR fail the test
-CheapOrFail <- subset(bechdel, budget_2013<1000000 | binary=="FALSE")
-dim(CheapOrFail)
-head(CheapOrFail)
+# Subset of movies that EITHER have a budget under 1 million dollars OR fail the test
+cheap_or_fail <- subset(bechdel, budget_2013 < 1000000 | binary == "FALSE")
+dim(cheap_or_fail)
+head(cheap_or_fail)
 
-#subset of movies that BOTH have a budget under 1 million dollars AND fail the test
-CheapAndFail <- subset(bechdel, budget_2013<1000000 & binary=="FALSE")
-dim(CheapAndFail)
-head(CheapAndFail)
+# Subset of movies that BOTH have a budget under 1 million dollars AND fail the test
+cheap_and_fail <- subset(bechdel, budget_2013 < 1000000 & binary == "FALSE")
+dim(cheap_and_fail)
+head(cheap_and_fail)
 ```
 
+
+\
+\
+\
+\
 
 
 Some useful syntax for subsetting:    
@@ -457,8 +511,8 @@ View(US_births_2000_2014)
 head(US_births_2000_2014)
 
 #4
-#each row = a single day
-#variables include number of births, day of week, etc on that date
+# Each row = a single day
+# Variables include number of births, day of week, etc on that date
 
 #5
 dim(US_births_2000_2014)
@@ -471,11 +525,11 @@ US_births_2000_2014$day_of_week
 levels(factor(US_births_2000_2014$day_of_week))
 
 #8
-OnlyFridays <- subset(US_births_2000_2014, day_of_week=="Fri")
+OnlyFridays <- subset(US_births_2000_2014, day_of_week == "Fri")
 dim(OnlyFridays)
 
 #9
-Only2014 <- subset(US_births_2000_2014, year==2014)
+Only2014 <- subset(US_births_2000_2014, year == 2014)
 dim(Only2014)
 ```
 

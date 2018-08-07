@@ -175,30 +175,25 @@ sessionInfo()
 ```
 
 ```
-## R version 3.5.1 (2018-07-02)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 16.04.5 LTS
+## R version 3.5.0 (2018-04-23)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS High Sierra 10.13.4
 ## 
 ## Matrix products: default
-## BLAS: /home/geyer/local/current/lib/R/lib/libRblas.so
-## LAPACK: /home/geyer/local/current/lib/R/lib/libRlapack.so
+## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_3.5.1  backports_1.1.2 bookdown_0.7    magrittr_1.5   
-##  [5] rprojroot_1.3-2 tools_3.5.1     htmltools_0.3.6 Rcpp_0.12.18   
-##  [9] stringi_1.2.4   rmarkdown_1.10  knitr_1.20      xfun_0.3       
-## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.11
+##  [1] compiler_3.5.0  backports_1.1.2 bookdown_0.7    magrittr_1.5   
+##  [5] rprojroot_1.3-2 tools_3.5.0     htmltools_0.3.6 Rcpp_0.12.17   
+##  [9] stringi_1.2.2   rmarkdown_1.9   knitr_1.20      xfun_0.1       
+## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.10.1
 ```
 
 
@@ -351,7 +346,7 @@ Load all data in one spot. Again, if you are loading through the interface windo
 
 Use sections in R Studio to organize and quickly navigate your code. Press cmd-shift-R on a Mac or cntrl-shift-R on a PC to insert a section. 
 
-<img src="images/rscriptsections.jpg" style="display: block; margin: auto;" />
+<img src="images/rscriptsections.jpg" width="713" style="display: block; margin: auto;" />
 
 \
 
@@ -402,7 +397,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 47 28 23 45 68  1 94 91 24 81
+##  [1] 45 85 87 58 99 29 32 41 31 21
 ```
 
 ```r
@@ -410,7 +405,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 97 28 69 75 45 13 85 60 18 35
+##  [1] 34 76 83 13 22  1 69 48 87 78
 ```
 
 ```r

@@ -11,9 +11,9 @@ Attribution-ShareAlike 4.0 International License
 
 ## R
 
- * The version of R used to make this document is 3.5.1.
+ * The version of R used to make this document is 3.5.0.
 
- * The version of the `rmarkdown` package used to make this document is 1.10.
+ * The version of the `rmarkdown` package used to make this document is 1.9.
 
  * The version of the `knitr` package used to make this document is 1.20.
 
@@ -392,18 +392,18 @@ summary(out1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -35.611  -7.777   1.586   9.819  40.200 
+## -37.713 -11.721   1.703  12.416  40.310 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   8.4600     4.7888   1.767   0.0836 .  
-## x             1.3598     0.1634   8.320 7.27e-11 ***
+## (Intercept)   3.3972     5.1965   0.654    0.516    
+## x             1.3632     0.1774   7.687 6.58e-10 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 16.68 on 48 degrees of freedom
-## Multiple R-squared:  0.5905,	Adjusted R-squared:  0.582 
-## F-statistic: 69.22 on 1 and 48 DF,  p-value: 7.27e-11
+## Residual standard error: 18.1 on 48 degrees of freedom
+## Multiple R-squared:  0.5517,	Adjusted R-squared:  0.5424 
+## F-statistic: 59.08 on 1 and 48 DF,  p-value: 6.575e-10
 ```
 
 #### Figure with Code to Make It Shown
@@ -414,11 +414,6 @@ The following figure is produced by the following code
 mydata <- data.frame(x, y)
 ggplot(mydata, aes(x = x, y = y)) + geom_point() +
     geom_smooth(method = "lm")
-```
-
-```
-## Warning in grid.Call.graphics(C_polygon, x$x, x$y, index): semi-
-## transparency is not supported on this device: reported only once per page
 ```
 
 <div class="figure" style="text-align: center">
@@ -447,18 +442,18 @@ summary(out3)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -35.206  -8.280   1.658   9.114  38.035 
+## -37.816 -10.032   0.137  13.217  39.543 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)
-## (Intercept)  2.1556204 10.3542282   0.208    0.836
-## x            2.5094480  1.7408884   1.441    0.156
-## I(x^2)      -0.0477037  0.0788977  -0.605    0.548
-## I(x^3)       0.0005518  0.0010175   0.542    0.590
+##              Estimate Std. Error t value Pr(>|t|)
+## (Intercept) -5.651000  11.168676  -0.506    0.615
+## x            2.780691   1.877824   1.481    0.145
+## I(x^2)      -0.050046   0.085104  -0.588    0.559
+## I(x^3)       0.000488   0.001098   0.445    0.659
 ## 
-## Residual standard error: 16.95 on 46 degrees of freedom
-## Multiple R-squared:  0.5947,	Adjusted R-squared:  0.5683 
-## F-statistic:  22.5 on 3 and 46 DF,  p-value: 4.096e-09
+## Residual standard error: 18.28 on 46 degrees of freedom
+## Multiple R-squared:  0.5616,	Adjusted R-squared:  0.533 
+## F-statistic: 19.64 on 3 and 46 DF,  p-value: 2.424e-08
 ```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
@@ -487,9 +482,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
-$-0.0477037$
+$-0.0500461$
 and
-$5.5182199\times 10^{-4}$.
+$4.8803933\times 10^{-4}$.
 Magic!
 
 See the source for this document to see how the magic works.
@@ -519,9 +514,9 @@ anova(out1, out2, out3)
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
 ##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
-## 1     48 13351                           
-## 2     47 13298  1    52.210 0.1817 0.6719
-## 3     46 13214  1    84.488 0.2941 0.5902
+## 1     48 15721                           
+## 2     47 15441  1   279.947 0.8376 0.3649
+## 3     46 15375  1    66.086 0.1977 0.6586
 ```
 
 We want to turn that into a table in output format we are creating.
@@ -544,9 +539,9 @@ Table: (\#tab:kable)ANOVA Table
 
  Res.Df       RSS   Df   Sum of Sq       F   Pr(>F)
 -------  --------  ---  ----------  ------  -------
-     48   13350.8                                  
-     47   13298.5    1       52.21   0.182    0.672
-     46   13214.1    1       84.49   0.294    0.590
+     48   15720.6                                  
+     47   15440.7    1      279.95   0.838    0.365
+     46   15374.6    1       66.09   0.198    0.659
 
 ## LaTeX Math
 
