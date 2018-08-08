@@ -111,12 +111,25 @@ We could say that the log odds of a 25 cm female having satellites is about `r -
 This tells us the probability of a 25 cm wide female crab having one of more satellites is about `r round(exp(0.0792)/(1+exp(0.0792)), 4)`.
 
 
-## Test the Regression Coefficient ##
+## Test a Regression Coefficient ##
 
 In the previous chapter, you learned to use the **summary** command for a detailed summary of the model. The **summary** command works  in the logistic regression setting and produces similar output. 
 ```{r}
 summary(mod)
 ```
+
+In particular, we can use the coefficients table (in the center of the output) to find the estimates of our regression coefficients, their standard errors (smaller standard errors indicate higher certainty), test statistics (for testing whether the regression coefficients differ from zero), and the p-values associated with the test statistics.
+
+When it comes to testing regression coefficients, we are especially interested in the regression coefficient for the predictor.  Why? If it is zero, then the log odds have no linear relationship with the predictor. 
+
+In our crab example, we want to test the regression coefficient on width. That is, we are testing whether the female crab's carapace width has a linear relationship to her log odds of having satellites. 
+
+* The null hypothesis is that her carapace width has no linear relationship to her log odds of having satellites. 
+* The alternative hypothesis is that her carapace width has a linear relationship to her log odds of having satellites. 
+
+Remember: we have to assume the null hypothesis is true until we find evidence that there is a linear relationship between carapace width and her log odds of having satellites.
+
+To test our hypotheses, we use the two right-most columns and the second row in the the coefficients table of the summary. These tell us that our test statistic is 4.887 and our p-value is 1.02e-06 (or $1.02 \times 10^{-6}). 
 
 ## Create Confidence Intervals
 
