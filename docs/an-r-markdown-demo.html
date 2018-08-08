@@ -173,15 +173,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.5" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html"><i class="fa fa-check"></i><b>5</b> Logistic Regression in R</a><ul>
-<li class="chapter" data-level="5.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#goals"><i class="fa fa-check"></i><b>5.1</b> Goals</a></li>
-<li class="chapter" data-level="5.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#horseshoe-crab-data"><i class="fa fa-check"></i><b>5.2</b> Horseshoe Crab Data</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#overview-4"><i class="fa fa-check"></i><b>5.2.1</b> Overview</a></li>
-<li class="chapter" data-level="5.2.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#load-and-look-at-the-data-1"><i class="fa fa-check"></i><b>5.2.2</b> Load and Look at the Data</a></li>
+<li class="chapter" data-level="5.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#goals"><i class="fa fa-check"></i><b>5.2</b> Goals</a></li>
+<li class="chapter" data-level="5.3" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#model-basics"><i class="fa fa-check"></i><b>5.3</b> Model Basics</a></li>
+<li class="chapter" data-level="5.4" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#horseshoe-crab-data"><i class="fa fa-check"></i><b>5.4</b> Horseshoe Crab Data</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#overview-4"><i class="fa fa-check"></i><b>5.4.1</b> Overview</a></li>
+<li class="chapter" data-level="5.4.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#load-and-look-at-the-data-1"><i class="fa fa-check"></i><b>5.4.2</b> Load and Look at the Data</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>5.3</b> Simple Linear Regression</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#fit-the-model-1"><i class="fa fa-check"></i><b>5.3.1</b> Fit the Model</a></li>
-<li class="chapter" data-level="5.3.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#inference-information-1"><i class="fa fa-check"></i><b>5.3.2</b> Inference Information</a></li>
+<li class="chapter" data-level="5.5" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#logistic-regression"><i class="fa fa-check"></i><b>5.5</b> Logistic Regression</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#fit-the-model-1"><i class="fa fa-check"></i><b>5.5.1</b> Fit the Model</a></li>
 </ul></li>
+<li class="chapter" data-level="5.6" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#interpret-the-model"><i class="fa fa-check"></i><b>5.6</b> Interpret the Model</a></li>
+<li class="chapter" data-level="5.7" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#calculate-probabilities"><i class="fa fa-check"></i><b>5.7</b> Calculate Probabilities</a></li>
+<li class="chapter" data-level="5.8" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#test-the-regression-coefficient"><i class="fa fa-check"></i><b>5.8</b> Test the Regression Coefficient</a></li>
+<li class="chapter" data-level="5.9" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#create-confidence-intervals"><i class="fa fa-check"></i><b>5.9</b> Create Confidence Intervals</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html"><i class="fa fa-check"></i><b>6</b> Using R Reproducibly</a><ul>
 <li class="chapter" data-level="6.1" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#types-of-reproducibility"><i class="fa fa-check"></i><b>6.1</b> Types of Reproducibility</a></li>
@@ -492,18 +497,18 @@ out1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op"
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -52.100 -11.675   0.180   8.939  41.593 
+## -54.103 -15.978   0.812  15.792  40.808 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)    7.685      5.507   1.395    0.169    
-## x              1.321      0.188   7.028 6.66e-09 ***
+## (Intercept)    1.288      6.211   0.207    0.837    
+## x              1.406      0.212   6.633 2.69e-08 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 19.18 on 48 degrees of freedom
-## Multiple R-squared:  0.5072, Adjusted R-squared:  0.4969 
-## F-statistic:  49.4 on 1 and 48 DF,  p-value: 6.657e-09</code></pre>
+## Residual standard error: 21.63 on 48 degrees of freedom
+## Multiple R-squared:  0.4783, Adjusted R-squared:  0.4674 
+## F-statistic:    44 on 1 and 48 DF,  p-value: 2.687e-08</code></pre>
 </div>
 <div id="figure-with-code-to-make-it-shown" class="section level4">
 <h4><span class="header-section-number">7.7.3.2</span> Figure with Code to Make It Shown</h4>
@@ -531,20 +536,18 @@ Figure 7.2: Simple Linear Regression
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -55.267 -10.456   1.172  10.219  38.560 
+## -52.995 -15.855   0.141  15.265  41.855 
 ## 
 ## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)  
-## (Intercept) 20.824781  11.761333   1.771   0.0833 .
-## x           -1.180101   1.977469  -0.597   0.5536  
-## I(x^2)       0.107735   0.089620   1.202   0.2355  
-## I(x^3)      -0.001287   0.001156  -1.114   0.2712  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+##               Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)  0.4748616 13.4712287   0.035    0.972
+## x            1.2868483  2.2649593   0.568    0.573
+## I(x^2)       0.0150277  0.1026488   0.146    0.884
+## I(x^3)      -0.0002783  0.0013238  -0.210    0.834
 ## 
-## Residual standard error: 19.25 on 46 degrees of freedom
-## Multiple R-squared:  0.5241, Adjusted R-squared:  0.4931 
-## F-statistic: 16.89 on 3 and 46 DF,  p-value: 1.549e-07</code></pre>
+## Residual standard error: 22.05 on 46 degrees of freedom
+## Multiple R-squared:  0.4803, Adjusted R-squared:  0.4464 
+## F-statistic: 14.17 on 3 and 46 DF,  p-value: 1.128e-06</code></pre>
 Then we plot this figure with a hidden code chunk (so the R commands to make it do not appear in the document).
 <div class="figure" style="text-align: center"><span id="fig:cubic"></span>
 <img src="07-rmark_files/figure-html/cubic-1.png" alt="Scatter Plot with Cubic Regression Curve" width="672" />
@@ -560,7 +563,7 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 <h3><span class="header-section-number">7.7.4</span> R in Text</h3>
 <p>The <em>no snarf and barf</em> rule must be adhered to strictly. None at all!</p>
 <p>When you want to refer to some number in R printout, either make a code chunk that contains the printout you want, or, much nicer looking, you can “inline” R printout.</p>
-<p>Here we show how to do that. The quadratic and cubic regression coefficients in the preceding regression were <span class="math inline">\(0.1077353\)</span> and <span class="math inline">\(-0.0012872\)</span>. Magic!</p>
+<p>Here we show how to do that. The quadratic and cubic regression coefficients in the preceding regression were <span class="math inline">\(0.0150277\)</span> and <span class="math inline">\(-2.7833207\times 10^{-4}\)</span>. Magic!</p>
 <p>See the source for this document to see how the magic works. The dollar signs around the in-line R chunks are required by the way R markdown handles scientific notation. It outputs LaTeX, which is explained in <a href="an-r-markdown-demo.html#latex-math">Section 7.8</a> below. It thus forces you to understand at least that much LaTeX. (Sorry about that!)</p>
 <p>If you never snarf and barf, and everything in your document is computed by R, then everything is always as claimed.</p>
 </div>
@@ -575,9 +578,9 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
 ##   Res.Df   RSS Df Sum of Sq      F Pr(&gt;F)
-## 1     48 17658                           
-## 2     47 17509  1    148.60 0.4009 0.5298
-## 3     46 17050  1    459.75 1.2404 0.2712</code></pre>
+## 1     48 22457                           
+## 2     47 22389  1    67.999 0.1398 0.7102
+## 3     46 22367  1    21.494 0.0442 0.8344</code></pre>
 <p>We want to turn that into a table in output format we are creating. First we have to figure out what the output of the R function <code>anova</code> is and capture it so we can use it.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span><span class="kw">anova</span>(out1, out2, out3)
 <span class="kw">class</span>(foo)</code></pre></div>
@@ -598,7 +601,7 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 <tbody>
 <tr class="odd">
 <td align="right">48</td>
-<td align="right">17657.9</td>
+<td align="right">22456.9</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right"></td>
@@ -606,19 +609,19 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 </tr>
 <tr class="even">
 <td align="right">47</td>
-<td align="right">17509.3</td>
+<td align="right">22388.9</td>
 <td align="right">1</td>
-<td align="right">148.60</td>
-<td align="right">0.401</td>
-<td align="right">0.530</td>
+<td align="right">68.00</td>
+<td align="right">0.140</td>
+<td align="right">0.710</td>
 </tr>
 <tr class="odd">
 <td align="right">46</td>
-<td align="right">17049.6</td>
+<td align="right">22367.4</td>
 <td align="right">1</td>
-<td align="right">459.75</td>
-<td align="right">1.240</td>
-<td align="right">0.271</td>
+<td align="right">21.49</td>
+<td align="right">0.044</td>
+<td align="right">0.834</td>
 </tr>
 </tbody>
 </table>

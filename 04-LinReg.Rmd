@@ -2,6 +2,9 @@
 
 *Author: Nathaniel E. Helwig*
 
+```{r echo = FALSE, warning=FALSE, message = FALSE}
+library(ggplot2)
+```
 
 
 
@@ -89,7 +92,25 @@ The 95% confidence interval for $\beta_1$ reveals that we expect the average Rat
 
 ### Plot the Regression Line
 
-The **abline** function makes it easy to include the least-squares regression line on a scatterplot
+It's easy to include the least-squares regression line on a scatterplot by adding a `geom_smooth()` to the `ggplot()`:
+
+```{r}
+# Without "standard error bars"
+ggplot(beer, aes(x = IBU, y = ABV)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+
+# With "standard error bars"
+ggplot(beer, aes(x = IBU, y = ABV)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = TRUE)
+```
+
+```
+
+
+Alternatively, we can use the **abline()** function:    
+
 ```{r fig.width=5, fig.height=4, fig.align="center"}
 plot(beer$ABV, beer$Rating, xlab = "Alcohol By Volume", 
      ylab = "Beer Advocate Rating", main = "Alcohol by Rating")
@@ -131,7 +152,27 @@ head(newfitCI)
 head(newfitPI)
 ```
 
-The confidence and prediction intervals can be plotted using
+The confidence and prediction intervals can be plotted using:
+
+```{r warning = FALSE, message = FALSE}
+# Confidence intervals
+ggplot(beer, aes(x = ABV, y = Rating)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = TRUE)
+  
+# Prediction intervals
+newfitPI <- data.frame(newfitPI)
+newfitPI$ABV <- newdata$ABV
+ggplot(beer, aes(x = ABV, y = Rating)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_ribbon(data = newfitPI, aes(x = ABV, y = fit, ymin = lwr, ymax = upr), fill = "blue", alpha = 0.2) 
+
+```
+
+Or:
+
+
 ```{r fig.width=5, fig.height=4, fig.align="center"}
 plot(beer$ABV, beer$Rating, xlab = "Alcohol By Volume", 
      ylab = "Beer Advocate Rating", main = "Alcohol by Rating",

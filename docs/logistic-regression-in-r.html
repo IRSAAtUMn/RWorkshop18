@@ -173,15 +173,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.5" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html"><i class="fa fa-check"></i><b>5</b> Logistic Regression in R</a><ul>
-<li class="chapter" data-level="5.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#goals"><i class="fa fa-check"></i><b>5.1</b> Goals</a></li>
-<li class="chapter" data-level="5.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#horseshoe-crab-data"><i class="fa fa-check"></i><b>5.2</b> Horseshoe Crab Data</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#overview-4"><i class="fa fa-check"></i><b>5.2.1</b> Overview</a></li>
-<li class="chapter" data-level="5.2.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#load-and-look-at-the-data-1"><i class="fa fa-check"></i><b>5.2.2</b> Load and Look at the Data</a></li>
+<li class="chapter" data-level="5.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#goals"><i class="fa fa-check"></i><b>5.2</b> Goals</a></li>
+<li class="chapter" data-level="5.3" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#model-basics"><i class="fa fa-check"></i><b>5.3</b> Model Basics</a></li>
+<li class="chapter" data-level="5.4" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#horseshoe-crab-data"><i class="fa fa-check"></i><b>5.4</b> Horseshoe Crab Data</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#overview-4"><i class="fa fa-check"></i><b>5.4.1</b> Overview</a></li>
+<li class="chapter" data-level="5.4.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#load-and-look-at-the-data-1"><i class="fa fa-check"></i><b>5.4.2</b> Load and Look at the Data</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>5.3</b> Simple Linear Regression</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#fit-the-model-1"><i class="fa fa-check"></i><b>5.3.1</b> Fit the Model</a></li>
-<li class="chapter" data-level="5.3.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#inference-information-1"><i class="fa fa-check"></i><b>5.3.2</b> Inference Information</a></li>
+<li class="chapter" data-level="5.5" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#logistic-regression"><i class="fa fa-check"></i><b>5.5</b> Logistic Regression</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#fit-the-model-1"><i class="fa fa-check"></i><b>5.5.1</b> Fit the Model</a></li>
 </ul></li>
+<li class="chapter" data-level="5.6" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#interpret-the-model"><i class="fa fa-check"></i><b>5.6</b> Interpret the Model</a></li>
+<li class="chapter" data-level="5.7" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#calculate-probabilities"><i class="fa fa-check"></i><b>5.7</b> Calculate Probabilities</a></li>
+<li class="chapter" data-level="5.8" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#test-the-regression-coefficient"><i class="fa fa-check"></i><b>5.8</b> Test the Regression Coefficient</a></li>
+<li class="chapter" data-level="5.9" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#create-confidence-intervals"><i class="fa fa-check"></i><b>5.9</b> Create Confidence Intervals</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html"><i class="fa fa-check"></i><b>6</b> Using R Reproducibly</a><ul>
 <li class="chapter" data-level="6.1" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#types-of-reproducibility"><i class="fa fa-check"></i><b>6.1</b> Types of Reproducibility</a></li>
@@ -285,24 +290,55 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="logistic-regression-in-r" class="section level1">
 <h1><span class="header-section-number"> 5</span> Logistic Regression in R</h1>
 <p><em>Author: Christina Knudson</em></p>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">5.1</span> Introduction</h2>
+<p>The previous chapter covered linear regression, which models a Gaussian response variable. In this chapter, you will learn logistic regression, which is used to model a binary response variable. Here are some examples of binary responses:</p>
+<ul>
+<li>Whether or not a person wears a helmet while biking</li>
+<li>Whether or not a dog is adopted</li>
+<li>Whether or not a beer is given an award</li>
+<li>Whether or not a person is charged with a crime</li>
+</ul>
+</div>
 <div id="goals" class="section level2">
-<h2><span class="header-section-number">5.1</span> Goals</h2>
+<h2><span class="header-section-number">5.2</span> Goals</h2>
 <p>In this chapter, we will cover how to…</p>
 <ul>
 <li>Fit a logistic regression model in R.</li>
-<li>Interpret the model using odds.</li>
+<li>Interpret the model.</li>
+<li>Calculate probabilities.</li>
 <li>Test the significance of regression coefficients.</li>
 <li>Create and interpret confidence intervals.</li>
 </ul>
-<p>R’s <strong>glm</strong> (linear model) function will be the primary tool used in the chapter.</p>
+<p>R’s <strong>glm</strong> (generalized linear model) function will be the primary tool used in the chapter.</p>
+</div>
+<div id="model-basics" class="section level2">
+<h2><span class="header-section-number">5.3</span> Model Basics</h2>
+<p>Recall that a simple linear regression model has the following form: <span class="math display">\[
+\hat{y}_i = \beta_0 + \beta_1 x_i 
+\]</span> where <span class="math inline">\(x_i\)</span> is the predictor, <span class="math inline">\(\beta_0\)</span> is the unknown regression intercept, <span class="math inline">\(\beta_1\)</span> is the unknown regression slope, and <span class="math inline">\(\hat{y}\)</span> is the predicted response given <span class="math inline">\(x_i\)</span>.</p>
+<p>In order to model a binary response variable, we need to introduce <span class="math inline">\(p_i\)</span>, the probability of something happening. For example, this might be the probability of a person wearing a helmet, the probability of a dog being adopted, or the probability of a beer winning an award. Then our logistic regression model has the following form: <span class="math display">\[
+\log \left( \dfrac{p_i}{1-p_i} \right) = \beta_0 + \beta_1 x_i .
+\]</span></p>
+<p>Recall that we estimated <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> to characterize the linear relationship between <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_i\)</span> in the simple linear regression setting. In the logistic regression setting, we will estimate <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> in order to understand the relationship between <span class="math inline">\(x_i\)</span> and <span class="math inline">\(p_i\)</span>.</p>
+<p>As a final introductory note, we define the odds as $  $</p>
 </div>
 <div id="horseshoe-crab-data" class="section level2">
-<h2><span class="header-section-number">5.2</span> Horseshoe Crab Data</h2>
+<h2><span class="header-section-number">5.4</span> Horseshoe Crab Data</h2>
 <div id="overview-4" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Overview</h3>
+<h3><span class="header-section-number">5.4.1</span> Overview</h3>
+<p>Some females attract many males while others are unable to attract any. In this example, the females we study are horseshoe crabs. The males that cluster around a female are called “satellites.” In order to understand what influences the presence of satellite crabs, researchers selected female crabs and collected data on the following characteristics:</p>
+<ul>
+<li>the color of her shell</li>
+<li>the condition of her spine</li>
+<li>the width of her carapace shell (in centimeters)</li>
+<li>the number of male satellites</li>
+<li>the weight of the female</li>
+</ul>
+<p>In today’s example, we will use the width of a female’s shell to predict the probability of her having one or more satellites.</p>
 </div>
 <div id="load-and-look-at-the-data-1" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> Load and Look at the Data</h3>
+<h3><span class="header-section-number">5.4.2</span> Load and Look at the Data</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(glmbb)
 <span class="kw">data</span>(crabs)
 <span class="kw">head</span>(crabs)</code></pre></div>
@@ -315,80 +351,79 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 6 medium   bad  23.8      0   2100 0</code></pre>
 </div>
 </div>
-<div id="simple-linear-regression-1" class="section level2">
-<h2><span class="header-section-number">5.3</span> Simple Linear Regression</h2>
+<div id="logistic-regression" class="section level2">
+<h2><span class="header-section-number">5.5</span> Logistic Regression</h2>
 <div id="fit-the-model-1" class="section level3">
-<h3><span class="header-section-number">5.3.1</span> Fit the Model</h3>
-<p>Consider a logistic regression model of the form <span class="math display">\[
-\log \left( \dfrac{p_i}{1-p_i} \right) = \beta_0 + \beta_1 x_i 
-\]</span> where <span class="math inline">\(p_i\)</span> is the probability of …, <span class="math inline">\(x_i\)</span> is … (predictor), <span class="math inline">\(\beta_0\)</span> is the unknown regression intercept, and <span class="math inline">\(\beta_1\)</span> is the unknown regression slope. To fit the model, we can use the <strong>glm</strong> function</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>color, <span class="dt">family =</span> binomial, <span class="dt">data =</span> crabs)</code></pre></div>
-<p>The first input is the regression formula (Response ~ Predictor), and the second input is the data frame containing the variables in the regression formula. Note that <em>mod</em> is an object of class <em>glm</em>, which is a list containing information about the fit model.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(mod)</code></pre></div>
-<pre><code>## [1] &quot;glm&quot; &quot;lm&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(mod)</code></pre></div>
-<pre><code>##  [1] &quot;coefficients&quot;      &quot;residuals&quot;         &quot;fitted.values&quot;    
-##  [4] &quot;effects&quot;           &quot;R&quot;                 &quot;rank&quot;             
-##  [7] &quot;qr&quot;                &quot;family&quot;            &quot;linear.predictors&quot;
-## [10] &quot;deviance&quot;          &quot;aic&quot;               &quot;null.deviance&quot;    
-## [13] &quot;iter&quot;              &quot;weights&quot;           &quot;prior.weights&quot;    
-## [16] &quot;df.residual&quot;       &quot;df.null&quot;           &quot;y&quot;                
-## [19] &quot;converged&quot;         &quot;boundary&quot;          &quot;model&quot;            
-## [22] &quot;call&quot;              &quot;formula&quot;           &quot;terms&quot;            
-## [25] &quot;data&quot;              &quot;offset&quot;            &quot;control&quot;          
-## [28] &quot;method&quot;            &quot;contrasts&quot;         &quot;xlevels&quot;</code></pre>
-<p>For example, the <em>$coefficients</em> element contains the estimated regression coefficients</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod<span class="op">$</span>coefficients</code></pre></div>
-<pre><code>## (Intercept) colordarker  colorlight colormedium 
-##   0.3677248  -1.1298648   0.7308875   0.6082852</code></pre>
+<h3><span class="header-section-number">5.5.1</span> Fit the Model</h3>
+<p>To fit the model, we can use the <strong>glm</strong> function</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>width, <span class="dt">family =</span> binomial, <span class="dt">data =</span> crabs)</code></pre></div>
+<p>The first input is the regression formula (Response ~ Predictor), the second input indicates that we are doing logistic regression, and the third input is the data frame. To find the regression coefficients (i.e. the estimates of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>), we can use the <strong>coef</strong> command</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod)</code></pre></div>
+<pre><code>## (Intercept)       width 
+## -12.3508177   0.4972306</code></pre>
+<p>We can now enter these estimates into our logistic regression equation, just as we did in the simple linear regression setting. That is, our regression equation is <span class="math display">\[
+\log \left( \dfrac{p_i}{1-p_i} \right) = 12.3508 + 0.4972 \; \text{width}_i, 
+\]</span> where <span class="math inline">\(\text{width}_i\)</span> is the width of a female crab’s carapace shell and <span class="math inline">\(p_i\)</span> is her probability of having one or more satellites.</p>
 </div>
-<div id="inference-information-1" class="section level3">
-<h3><span class="header-section-number">5.3.2</span> Inference Information</h3>
-<p>To obtain a more detailed summary of the fit model, use the <strong>summary</strong> function</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modsum &lt;-<span class="st"> </span><span class="kw">summary</span>(mod)
-<span class="kw">names</span>(modsum)</code></pre></div>
-<pre><code>##  [1] &quot;call&quot;           &quot;terms&quot;          &quot;family&quot;         &quot;deviance&quot;      
-##  [5] &quot;aic&quot;            &quot;contrasts&quot;      &quot;df.residual&quot;    &quot;null.deviance&quot; 
-##  [9] &quot;df.null&quot;        &quot;iter&quot;           &quot;deviance.resid&quot; &quot;coefficients&quot;  
-## [13] &quot;aliased&quot;        &quot;dispersion&quot;     &quot;df&quot;             &quot;cov.unscaled&quot;  
-## [17] &quot;cov.scaled&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modsum</code></pre></div>
+</div>
+<div id="interpret-the-model" class="section level2">
+<h2><span class="header-section-number">5.6</span> Interpret the Model</h2>
+<p>To do some basic interpretation, let’s focus on the predictor’s coefficient: 0.4972. First, notice this is a <strong>positive</strong> number. This tells us that wider crabs have <strong>higher</strong> chances of having one or more satellites. If the predictor’s coefficient were <strong>zero</strong>, there would be <strong>no</strong> linear relationship between the width of a female’s shell and her log odds of having one or more satellites. If the predictor’s coefficient were <strong>negative</strong>, then wider crabs would have <strong>lower</strong> chances of having one or more satellites.</p>
+</div>
+<div id="calculate-probabilities" class="section level2">
+<h2><span class="header-section-number">5.7</span> Calculate Probabilities</h2>
+Let’s use our model for a female crab with a carapace shell that is 25 centimeters in width. (Note: this crab’s shell width is within the range of our data set.) We start by simply substituting this crab’s width into our regression equation:
+<span class="math display">\[\begin{align*}
+\log \left( \dfrac{p_i}{1-p_i} \right) &amp;= -12.3508 + 0.4972 \; \text{width}_i \\
+ &amp;= -12.3508 + 0.4972 * 25 \\
+ &amp;= 0.0792.
+\end{align*}\]</span>
+<p>We could say that the log odds of a 25 cm female having satellites is about 0.0792, but let’s make this more interpretable to everyday humans by translating this to a probability. We do this with a little algebra:</p>
+<span class="math display">\[\begin{align*}
+\log \left( \dfrac{p_i}{1-p_i} \right) &amp;= 0.0792 \\
+\Rightarrow \left( \dfrac{p_i}{1-p_i} \right) &amp;= \exp(0.0792) \\
+\Rightarrow p_i &amp;= \dfrac{\exp(0.0792)}{1+\exp(0.0792)} \\
+&amp;= .5198
+\end{align*}\]</span>
+<p>This tells us the probability of a 25 cm wide female crab having one of more satellites is about 0.5198.</p>
+</div>
+<div id="test-the-regression-coefficient" class="section level2">
+<h2><span class="header-section-number">5.8</span> Test the Regression Coefficient</h2>
+<p>In the previous chapter, you learned to use the <strong>summary</strong> command for a detailed summary of the model. The <strong>summary</strong> command works in the logistic regression setting and produces similar output.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod)</code></pre></div>
 <pre><code>## 
 ## Call:
-## glm(formula = y ~ color, family = binomial, data = crabs)
+## glm(formula = y ~ width, family = binomial, data = crabs)
 ## 
 ## Deviance Residuals: 
 ##     Min       1Q   Median       3Q      Max  
-## -1.6651  -1.3370   0.7997   0.7997   1.5134  
+## -2.0281  -1.0458   0.5480   0.9066   1.6942  
 ## 
 ## Coefficients:
-##             Estimate Std. Error z value Pr(&gt;|z|)  
-## (Intercept)   0.3677     0.3066   1.199   0.2304  
-## colordarker  -1.1299     0.5509  -2.051   0.0403 *
-## colorlight    0.7309     0.7338   0.996   0.3192  
-## colormedium   0.6083     0.3834   1.587   0.1126  
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -12.3508     2.6287  -4.698 2.62e-06 ***
+## width         0.4972     0.1017   4.887 1.02e-06 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
 ##     Null deviance: 225.76  on 172  degrees of freedom
-## Residual deviance: 212.06  on 169  degrees of freedom
-## AIC: 220.06
+## Residual deviance: 194.45  on 171  degrees of freedom
+## AIC: 198.45
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<p>Note that summarizing a <em>glm</em> object returns …</p>
+</div>
+<div id="create-confidence-intervals" class="section level2">
+<h2><span class="header-section-number">5.9</span> Create Confidence Intervals</h2>
 <p>Use the <strong>confint</strong> function to obtain confidence intervals for regression coefficients</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(mod)</code></pre></div>
 <pre><code>## Waiting for profiling to be done...</code></pre>
-<pre><code>##                  2.5 %      97.5 %
-## (Intercept) -0.2267868  0.98434649
-## colordarker -2.2582397 -0.07752474
-## colorlight  -0.6283228  2.33592185
-## colormedium -0.1479567  1.36129471</code></pre>
+<pre><code>##                   2.5 %     97.5 %
+## (Intercept) -17.8100090 -7.4572470
+## width         0.3083806  0.7090167</code></pre>
 <p>The 95% confidence interval for <span class="math inline">\(\beta_1\)</span> reveals that …</p>
 
-</div>
 </div>
 </div>
             </section>

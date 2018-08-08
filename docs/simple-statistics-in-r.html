@@ -173,15 +173,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.5" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html"><i class="fa fa-check"></i><b>5</b> Logistic Regression in R</a><ul>
-<li class="chapter" data-level="5.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#goals"><i class="fa fa-check"></i><b>5.1</b> Goals</a></li>
-<li class="chapter" data-level="5.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#horseshoe-crab-data"><i class="fa fa-check"></i><b>5.2</b> Horseshoe Crab Data</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#overview-4"><i class="fa fa-check"></i><b>5.2.1</b> Overview</a></li>
-<li class="chapter" data-level="5.2.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#load-and-look-at-the-data-1"><i class="fa fa-check"></i><b>5.2.2</b> Load and Look at the Data</a></li>
+<li class="chapter" data-level="5.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#goals"><i class="fa fa-check"></i><b>5.2</b> Goals</a></li>
+<li class="chapter" data-level="5.3" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#model-basics"><i class="fa fa-check"></i><b>5.3</b> Model Basics</a></li>
+<li class="chapter" data-level="5.4" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#horseshoe-crab-data"><i class="fa fa-check"></i><b>5.4</b> Horseshoe Crab Data</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#overview-4"><i class="fa fa-check"></i><b>5.4.1</b> Overview</a></li>
+<li class="chapter" data-level="5.4.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#load-and-look-at-the-data-1"><i class="fa fa-check"></i><b>5.4.2</b> Load and Look at the Data</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>5.3</b> Simple Linear Regression</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#fit-the-model-1"><i class="fa fa-check"></i><b>5.3.1</b> Fit the Model</a></li>
-<li class="chapter" data-level="5.3.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#inference-information-1"><i class="fa fa-check"></i><b>5.3.2</b> Inference Information</a></li>
+<li class="chapter" data-level="5.5" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#logistic-regression"><i class="fa fa-check"></i><b>5.5</b> Logistic Regression</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#fit-the-model-1"><i class="fa fa-check"></i><b>5.5.1</b> Fit the Model</a></li>
 </ul></li>
+<li class="chapter" data-level="5.6" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#interpret-the-model"><i class="fa fa-check"></i><b>5.6</b> Interpret the Model</a></li>
+<li class="chapter" data-level="5.7" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#calculate-probabilities"><i class="fa fa-check"></i><b>5.7</b> Calculate Probabilities</a></li>
+<li class="chapter" data-level="5.8" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#test-the-regression-coefficient"><i class="fa fa-check"></i><b>5.8</b> Test the Regression Coefficient</a></li>
+<li class="chapter" data-level="5.9" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#create-confidence-intervals"><i class="fa fa-check"></i><b>5.9</b> Create Confidence Intervals</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html"><i class="fa fa-check"></i><b>6</b> Using R Reproducibly</a><ul>
 <li class="chapter" data-level="6.1" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#types-of-reproducibility"><i class="fa fa-check"></i><b>6.1</b> Types of Reproducibility</a></li>
@@ -359,14 +364,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="plot-the-data" class="section level3">
 <h3><span class="header-section-number">3.2.4</span> Plot the Data</h3>
-<p>The <strong>brewer.pal</strong> function in the <em>RColorBrewer</em> package creates <a href="http://ColorBrewer.org">ColorBrewer palettes</a> for plotting</p>
+<p>We can check out boxplots of the relationship between ABV and style of beer:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(beer, <span class="kw">aes</span>(<span class="dt">x =</span> Style, <span class="dt">y =</span> ABV)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p><img src="03-SimpStat_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>There is, of course, more than one way to achieve this task! For example, we can also make boxplots using the <code>boxplot()</code> function in “base R”. The <strong>brewer.pal</strong> function in the <em>RColorBrewer</em> package creates <a href="http://ColorBrewer.org">ColorBrewer palettes</a> for plotting</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RColorBrewer)
 MyColors &lt;-<span class="st"> </span><span class="kw">brewer.pal</span>(<span class="kw">nlevels</span>(beer<span class="op">$</span>Style), <span class="st">&quot;Pastel1&quot;</span>)</code></pre></div>
 <p>The <strong>boxplot</strong> function creates simple boxplots</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(ABV <span class="op">~</span><span class="st"> </span>Style, <span class="dt">data =</span> beer, <span class="dt">ylab =</span> <span class="st">&quot;Alcohol By Volume (ABV)&quot;</span>,
         <span class="dt">main =</span> <span class="st">&quot;Alcohol by Style of Beer&quot;</span>, <span class="dt">col =</span> MyColors)</code></pre></div>
-<p><img src="03-SimpStat_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p>The <strong>plot</strong> function creates generic X-Y scatterplots</p>
+<p><img src="03-SimpStat_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Further, we can plot the relationship between <code>ABV</code> and <code>IBU</code> by <code>Style</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(beer, <span class="kw">aes</span>(<span class="dt">x =</span> IBU, <span class="dt">y =</span> ABV, <span class="dt">color =</span> Style)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="03-SimpStat_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Alternatively, we can use the <strong>plot()</strong> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">StyleInt &lt;-<span class="st"> </span><span class="kw">as.integer</span>(beer<span class="op">$</span>Style)
 <span class="kw">plot</span>(beer<span class="op">$</span>IBU, beer<span class="op">$</span>ABV, <span class="dt">xlab =</span> <span class="st">&quot;International Bitterness Units (IBU)&quot;</span>,
      <span class="dt">ylab =</span> <span class="st">&quot;Alcohol By Volume (ABV)&quot;</span>, <span class="dt">pch =</span> StyleInt <span class="op">+</span><span class="st"> </span><span class="dv">14</span>,
@@ -516,7 +529,7 @@ rtab1</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)
 <span class="kw">kable</span>(rtab1, <span class="dt">caption =</span> <span class="st">&quot;Table 1: Sample size (n) and variable means and standard deviations (SD) for each style of beer.&quot;</span>)</code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-26">Table 3.1: </span>Table 1: Sample size (n) and variable means and standard deviations (SD) for each style of beer.</caption>
+<caption><span id="tab:unnamed-chunk-29">Table 3.1: </span>Table 1: Sample size (n) and variable means and standard deviations (SD) for each style of beer.</caption>
 <thead>
 <tr class="header">
 <th></th>

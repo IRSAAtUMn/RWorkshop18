@@ -4,6 +4,7 @@
 
 
 
+
 ## Chapter Outline and Goals
 
 In this chapter, we will cover how to...
@@ -110,7 +111,17 @@ summary(beer)
 
 ### Plot the Data
 
-The **brewer.pal** function in the *RColorBrewer* package creates [ColorBrewer palettes](http://ColorBrewer.org) for plotting
+We can check out boxplots of the relationship between ABV and style of beer:
+
+
+```r
+ggplot(beer, aes(x = Style, y = ABV)) + 
+  geom_boxplot()
+```
+
+<img src="03-SimpStat_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+
+There is, of course, more than one way to achieve this task!  For example, we can also make boxplots using the `boxplot()` function in "base R".  The **brewer.pal** function in the *RColorBrewer* package creates [ColorBrewer palettes](http://ColorBrewer.org) for plotting
 
 ```r
 library(RColorBrewer)
@@ -124,9 +135,22 @@ boxplot(ABV ~ Style, data = beer, ylab = "Alcohol By Volume (ABV)",
         main = "Alcohol by Style of Beer", col = MyColors)
 ```
 
-<img src="03-SimpStat_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" />
+<img src="03-SimpStat_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;" />
 
-The **plot** function creates generic X-Y scatterplots
+
+Further, we can plot the relationship between `ABV` and `IBU` by `Style`:
+
+
+
+```r
+ggplot(beer, aes(x = IBU, y = ABV, color = Style)) + 
+  geom_point()
+```
+
+<img src="03-SimpStat_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+
+Alternatively, we can use the **plot()** function:    
+
 
 ```r
 StyleInt <- as.integer(beer$Style)
@@ -417,7 +441,7 @@ kable(rtab1, caption = "Table 1: Sample size (n) and variable means and standard
 
 
 
-Table: (\#tab:unnamed-chunk-26)Table 1: Sample size (n) and variable means and standard deviations (SD) for each style of beer.
+Table: (\#tab:unnamed-chunk-29)Table 1: Sample size (n) and variable means and standard deviations (SD) for each style of beer.
 
           n   ABV.Mean   ABV.SD   IBU.Mean   IBU.SD   Rating.Mean   Rating.SD
 ------  ---  ---------  -------  ---------  -------  ------------  ----------

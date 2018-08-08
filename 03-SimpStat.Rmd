@@ -2,6 +2,9 @@
 
 *Author: Nathaniel E. Helwig*
 
+```{r echo = FALSE, warning=FALSE, message = FALSE}
+library(ggplot2)
+```
 
 
 ## Chapter Outline and Goals
@@ -67,7 +70,14 @@ summary(beer)
 
 ### Plot the Data
 
-The **brewer.pal** function in the *RColorBrewer* package creates [ColorBrewer palettes](http://ColorBrewer.org) for plotting
+We can check out boxplots of the relationship between ABV and style of beer:
+
+```{r}
+ggplot(beer, aes(x = Style, y = ABV)) + 
+  geom_boxplot()
+```
+
+There is, of course, more than one way to achieve this task!  For example, we can also make boxplots using the `boxplot()` function in "base R".  The **brewer.pal** function in the *RColorBrewer* package creates [ColorBrewer palettes](http://ColorBrewer.org) for plotting
 ```{r}
 library(RColorBrewer)
 MyColors <- brewer.pal(nlevels(beer$Style), "Pastel1")
@@ -79,7 +89,17 @@ boxplot(ABV ~ Style, data = beer, ylab = "Alcohol By Volume (ABV)",
         main = "Alcohol by Style of Beer", col = MyColors)
 ```
 
-The **plot** function creates generic X-Y scatterplots
+
+Further, we can plot the relationship between `ABV` and `IBU` by `Style`:
+
+
+```{r}
+ggplot(beer, aes(x = IBU, y = ABV, color = Style)) + 
+  geom_point()
+```
+
+Alternatively, we can use the **plot()** function:    
+
 ```{r beercolors, fig.width=5, fig.height=4, fig.align="center"}
 StyleInt <- as.integer(beer$Style)
 plot(beer$IBU, beer$ABV, xlab = "International Bitterness Units (IBU)",

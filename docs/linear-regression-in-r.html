@@ -173,15 +173,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.5" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html"><i class="fa fa-check"></i><b>5</b> Logistic Regression in R</a><ul>
-<li class="chapter" data-level="5.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#goals"><i class="fa fa-check"></i><b>5.1</b> Goals</a></li>
-<li class="chapter" data-level="5.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#horseshoe-crab-data"><i class="fa fa-check"></i><b>5.2</b> Horseshoe Crab Data</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#overview-4"><i class="fa fa-check"></i><b>5.2.1</b> Overview</a></li>
-<li class="chapter" data-level="5.2.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#load-and-look-at-the-data-1"><i class="fa fa-check"></i><b>5.2.2</b> Load and Look at the Data</a></li>
+<li class="chapter" data-level="5.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#goals"><i class="fa fa-check"></i><b>5.2</b> Goals</a></li>
+<li class="chapter" data-level="5.3" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#model-basics"><i class="fa fa-check"></i><b>5.3</b> Model Basics</a></li>
+<li class="chapter" data-level="5.4" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#horseshoe-crab-data"><i class="fa fa-check"></i><b>5.4</b> Horseshoe Crab Data</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#overview-4"><i class="fa fa-check"></i><b>5.4.1</b> Overview</a></li>
+<li class="chapter" data-level="5.4.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#load-and-look-at-the-data-1"><i class="fa fa-check"></i><b>5.4.2</b> Load and Look at the Data</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>5.3</b> Simple Linear Regression</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#fit-the-model-1"><i class="fa fa-check"></i><b>5.3.1</b> Fit the Model</a></li>
-<li class="chapter" data-level="5.3.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#inference-information-1"><i class="fa fa-check"></i><b>5.3.2</b> Inference Information</a></li>
+<li class="chapter" data-level="5.5" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#logistic-regression"><i class="fa fa-check"></i><b>5.5</b> Logistic Regression</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#fit-the-model-1"><i class="fa fa-check"></i><b>5.5.1</b> Fit the Model</a></li>
 </ul></li>
+<li class="chapter" data-level="5.6" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#interpret-the-model"><i class="fa fa-check"></i><b>5.6</b> Interpret the Model</a></li>
+<li class="chapter" data-level="5.7" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#calculate-probabilities"><i class="fa fa-check"></i><b>5.7</b> Calculate Probabilities</a></li>
+<li class="chapter" data-level="5.8" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#test-the-regression-coefficient"><i class="fa fa-check"></i><b>5.8</b> Test the Regression Coefficient</a></li>
+<li class="chapter" data-level="5.9" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#create-confidence-intervals"><i class="fa fa-check"></i><b>5.9</b> Create Confidence Intervals</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html"><i class="fa fa-check"></i><b>6</b> Using R Reproducibly</a><ul>
 <li class="chapter" data-level="6.1" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#types-of-reproducibility"><i class="fa fa-check"></i><b>6.1</b> Types of Reproducibility</a></li>
@@ -384,17 +389,29 @@ y_i = \beta_0 + \beta_1 x_i + \epsilon_i
 </div>
 <div id="plot-the-regression-line" class="section level3">
 <h3><span class="header-section-number">4.3.3</span> Plot the Regression Line</h3>
-<p>The <strong>abline</strong> function makes it easy to include the least-squares regression line on a scatterplot</p>
+<p>It’s easy to include the least-squares regression line on a scatterplot by adding a <code>geom_smooth()</code> to the <code>ggplot()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Without &quot;standard error bars&quot;</span>
+<span class="kw">ggplot</span>(beer, <span class="kw">aes</span>(<span class="dt">x =</span> IBU, <span class="dt">y =</span> ABV)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="04-LinReg_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># With &quot;standard error bars&quot;</span>
+<span class="kw">ggplot</span>(beer, <span class="kw">aes</span>(<span class="dt">x =</span> IBU, <span class="dt">y =</span> ABV)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="04-LinReg_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<p>```</p>
+<p>Alternatively, we can use the <strong>abline()</strong> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(beer<span class="op">$</span>ABV, beer<span class="op">$</span>Rating, <span class="dt">xlab =</span> <span class="st">&quot;Alcohol By Volume&quot;</span>, 
      <span class="dt">ylab =</span> <span class="st">&quot;Beer Advocate Rating&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Alcohol by Rating&quot;</span>)
 <span class="kw">abline</span>(mod)</code></pre></div>
-<p><img src="04-LinReg_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="04-LinReg_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="diagnostic-and-influence-plots" class="section level3">
 <h3><span class="header-section-number">4.3.4</span> Diagnostic and Influence Plots</h3>
 <p>R makes it really easy to create simple diagnostic and influence plots for a fit regression model:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(mod)</code></pre></div>
-<p><img src="04-LinReg_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-9-2.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-9-3.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-9-4.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="04-LinReg_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-11-2.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-11-3.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-11-4.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="prediction-for-new-data" class="section level3">
 <h3><span class="header-section-number">4.3.5</span> Prediction for New Data</h3>
@@ -464,7 +481,21 @@ newfitPI &lt;-<span class="st"> </span><span class="kw">predict</span>(mod, newd
 ## 4 84.20319 77.31472 91.09166
 ## 5 84.42916 77.56880 91.28951
 ## 6 84.65512 77.82077 91.48948</code></pre>
-<p>The confidence and prediction intervals can be plotted using</p>
+<p>The confidence and prediction intervals can be plotted using:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Confidence intervals</span>
+<span class="kw">ggplot</span>(beer, <span class="kw">aes</span>(<span class="dt">x =</span> ABV, <span class="dt">y =</span> Rating)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="04-LinReg_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Prediction intervals</span>
+newfitPI &lt;-<span class="st"> </span><span class="kw">data.frame</span>(newfitPI)
+newfitPI<span class="op">$</span>ABV &lt;-<span class="st"> </span>newdata<span class="op">$</span>ABV
+<span class="kw">ggplot</span>(beer, <span class="kw">aes</span>(<span class="dt">x =</span> ABV, <span class="dt">y =</span> Rating)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="dt">data =</span> newfitPI, <span class="kw">aes</span>(<span class="dt">x =</span> ABV, <span class="dt">y =</span> fit, <span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr), <span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.2</span>) </code></pre></div>
+<p><img src="04-LinReg_files/figure-html/unnamed-chunk-16-2.png" width="672" /></p>
+<p>Or:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(beer<span class="op">$</span>ABV, beer<span class="op">$</span>Rating, <span class="dt">xlab =</span> <span class="st">&quot;Alcohol By Volume&quot;</span>, 
      <span class="dt">ylab =</span> <span class="st">&quot;Beer Advocate Rating&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Alcohol by Rating&quot;</span>,
      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">75</span>, <span class="dv">100</span>))
@@ -475,7 +506,7 @@ newfitPI &lt;-<span class="st"> </span><span class="kw">predict</span>(mod, newd
 <span class="kw">lines</span>(newdata<span class="op">$</span>ABV, newfitPI[,<span class="dv">3</span>], <span class="dt">lty =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
 <span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">lty =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;fit&quot;</span>, <span class="st">&quot;95% CI&quot;</span>, <span class="st">&quot;95% PI&quot;</span>),
        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</code></pre></div>
-<p><img src="04-LinReg_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="04-LinReg_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="multiple-linear-regression" class="section level2">

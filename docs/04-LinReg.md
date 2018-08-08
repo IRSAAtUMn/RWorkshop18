@@ -5,6 +5,7 @@
 
 
 
+
 ## Chapter Outline and Goals
 
 In this chapter, we will cover how to...
@@ -159,7 +160,32 @@ The 95% confidence interval for $\beta_1$ reveals that we expect the average Rat
 
 ### Plot the Regression Line
 
-The **abline** function makes it easy to include the least-squares regression line on a scatterplot
+It's easy to include the least-squares regression line on a scatterplot by adding a `geom_smooth()` to the `ggplot()`:
+
+
+```r
+# Without "standard error bars"
+ggplot(beer, aes(x = IBU, y = ABV)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+<img src="04-LinReg_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+
+```r
+# With "standard error bars"
+ggplot(beer, aes(x = IBU, y = ABV)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = TRUE)
+```
+
+<img src="04-LinReg_files/figure-html/unnamed-chunk-9-2.png" width="672" />
+
+```
+
+
+Alternatively, we can use the **abline()** function:    
+
 
 ```r
 plot(beer$ABV, beer$Rating, xlab = "Alcohol By Volume", 
@@ -167,7 +193,7 @@ plot(beer$ABV, beer$Rating, xlab = "Alcohol By Volume",
 abline(mod)
 ```
 
-<img src="04-LinReg_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" />
+<img src="04-LinReg_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ### Diagnostic and Influence Plots
@@ -178,7 +204,7 @@ R makes it really easy to create simple diagnostic and influence plots for a fit
 plot(mod)
 ```
 
-<img src="04-LinReg_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-9-2.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-9-3.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-9-4.png" width="480" style="display: block; margin: auto;" />
+<img src="04-LinReg_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-11-2.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-11-3.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-11-4.png" width="480" style="display: block; margin: auto;" />
 
 
 ### Prediction for New Data
@@ -279,7 +305,33 @@ head(newfitPI)
 ## 6 84.65512 77.82077 91.48948
 ```
 
-The confidence and prediction intervals can be plotted using
+The confidence and prediction intervals can be plotted using:
+
+
+```r
+# Confidence intervals
+ggplot(beer, aes(x = ABV, y = Rating)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = TRUE)
+```
+
+<img src="04-LinReg_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+
+```r
+# Prediction intervals
+newfitPI <- data.frame(newfitPI)
+newfitPI$ABV <- newdata$ABV
+ggplot(beer, aes(x = ABV, y = Rating)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_ribbon(data = newfitPI, aes(x = ABV, y = fit, ymin = lwr, ymax = upr), fill = "blue", alpha = 0.2) 
+```
+
+<img src="04-LinReg_files/figure-html/unnamed-chunk-16-2.png" width="672" />
+
+Or:
+
+
 
 ```r
 plot(beer$ABV, beer$Rating, xlab = "Alcohol By Volume", 
@@ -294,7 +346,7 @@ legend("bottomright", lty = 1:3, legend = c("fit", "95% CI", "95% PI"),
        col = c("black", "blue", "red"), bty = "n")
 ```
 
-<img src="04-LinReg_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;" />
+<img src="04-LinReg_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ## Multiple Linear Regression

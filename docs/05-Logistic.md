@@ -2,7 +2,14 @@
 
 *Author: Christina Knudson*
 
+## Introduction
 
+The previous chapter covered linear regression, which models a Gaussian response variable. In this chapter, you will learn logistic regression, which is used to model a binary response variable. Here are some examples of binary responses:
+
+* Whether or not a person wears a helmet while biking
+* Whether or not a dog is adopted
+* Whether or not a beer is given an award
+* Whether or not a person is charged with a crime
 
 
 ## Goals
@@ -10,20 +17,44 @@
 In this chapter, we will cover how to...
 
 * Fit a logistic regression model in R.
-* Interpret the model using odds.
+* Interpret the model.
+* Calculate probabilities.
 * Test the significance of regression coefficients.
 * Create and interpret confidence intervals.
 
-R's **glm** (linear model) function will be the primary tool used in the chapter.
+R's **glm** (generalized linear model) function will be the primary tool used in the chapter.
 
 
+## Model Basics
+
+Recall that  a simple linear regression model has the following form:
+\[
+\hat{y}_i = \beta_0 + \beta_1 x_i 
+\]
+where  $x_i$ is  the predictor, $\beta_0$ is the unknown regression intercept,  $\beta_1$ is the unknown regression slope, and $\hat{y}$ is the predicted response given $x_i$. 
+
+In order to model a binary response variable, we need to introduce $p_i$, the probability of something happening. For example, this might be the probability of a person wearing a helmet, the probability of a dog being adopted, or the probability of a beer winning an award. Then our logistic regression model has the following form:
+\[
+\log \left( \dfrac{p_i}{1-p_i} \right) = \beta_0 + \beta_1 x_i .
+\]
+
+Recall that we estimated $\beta_0$ and $\beta_1$ to characterize the linear relationship between $x_i$ and $y_i$ in the simple linear regression setting. In the logistic regression setting, we will  estimate $\beta_0$ and $\beta_1$ in order to understand the relationship between $x_i$ and $p_i$.
+
+As a final introductory note, we define the odds as $ \dfrac{p_i}{1-p_i} $
 
 ## Horseshoe Crab Data 
 
 ### Overview
 
+Some females attract many males while others are unable to attract any. In this example, the females we study are horseshoe crabs. The males that cluster around a female are called "satellites." In order to understand what influences the presence of satellite crabs, researchers selected female crabs and collected data on the following characteristics:
 
+* the color of her shell
+* the condition of her spine
+* the width of her carapace shell (in centimeters)
+* the number of male satellites
+* the weight of the female
 
+In today's example, we will use the width of a female's shell to predict the probability of her having one or more satellites.
 
 
 ### Load and Look at the Data
@@ -47,105 +78,91 @@ head(crabs)
 
 
 
-## Simple Linear Regression
+## Logistic Regression
 
 ### Fit the Model
 
-Consider a logistic regression model of the form
+To fit the model, we can use the **glm** function
+
+```r
+mod <- glm(y ~ width, family = binomial, data = crabs)
+```
+The first input is the regression formula (Response ~ Predictor),  the second input indicates that we are doing logistic regression, and the third input is the data frame. To find the regression coefficients (i.e. the estimates of $\beta_0$ and $\beta_1$), we can use the **coef** command
+
+```r
+coef(mod)
+```
+
+```
+## (Intercept)       width 
+## -12.3508177   0.4972306
+```
+
+We can now enter these estimates into our logistic regression equation, just as we did in the simple linear regression setting. That is, our regression equation is 
 \[
-\log \left( \dfrac{p_i}{1-p_i} \right) = \beta_0 + \beta_1 x_i 
+\log \left( \dfrac{p_i}{1-p_i} \right) = 12.3508 + 0.4972 \; \text{width}_i, 
 \]
-where $p_i$ is the probability of ..., $x_i$ is ... (predictor), $\beta_0$ is the unknown regression intercept, and $\beta_1$ is the unknown regression slope. To fit the model, we can use the **glm** function
+where $\text{width}_i$ is the width of a female crab's carapace shell and  $p_i$ is her probability of having one or more satellites.
+
+
+## Interpret the Model ##
+
+To do some basic interpretation, let's focus on the predictor's coefficient: 0.4972. First, notice this is a **positive** number. This tells us that wider crabs have **higher** chances of having one or more satellites. If the predictor's coefficient were **zero**, there would be **no** linear relationship between the width of a female's shell and her log odds of having one or more satellites. If the predictor's coefficient were **negative**, then wider crabs would have **lower** chances of having one or more satellites.
+
+## Calculate Probabilities ##
+
+Let's use our model for a female crab with a carapace shell that is 25 centimeters in width. (Note: this crab's shell width is within the range of our data set.) We start by simply substituting  this crab's width into our regression equation:
+\begin{align*}
+\log \left( \dfrac{p_i}{1-p_i} \right) &= -12.3508 + 0.4972 \; \text{width}_i \\
+ &= -12.3508 + 0.4972 * 25 \\
+ &= 0.0792.
+\end{align*}
+We could say that the log odds of a 25 cm female having satellites is about 0.0792, but let's make this more interpretable to everyday humans by translating this to a probability. We do this with a little algebra:
+
+\begin{align*}
+\log \left( \dfrac{p_i}{1-p_i} \right) &= 0.0792 \\
+\Rightarrow \left( \dfrac{p_i}{1-p_i} \right) &= \exp(0.0792) \\
+\Rightarrow p_i &= \dfrac{\exp(0.0792)}{1+\exp(0.0792)} \\
+&= .5198
+\end{align*}
+
+This tells us the probability of a 25 cm wide female crab having one of more satellites is about 0.5198.
+
+
+## Test the Regression Coefficient ##
+
+In the previous chapter, you learned to use the **summary** command for a detailed summary of the model. The **summary** command works  in the logistic regression setting and produces similar output. 
 
 ```r
-mod <- glm(y ~ color, family = binomial, data = crabs)
-```
-The first input is the regression formula (Response ~ Predictor), and the second input is the data frame containing the variables in the regression formula. Note that *mod* is an object of class *glm*, which is a list containing information about the fit model. 
-
-```r
-class(mod)
-```
-
-```
-## [1] "glm" "lm"
-```
-
-```r
-names(mod)
-```
-
-```
-##  [1] "coefficients"      "residuals"         "fitted.values"    
-##  [4] "effects"           "R"                 "rank"             
-##  [7] "qr"                "family"            "linear.predictors"
-## [10] "deviance"          "aic"               "null.deviance"    
-## [13] "iter"              "weights"           "prior.weights"    
-## [16] "df.residual"       "df.null"           "y"                
-## [19] "converged"         "boundary"          "model"            
-## [22] "call"              "formula"           "terms"            
-## [25] "data"              "offset"            "control"          
-## [28] "method"            "contrasts"         "xlevels"
-```
-For example, the *$coefficients* element contains the estimated regression coefficients
-
-```r
-mod$coefficients
-```
-
-```
-## (Intercept) colordarker  colorlight colormedium 
-##   0.3677248  -1.1298648   0.7308875   0.6082852
-```
-
-
-### Inference Information
-
-To obtain a more detailed summary of the fit model, use the **summary** function
-
-```r
-modsum <- summary(mod)
-names(modsum)
-```
-
-```
-##  [1] "call"           "terms"          "family"         "deviance"      
-##  [5] "aic"            "contrasts"      "df.residual"    "null.deviance" 
-##  [9] "df.null"        "iter"           "deviance.resid" "coefficients"  
-## [13] "aliased"        "dispersion"     "df"             "cov.unscaled"  
-## [17] "cov.scaled"
-```
-
-```r
-modsum
+summary(mod)
 ```
 
 ```
 ## 
 ## Call:
-## glm(formula = y ~ color, family = binomial, data = crabs)
+## glm(formula = y ~ width, family = binomial, data = crabs)
 ## 
 ## Deviance Residuals: 
 ##     Min       1Q   Median       3Q      Max  
-## -1.6651  -1.3370   0.7997   0.7997   1.5134  
+## -2.0281  -1.0458   0.5480   0.9066   1.6942  
 ## 
 ## Coefficients:
-##             Estimate Std. Error z value Pr(>|z|)  
-## (Intercept)   0.3677     0.3066   1.199   0.2304  
-## colordarker  -1.1299     0.5509  -2.051   0.0403 *
-## colorlight    0.7309     0.7338   0.996   0.3192  
-## colormedium   0.6083     0.3834   1.587   0.1126  
+##             Estimate Std. Error z value Pr(>|z|)    
+## (Intercept) -12.3508     2.6287  -4.698 2.62e-06 ***
+## width         0.4972     0.1017   4.887 1.02e-06 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
 ##     Null deviance: 225.76  on 172  degrees of freedom
-## Residual deviance: 212.06  on 169  degrees of freedom
-## AIC: 220.06
+## Residual deviance: 194.45  on 171  degrees of freedom
+## AIC: 198.45
 ## 
 ## Number of Fisher Scoring iterations: 4
 ```
-Note that summarizing a *glm* object returns ...
+
+## Create Confidence Intervals
 
 Use the **confint** function to obtain confidence intervals for regression coefficients
 
@@ -158,10 +175,8 @@ confint(mod)
 ```
 
 ```
-##                  2.5 %      97.5 %
-## (Intercept) -0.2267868  0.98434649
-## colordarker -2.2582397 -0.07752474
-## colorlight  -0.6283228  2.33592185
-## colormedium -0.1479567  1.36129471
+##                   2.5 %     97.5 %
+## (Intercept) -17.8100090 -7.4572470
+## width         0.3083806  0.7090167
 ```
 The 95% confidence interval for $\beta_1$ reveals that ...
