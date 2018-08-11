@@ -4,12 +4,12 @@
 
 ## Introduction
 
-The previous chapter covered linear regression, which models a Gaussian response variable. In this chapter, you will learn logistic regression, which is used to model a binary response variable. Here are some examples of binary responses:
+The previous chapter covered linear regression, which models a Gaussian response variable. This chapter covers logistic regression, which is used to model a binary response variable. Here are some examples of binary responses:
 
 * Whether or not a person wears a helmet while biking
 * Whether or not a dog is adopted
 * Whether or not a beer is given an award
-* Whether or not a person is charged with a crime
+* Whether or not a state is red
 
 
 ## Goals
@@ -54,8 +54,7 @@ Some females attract many males while others are unable to attract any. In this 
 In today's example, we will use the width of a female's shell to predict the probability of her having one or more satellites. Let's start by loading the data.
 
 ```{r}
-library(glmbb)
-data(crabs)
+crabs <- read.csv("http://www.cknudson.com/data/crabs.csv")
 head(crabs)
 ```
 
@@ -143,3 +142,62 @@ In order to answer our question ("Does this predictor actually help us predict t
 **Practice:** Does a female crab's weight have a linear relationship with the log odds of satellites? Find the p-value and use a significance level of $0.05$.
 
 ## Additional Practice Problems
+
+### Beer
+
+Recall the beer data set. Imagine that you have a friend with a rather black-and-white outlook. If a beer's rating is 90 or higher, your friend considers this beer good. Scores lower than 90 indicate the beer is not good, according to your friend's rule. We have added a binary variable (**Good**) to to represent your friend's classification strategy: **Good** variable is 1 if the beer has a score of at least 90 and 0 otherwise.
+
+* Use logistic regression to decide whether beers with higher ABV (alcohol by volume) are more likely to be "Good."
+* Choose your favorite beer off the list and calculate its probability of having a score of at least 90.
+
+```{r}
+beer <- read.csv("http://www.cknudson.com/data/MNbeer.csv")
+```
+
+
+### State Colors
+
+Recall the election data set from the data visualization section. The variable **Red** has been added to the data set to indicate whether the state's color is red (1 if red, 0 otherwise). 
+
+* Is per capita income related to whether a state is red?
+* If a state has a high per capita income, is it more or less likely to be red?
+
+```{r}
+election <- read.csv("https://www.macalester.edu/~ajohns24/data/IMAdata1.csv")
+election$Red <- as.numeric(election$StateColor == "red")
+```
+
+## Partial Solutions
+
+### Crab Weight
+
+We create the model and look at the summary to find the p-value for the coefficient on weight The p-value is small ($1.45 \times 10^{-6}$) so we can conclude that a female crab's weight **does** have a significant linear relationship with the log odds of her having one or more satellites.
+
+```{r}
+weightmod <- glm(y ~ weight, family = binomial, data = crabs)
+summary(weightmod)
+```
+
+Now we can use our regression equation to calculate the probability of a 2000 gram female having one or more satellites.
+```{r}
+logodds <- sum(coef(weightmod) * c(1, 2000))
+exp(logodds)/(1+exp(logodds))
+```
+The probability of a 2000 gram female having satellites is about half (.48).
+
+### Beer
+We create the model and look at the summary to find the p-value for the coefficient on ABV. The p-value is small ($0.00747$) so we can conclude that ABV **does** have a significant linear relationship with the log odds of a beer earning a score of at least 90.
+
+```{r}
+beermod <- glm(Good ~ ABV, family = binomial, data = beer)
+summary(beermod)
+```
+
+
+### State Colors
+We create the model and look at the summary to find the p-value for the coefficient on per capita income. The p-value is very small (smaller than $2.2 \times 10^{-16}$) so we can conclude that per capita income **does** have a significant linear relationship with the log odds of a state being red.
+```{r}
+electionmod <- glm(Red ~  per_capita_income, family = binomial, data = election)
+summary(electionmod)
+```
+
