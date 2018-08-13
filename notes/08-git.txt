@@ -29,6 +29,7 @@ In RStudio
    - then select "Git"
 
      + the "Repository URL" is something like "https://github.com/cjgeyer/junk"
+       or "https://github.umn.edu/geyer/junk"
 
      + the "Project directory name" is something like "junk"
 
