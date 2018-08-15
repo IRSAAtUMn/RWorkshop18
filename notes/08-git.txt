@@ -109,3 +109,5 @@ In RStudio
    we could also pull from them (I assume).  We definitely could
    if we were using the command line.
 
+More reading.  More stuff about using RStudio with Git and GitHub can be
+found at Hadley Wickham's web site http://r-pkgs.had.co.nz/git.html.
