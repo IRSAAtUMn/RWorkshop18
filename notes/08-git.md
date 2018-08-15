@@ -1,19 +1,19 @@
 
-These are notes on how to use git the dumb way using RStudio and github.
+These are notes on how to use Git the dumb way using RStudio and GitHub.
 
 This can't go in the chapter because it involves a lot of punching buttons.
 
-In your Github account
+In your GitHub account
 
  * Make a new repo that we can trash later (just for messing around).
 
-   - Log in to Github
+   - Log in to GitHub
 
    - Click on the green button that says "New repository"
 
    - Give it a name (of course) and maybe a description.
 
-   - Do not add .gitignore or a license (maybe do that later)
+   - Do not add `.gitignore` file or a license (maybe do that later)
 
    - Ignore all the helpful advice on the next page (none of it
      is for RStudio)
@@ -28,10 +28,10 @@ In RStudio
 
    - then select "Git"
 
-     + the "Repository URL" is something like "https://github.com/cjgeyer/junk"
-       or "https://github.umn.edu/geyer/junk"
+     + the "Repository URL" is something like https://github.com/cjgeyer/junk
+       or https://github.umn.edu/geyer/junk
 
-     + the "Project directory name" is something like "junk"
+     + the "Project directory name" is something like `junk`
 
      + the "Create project as subdirectory of" is done with file browser
 
@@ -41,7 +41,7 @@ In RStudio
 
  * We're in business !!!!!
 
- * Note that RStudio creates 2 files automagically (.gitignore and *.Rproj)
+ * Note that RStudio creates 2 files automagically (`.gitignore` and `*.Rproj`)
    we may have to edit the former to do what we want.
 
  * Before we do any commits, do Section 8.5 of the chapter
@@ -55,15 +55,17 @@ In RStudio
 
      + then you can do
 
-       & git config --global user.name 'Your Name'
+           git config --global user.name "Your Name"
 
-       & git config --global user.email 'your@email.com'
+           git config --global user.email "your@email.com"
 
        (I don't have to do this because I did it long ago)
+       where "Your Name" and "your@email.com" are replaced by
+       your actual name and e-mail address.
 
      + Then click on the "Console" button to get back to the R console
 
- * Open a new file
+ * Open a new R markdown file
 
    - On the File menu
 
@@ -79,11 +81,11 @@ In RStudio
 
  * click the "Knit" button (in the upper left pane) and it first asks you
    to save the file (by default in the directory for our project).  Do
-   that: give it a name ending in .Rmd, for example, mess.Rmd
+   that: give it a name ending in .Rmd, for example, `mess.Rmd`
 
  * Now we are really in business !!!!!
-
- * Now do a git commit (either using the command line) or using the "Git"
+  
+ * Now do a `git commit` (either using the command line) or using the "Git"
    button in the upper right pane in RStudio
 
    - in the window that comes up click to stage at least the *.Rproj
@@ -99,10 +101,12 @@ In RStudio
  * Now we do a push using the "Push" button in the upper right panel
    (oh garbage!  We have to type user name and password every time we
    do anything!  This sucks!  RStudio is infinitely inferior to the
-   command line in this respect.  See the chapter.)
+   command line in this respect.  See the chapter.  Actually, that was
+   unfair. RStudio can help you use SSH keys.  On the "Tools" menu, choose
+   "Global Options" and then "Git/SVN")
 
    Nevertheless, we have done a commit and push.  As can be seen by
-   looking on the repo on Github.
+   looking on the repo on GitHub.
 
  * Now we can make all the changes we want to the "project" and
    commit and push whenever we want and if we had collaborators
