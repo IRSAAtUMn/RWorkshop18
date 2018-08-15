@@ -23,24 +23,6 @@ In this chapter, we will cover how to...
 
 R's **glm** (generalized linear model) function will be the primary tool used in the chapter.
 
-
-## Model Basics
-
-Recall that  a simple linear regression model has the following form:
-\[
-\hat{y}_i = \beta_0 + \beta_1 x_i 
-\]
-where  $x_i$ is  the predictor, $\beta_0$ is the unknown regression intercept,  $\beta_1$ is the unknown regression slope, and $\hat{y}_i$ is the predicted response given $x_i$. 
-
-In order to model a binary response variable, we need to introduce $p_i$, the probability of something happening. For example, this might be the probability of a person wearing a helmet, the probability of a dog being adopted, or the probability of a beer winning an award. Then our logistic regression model has the following form:
-\[
-\log \left( \dfrac{p_i}{1-p_i} \right) = \beta_0 + \beta_1 x_i .
-\]
-
-Recall that we estimated $\beta_0$ and $\beta_1$ to characterize the linear relationship between $x_i$ and $y_i$ in the simple linear regression setting. In the logistic regression setting, we will  estimate $\beta_0$ and $\beta_1$ in order to understand the relationship between $x_i$ and $p_i$.
-
-As a final introductory note, we define the odds as $\dfrac{p_i}{1-p_i}$.
-
 ## Horseshoe Crab Data 
 
 Some females attract many males while others are unable to attract any. In this example, the females we study are horseshoe crabs. The males that cluster around a female are called "satellites." In order to understand what influences the presence of satellite crabs, researchers selected female crabs and collected data on the following characteristics:
@@ -72,7 +54,28 @@ head(crabs)
 You can learn more about this data set [here](http://users.stat.ufl.edu/~aa/cda/data.html).
 
 
-## Fit a Logistic Regression Model
+
+## Model Basics
+
+### Notation and Setup
+
+Recall that  a simple linear regression model has the following form:
+\[
+\hat{y}_i = \beta_0 + \beta_1 x_i 
+\]
+where  $x_i$ is  the predictor, $\beta_0$ is the unknown regression intercept,  $\beta_1$ is the unknown regression slope, and $\hat{y}_i$ is the predicted response given $x_i$. 
+
+In order to model a binary response variable, we need to introduce $p_i$, the probability of something happening. For example, this might be the probability of a person wearing a helmet, the probability of a dog being adopted, or the probability of a beer winning an award. Then our logistic regression model has the following form:
+\[
+\log \left( \dfrac{p_i}{1-p_i} \right) = \beta_0 + \beta_1 x_i .
+\]
+
+Recall that we estimated $\beta_0$ and $\beta_1$ to characterize the linear relationship between $x_i$ and $y_i$ in the simple linear regression setting. In the logistic regression setting, we will  estimate $\beta_0$ and $\beta_1$ in order to understand the relationship between $x_i$ and $p_i$.
+
+As a final introductory note, we define the odds as $\dfrac{p_i}{1-p_i}$.
+
+
+### Fit a Logistic Regression Model
 
 To fit a logistic regression model, we can use the **glm** function:
 
@@ -99,14 +102,13 @@ where $\text{width}_i$ is the width of a female crab's carapace shell and  $p_i$
 
 
 
-## Interpret the Model ##
+### Interpret the Model
 
 To do some basic interpretation, let's focus on the predictor's coefficient: 0.4972. First, notice this is a **positive** number. This tells us that wider crabs have **higher** chances of having one or more satellites. If the predictor's coefficient were **zero**, there would be **no** linear relationship between the width of a female's shell and her log odds of having one or more satellites. If the predictor's coefficient were **negative**, then wider crabs would have **lower** chances of having one or more satellites.
 
 
 
-
-## Calculate Probabilities ##
+### Calculate Probabilities
 
 Let's use our model for a female crab with a carapace shell that is 25 centimeters in width. (Note: this crab's shell width is within the range of our data set.) We start by simply substituting  this crab's width into our regression equation:
 \begin{align*}
@@ -133,7 +135,7 @@ Here is our interpretation: the probability of a 25 cm wide female crab having o
 
 
 
-## Test a Regression Coefficient ##
+### Test a Regression Coefficient
 
 An essential question in regression is "Does this predictor actually help us predict the response?" In other words, we want to know whether there really  is a relationship between our predictor and our response. 
 
@@ -185,7 +187,7 @@ In order to answer our question ("Does this predictor actually help us predict t
 
 
 
-##  Practice Problems
+##  Half-Time Exercises
 
 ### Female Horseshoe Crab Weight
 
@@ -241,6 +243,204 @@ Recall the election data set introduced by Alicia Johnson. The variable **Red** 
 election <- read.csv("https://www.macalester.edu/~ajohns24/data/IMAdata1.csv")
 election$Red <- as.numeric(election$StateColor == "red")
 ```
+
+
+## Beyond the Basics
+
+### Interpret the Model (Again!)
+
+
+We can look beyond just whether the predictor's coefficient ($\beta_1$) is positive or negative. Exponentiating both sides of the regression equation produces
+\[
+\dfrac{p_i}{1-p_i} = \exp\left( \beta_0 + \beta_1 x_i \right) = \exp\left( \beta_0 \right) \exp\left(  \beta_1 x_i \right). 
+\]
+
+To understand the relationship between our predictor and the log odds, let's see what happens when we increase $x_i$ by one unit. That is, let's replace $x_i$ with $x_i+1$.
+
+\[
+\dfrac{p_i}{1-p_i} =  \exp\left( \beta_0 \right) \exp\left(  \beta_1 (x_i+1) \right) = \exp\left( \beta_0 \right) \exp\left(  \beta_1 x_i \right)\exp\left(  \beta_1  \right). 
+\]
+
+That is, our odds for predictor value $x_i$ are $\exp\left( \beta_0 \right) \exp\left(  \beta_1 x_i \right)$ while the odds for predictor value $x_i+1$ are $\exp\left( \beta_0 \right) \exp\left(  \beta_1 x_i \right)\exp\left(  \beta_1  \right)$. These two odds differ by a factor of $\exp(\beta_1)$. That is, the ratio of the two odds is $\exp(\beta_1)$:
+\[
+\dfrac{\exp\left( \beta_0 \right) \exp\left(  \beta_1 x_i \right)\exp\left(  \beta_1  \right)}{\exp\left( \beta_0 \right) \exp\left(  \beta_1 x_i \right)} = \exp(\beta_1).
+\]
+
+Therefore, we can say that a one unit increase in the predictor is associated with a $\exp(\beta_1)$ multiplicative change in the odds. Let's try this with the horseshoe crab carapace width model. 
+
+```r
+exp(coef(mod))
+```
+
+```
+##  (Intercept)        width 
+## 4.326214e-06 1.644162e+00
+```
+
+A one centimeter increase in carapace width is associated with a 1.64 multiplicative change in the odds of having satellites. Alternatively, imagine two female crabs that have carapace widths that differ by exactly 1 cm. The odds of the larger crab having satellites is approximately 1.64 times the odds of the smaller crab having satellites.
+
+### Incorporating Categorical Predictors
+
+Rather than using a quantitative predictor, we can use a categorical predictor. Let's try using the spine condition in our horseshoe crab data. Crabs were categorized according to whether they had two good spines (*good*), two worn or broken spines (*bad*), or one worn/broken spine and one good spine (*middle*).
+
+We will fit the model using the following **glm** setup.
+
+
+```r
+spinemod <- glm(y ~ 0 + spine, data = crabs, family = binomial)
+coef(spinemod)
+```
+
+```
+##    spinebad   spinegood spinemiddle 
+##   0.5955087   0.8602013  -0.1335314
+```
+
+This produces three log odds, one for each group (bad, good, and middle). If we eliminate the **0+**, we create a model with a reference group; this will compare the bad spine group to the other two groups.
+
+
+```r
+spinemod2 <- glm(y ~ spine, data = crabs, family = binomial)
+coef(spinemod2)
+```
+
+```
+## (Intercept)   spinegood spinemiddle 
+##   0.5955087   0.2646926  -0.7290401
+```
+
+```r
+exp(coef(spinemod2))
+```
+
+```
+## (Intercept)   spinegood spinemiddle 
+##   1.8139535   1.3030303   0.4823718
+```
+
+This model tells us that
+
+* the  odds of satellites for a female with two bad spines is  1.8.
+* the odds of satellites for a female with two good spines is 1.3 times the odds of satellites for a female with two bad spines.
+* the odds of satellites for a female with one good spine and one bad spine is .48 times the odds of satellites for a female with two bad spines. 
+
+Sometimes people have a hard time interpreting odds ratios below 1. In this case, it is useful to flip the ratio. 
+
+```r
+1/exp(coef(spinemod2))
+```
+
+```
+## (Intercept)   spinegood spinemiddle 
+##   0.5512821   0.7674419   2.0730897
+```
+
+Therefore, we can reword the third bullet to the following: the odds of satellites for a female with two bad spines is 2 times the odds of satellites for a female with one bad spine and one good spine.
+
+
+### Multiple Logistic Regression
+
+In the linear regression setting, you created models with multiple predictors. This is useful in the logistic regression setting as well. Let's create a model with both the female's carapace width and her weight. We expand our **glm** formula in the same way as you would expand the **lm** formula.
+
+
+```r
+multimod <- glm(y ~ weight + width, data = crabs, family = binomial)
+coef(multimod)
+```
+
+```
+##   (Intercept)        weight         width 
+## -9.3547261192  0.0008337917  0.3067892044
+```
+
+This produces the following logistic regression equation:
+
+\[
+\log \left( \dfrac{p_i}{1-p_i} \right) = -9.35 + 0.0008337917 \; \text{weight}_i + 0.3067892044 \; \text{width}_i .
+\]
+
+Equivalently, our model could be written as
+
+\[
+\ \dfrac{p_i}{1-p_i}  = \exp(-9.35) \; \exp \left( 0.0008337917 \; \text{weight}_i \right) \; \exp \left( 0.3067892044 \; \text{width}_i \right) .
+\]
+
+The exponentiated regression coefficients tell us the following:
+
+* Holding weight constant, a one centimeter increase in carapace width is associated with a 1.359 multiplicative change in the odds of having satellites.
+* Holding carapace width constant, a one gram increase in weight is associated with a .000834 multiplicative change in the odds of having satellites.
+
+Of course, a one gram increase in weight is practically imperceptible. Let's instead consider a 100 gram increase in weight.
+
+```r
+beta1 <- coef(multimod)[2]
+exp(beta1 * 100)
+```
+
+```
+##   weight 
+## 1.086954
+```
+Holding carapace width constant, a one gram increase in weight is associated with a 1.0869539 multiplicative change in the odds of having satellites.
+
+### Testing a Regression Coefficient (Again!) 
+
+We discussed how to test a regression coefficient for a logistic model with a single predictor. You learned how to test a regression coefficient in multiple linear regression. Now it is time to test a logistic regression coefficient in models with multiple predictors.
+
+Let's test whether a logistic regression model with both carapace width and weight is better than a model with carapace width only. That is, we want to know whether the female's weight contributes to the model. Again, we check the summary and look at the row labeled **weight**.
+
+
+```r
+summary(multimod)
+```
+
+```
+## 
+## Call:
+## glm(formula = y ~ weight + width, family = binomial, data = crabs)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.1127  -1.0344   0.5304   0.9006   1.7207  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(>|z|)   
+## (Intercept) -9.3547261  3.5280465  -2.652  0.00801 **
+## weight       0.0008338  0.0006716   1.241  0.21445   
+## width        0.3067892  0.1819473   1.686  0.09177 . 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 225.76  on 172  degrees of freedom
+## Residual deviance: 192.89  on 170  degrees of freedom
+## AIC: 198.89
+## 
+## Number of Fisher Scoring iterations: 4
+```
+
+The p-value is reported as 0.21445. This is larger than any standard significance level. Therefore, we should remove the female's weight from the model as it does not contribute a significant amount of information, after accounting for the female's carapace width. We can state our conclusion more formally: after accounting for the female's carapace width, we find no significant linear relationship between the female's weight and her log odds of having satellites.
+
+## More Exercises
+
+### Crabs, Revisited
+
+Use the output below to determine whether, after accounting for the female's weight, there is a linear relationship between carapace width and the log odds of satellites.
+
+### Beer, Revisited
+
+Create a logistic regression for the log odds of a beer being "Good" using both ABV and IBU as predictors. 
+
+* Holding IBU constant, are beers with higher ABVs **more** or **less** likely to be "Good"?
+* After accounting for a beer's IBU, is there a relationship between ABV and a beer's log odds of being "Good"? Compare your p-value to a significance level of .1.
+
+### State Colors, Revisited
+
+Use **IncomeBracket** to model the log odds of a state being red.
+
+* Find the odds of a high income state being red.
+* Fill in the blank: the odds of a high income state being red are ____ times the odds of a low income state being red.
 
 ## Partial Solutions
 
@@ -391,6 +591,48 @@ summary(beermod)
 ## Number of Fisher Scoring iterations: 5
 ```
 
+Next, we create our model with both ABV and IBU. 
+
+```r
+beermod2 <- glm(Good ~ ABV + IBU, family = binomial, data = beer)
+coef(beermod2)
+```
+
+```
+##  (Intercept)          ABV          IBU 
+## -9.307699299  1.308989140  0.008248125
+```
+
+```r
+summary(beermod2)
+```
+
+```
+## 
+## Call:
+## glm(formula = Good ~ ABV + IBU, family = binomial, data = beer)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.2930  -0.7759  -0.4435   0.7678   2.1315  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(>|z|)  
+## (Intercept) -9.307699   3.678245  -2.530   0.0114 *
+## ABV          1.308989   0.721717   1.814   0.0697 .
+## IBU          0.008248   0.025139   0.328   0.7428  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 51.564  on 43  degrees of freedom
+## Residual deviance: 42.000  on 41  degrees of freedom
+## AIC: 48
+## 
+## Number of Fisher Scoring iterations: 5
+```
+The coefficient on ABV is positive: this tells us that, after accounting for IBU, beers with higher ABV are more likely to be "Good." The p-value for this regression coefficient is $.0697 < .1$, therefore we can conclude that, even after accounting for IBU, there is a significant linear relationship between a beers ABV and its log odds of being "Good."
 
 ### State Colors
 We create the model and look at the summary to find the p-value for the coefficient on per capita income. The p-value is very small (smaller than $2.2 \times 10^{-16}$) so we can conclude that per capita income **does** have a significant linear relationship with the log odds of a state being red.
@@ -425,3 +667,14 @@ summary(electionmod)
 ## Number of Fisher Scoring iterations: 4
 ```
 
+
+```r
+lowhighmod <- glm(Red ~ IncomeBracket, data = election, family = binomial)
+exp(coef(lowhighmod))
+```
+
+```
+##      (Intercept) IncomeBracketlow 
+##        0.6197836        1.8217084
+```
+The odds of a high income state being red is about .62. The odds of a low income state being red are about 1.82 times the odds of a high income state being red. That is, low income states are more likely to be red than high income states.
