@@ -218,7 +218,7 @@ like RStudio.  If it isn't obvious, you're in trouble.
 Nevertheless, I made detailed instructions for how to avoid almost everything
 below and just use RStudio to do the simplest baby project.
 They are
-https://github.com/IRSAAtUMn/RWorkshop18/blob/master/notes/08-git.txt.
+https://github.com/IRSAAtUMn/RWorkshop18/blob/master/notes/08-git.md.
 
 ## Tell Git Who You Are
 
