@@ -73,9 +73,9 @@ In RStudio
 
      + then select "R Markdown"
 
-       & and in the window that comes up fill in a title and author
+       * and in the window that comes up fill in a title and author
 
-       & and click the "OK" button
+       * and click the "OK" button
 
  * RStudio then gives you a simple example R Markdown file
 
