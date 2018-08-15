@@ -175,13 +175,13 @@ sessionInfo()
 ```
 
 ```
-## R version 3.5.1 (2018-07-02)
+## R version 3.4.4 (2018-03-15)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 16.04.5 LTS
 ## 
 ## Matrix products: default
-## BLAS: /home/geyer/local/current/lib/R/lib/libRblas.so
-## LAPACK: /home/geyer/local/current/lib/R/lib/libRlapack.so
+## BLAS: /usr/lib/libblas/libblas.so.3.6.0
+## LAPACK: /usr/lib/lapack/liblapack.so.3.6.0
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -192,13 +192,13 @@ sessionInfo()
 ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## [1] stats     graphics  grDevices utils     datasets  base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_3.5.1  backports_1.1.2 bookdown_0.7    magrittr_1.5   
-##  [5] rprojroot_1.3-2 tools_3.5.1     htmltools_0.3.6 Rcpp_0.12.18   
-##  [9] stringi_1.2.4   rmarkdown_1.10  knitr_1.20      xfun_0.3       
-## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.11
+##  [1] compiler_3.4.4  backports_1.1.2 bookdown_0.7    magrittr_1.5   
+##  [5] rprojroot_1.3-2 tools_3.4.4     htmltools_0.3.6 Rcpp_0.12.16   
+##  [9] stringi_1.1.7   rmarkdown_1.9   knitr_1.20      methods_3.4.4  
+## [13] xfun_0.3        stringr_1.3.0   digest_0.6.15   evaluate_0.10.1
 ```
 
 
@@ -402,7 +402,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 56 30 16 68 85 73 27 55  4 70
+##  [1] 21 52  7 47 36 25 27 86 48 82
 ```
 
 ```r
@@ -410,7 +410,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 35 48 32 27 89 53 43 41 13 76
+##  [1] 12 91 60 95 62  9 84 31 43 15
 ```
 
 ```r

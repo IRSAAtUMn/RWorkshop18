@@ -179,11 +179,6 @@ ggplot(beer, aes(x = IBU, y = ABV)) +
   geom_smooth(method = "lm", se = TRUE)
 ```
 
-```
-## Warning in grid.Call.graphics(C_polygon, x$x, x$y, index): semi-
-## transparency is not supported on this device: reported only once per page
-```
-
 <img src="04-LinReg_files/figure-html/unnamed-chunk-9-2.png" width="672" />
 
 ```

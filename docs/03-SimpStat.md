@@ -93,11 +93,11 @@ summary(beer)
 ```
 ##           Brewery                Beer                    Description
 ##  Indeed       :7   14* ESB         : 1   India Pale Ale        : 5  
-##  Summit       :7   B-Side Pils     : 1   English IPA           : 2  
-##  Surly        :7   Batch 300       : 1   Pilsner Lager         : 2  
-##  Bent Paddle  :5   Bender          : 1   Porter                : 2  
-##  Fulton       :5   Bent Hop        : 1   American Blonde Ale   : 1  
-##  Urban Growler:5   Big Boot Rye IPA: 1   Belgian Style Pale Ale: 1  
+##  Summit       :7   Batch 300       : 1   English IPA           : 2  
+##  Surly        :7   Bender          : 1   Pilsner Lager         : 2  
+##  Bent Paddle  :5   Bent Hop        : 1   Porter                : 2  
+##  Fulton       :5   Big Boot Rye IPA: 1   American Blonde Ale   : 1  
+##  Urban Growler:5   Black Ale       : 1   Belgian Style Pale Ale: 1  
 ##  (Other)      :8   (Other)         :38   (Other)               :31  
 ##    Style         ABV             IBU            Rating     
 ##  Ale  :18   Min.   :4.200   Min.   :15.00   Min.   :79.00  
