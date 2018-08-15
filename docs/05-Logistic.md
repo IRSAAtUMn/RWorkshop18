@@ -9,7 +9,7 @@ The previous chapter covered linear regression, which models a Gaussian response
 * Whether or not a person wears a helmet while biking
 * Whether or not a dog is adopted
 * Whether or not a beer is given an award
-* Whether or not a state is red
+* Whether or not a tree survives a storm
 
 
 ## Goals
@@ -51,7 +51,7 @@ Some females attract many males while others are unable to attract any. In this 
 * the number of male satellites
 * the weight of the female (in grams)
 
-In today's example, we will use the width of a female's shell to predict the probability of her having one or more satellites. Let's start by loading the data.
+In today's example, we will use the width of a female's shell to predict the probability of her having one or more satellites. Let's start by loading the data. 
 
 
 ```r
@@ -69,7 +69,7 @@ head(crabs)
 ## 6 medium   bad  23.8      0   2100 0
 ```
 
-
+You can learn more about this data set [here](http://users.stat.ufl.edu/~aa/cda/data.html).
 
 
 ## Fit a Logistic Regression Model
@@ -96,14 +96,14 @@ We can now enter these estimates into our logistic regression equation, just as 
 \]
 where $\text{width}_i$ is the width of a female crab's carapace shell and  $p_i$ is her probability of having one or more satellites.
 
-**Practice:** Create a logistic regression using the female's weight as the predictor and whether she has satellites as the response variable. Write down the regression equation.
+
 
 
 ## Interpret the Model ##
 
 To do some basic interpretation, let's focus on the predictor's coefficient: 0.4972. First, notice this is a **positive** number. This tells us that wider crabs have **higher** chances of having one or more satellites. If the predictor's coefficient were **zero**, there would be **no** linear relationship between the width of a female's shell and her log odds of having one or more satellites. If the predictor's coefficient were **negative**, then wider crabs would have **lower** chances of having one or more satellites.
 
-**Practice:** Do heavier females having higher or lower chances of  having satellites?
+
 
 
 ## Calculate Probabilities ##
@@ -126,7 +126,7 @@ We could say that the log odds of a 25 cm female having satellites is about 0.07
 Here is our interpretation: the probability of a 25 cm wide female crab having one of more satellites is about 0.5198.
 
 
-**Practice:** Consider a female weighing 2000 grams. What is the probability that she has one or more satellites?
+
 
 
 
@@ -183,15 +183,44 @@ Although the summary provides many details about our model, we  focus for now on
 
 In order to answer our question ("Does this predictor actually help us predict the response?"), we focus on $\beta_1$, the regression coefficient on the predictor.   (Recall that if $\beta_1 = 0$, then the log odds have no linear relationship with the predictor.) We find the test results in te two right-most columns and the second row in the the coefficients table of the summary. These entries show us that our test statistic is 4.887 and our p-value is 1.02e-06 (or $1.02 \times 10^{-6}$). We compare our p-value to a "significance level" (such as $0.05$); **because our p-value is smaller than our significance level, we have evidence that the log odds of satellites have a significant linear relationship with the carapace width.**
 
-**Practice:** Does a female crab's weight have a linear relationship with the log odds of satellites? Find the p-value and use a significance level of $0.05$.
 
-## Additional Practice Problems
+
+##  Practice Problems
+
+### Female Horseshoe Crab Weight
+
+Continue using the  horseshoe crab data to investigate the relationship between a female's weight and the log odds of her having satellites.
+
+* Create a logistic regression using the female's weight as the predictor and whether she has satellites as the response variable. 
+* Write down the regression equation.
+* Do heavier females having higher or lower chances of  having satellites?
+* Consider a female weighing 2000 grams. What is the probability that she has one or more satellites?
+* Is there a linear relationship between  a female crab's weight and her log odds of satellites? Find the p-value and use a significance level of $0.05$.
+
+### Boundary Water Blowdown
+
+The Boundary Water Canoe Area experienced wind speeds over 90 miles per hour on July 4, 1999. As a result, many trees were blown down. The data set below contains information on the diameter of each tree (**D**) and whether the tree died (**y**). **y** is 1 if the tree died and 0 if the tree survived. You can learn more about this data set [here](https://www.rdocumentation.org/packages/alr4/versions/1.0.5/topics/Blowdown).
+
+
+```r
+blowdown <- read.csv("http://www.cknudson.com/data/blowdown.csv")
+```
+
+Use this data set to understand the relationship between a tree's diameter and its log odds of death.
+
+* Create a logistic regression using the tree's diameter the predictor and whether it died as the response variable. 
+* Write down the regression equation.
+* Did thicker trees having higher or lower chances of dying?
+* Consider a tree 20 cm in diameter. What is the probability that it died?
+* Is there a linear relationship between  the tree's diameter and its log odds of dying? Find the p-value and use a significance level of $0.05$.
+
+
 
 ### Beer
 
-Recall the beer data set. Imagine that you have a friend with a rather black-and-white outlook. If a beer's rating is 90 or higher, your friend considers this beer good. Scores lower than 90 indicate the beer is not good, according to your friend's rule. We have added a binary variable (**Good**) to to represent your friend's classification strategy: **Good** variable is 1 if the beer has a score of at least 90 and 0 otherwise.
+Recall the beer data set introduced by Nathaniel Helwig. Imagine that you have a friend with a rather black-and-white outlook. If a beer's rating is 90 or higher, your friend considers this beer good. Scores lower than 90 indicate the beer is not good, according to your friend's rule. We have added a binary variable (**Good**) to to represent your friend's classification strategy: **Good**  is 1 if the beer has a score of at least 90 and 0 otherwise.
 
-* Use logistic regression to decide whether beers with higher ABV (alcohol by volume) are more likely to be "Good."
+* Use logistic regression to decide whether beers with higher **ABV** (alcohol by volume) are more likely to be "Good."
 * Choose your favorite beer off the list and calculate its probability of having a score of at least 90.
 
 
@@ -202,7 +231,7 @@ beer <- read.csv("http://www.cknudson.com/data/MNbeer.csv")
 
 ### State Colors
 
-Recall the election data set from the data visualization section. The variable **Red** has been added to the data set to indicate whether the state's color is red (1 if red, 0 otherwise). 
+Recall the election data set introduced by Alicia Johnson. The variable **Red** has been added to the data set to indicate whether the state's color is red (1 if red, 0 otherwise). 
 
 * Is per capita income related to whether a state is red?
 * If a state has a high per capita income, is it more or less likely to be red?
@@ -261,6 +290,72 @@ exp(logodds)/(1+exp(logodds))
 ## [1] 0.4838963
 ```
 The probability of a 2000 gram female having satellites is about half (.48).
+
+### Boundary Water Blowdown
+
+We create the model, isolate the coefficients, and find the summary using the code below.
+
+```r
+treemod <- glm(y ~ D, data = blowdown, family = binomial)
+coef(treemod)
+```
+
+```
+## (Intercept)           D 
+## -1.70211206  0.09755846
+```
+
+```r
+summary(treemod)
+```
+
+```
+## 
+## Call:
+## glm(formula = y ~ D, family = binomial, data = blowdown)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.6309  -0.9616  -0.7211   1.1495   1.7172  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(>|z|)    
+## (Intercept) -1.702112   0.082798  -20.56   <2e-16 ***
+## D            0.097558   0.004846   20.13   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 5057.9  on 3665  degrees of freedom
+## Residual deviance: 4555.6  on 3664  degrees of freedom
+## AIC: 4559.6
+## 
+## Number of Fisher Scoring iterations: 4
+```
+
+First, the coefficient on the diameter is positive. This tells us that larger trees were more likely to die. Moreover, the relationship between a trees diameter and its log odds of death is statistically significant: the p-value is quite small (smaller than $2 \times 10^{-16}$). 
+
+Finally, the probability of death for a tree that was 20 cm in diameter is calculated below.
+
+```r
+(logodds <- coef(treemod) %*% c(1, 20))
+```
+
+```
+##           [,1]
+## [1,] 0.2490571
+```
+
+```r
+exp(logodds)/(1+exp(logodds))
+```
+
+```
+##           [,1]
+## [1,] 0.5619444
+```
+
 
 ### Beer
 We create the model and look at the summary to find the p-value for the coefficient on ABV. The p-value is small ($0.00747$) so we can conclude that ABV **does** have a significant linear relationship with the log odds of a beer earning a score of at least 90.
