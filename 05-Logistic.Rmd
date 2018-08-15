@@ -12,20 +12,21 @@ The previous chapter covered linear regression, which models a Gaussian response
 * Whether or not a tree survives a storm
 
 
-## Goals
+### Goals
 
 In this chapter, we will cover how to...
 
-* Fit a logistic regression model in R.
-* Interpret the model.
+* Fit a logistic regression model in R with quantitative and/or categorical predictors.
+* Interpret logistic regression model.
 * Calculate probabilities.
 * Test the significance of regression coefficients.
 
+
 R's **glm** (generalized linear model) function will be the primary tool used in the chapter.
 
-## Horseshoe Crab Data 
+### Horseshoe Crab Data 
 
-Some females attract many males while others are unable to attract any. In this example, the females we study are horseshoe crabs. The males that cluster around a female are called "satellites." In order to understand what influences the presence of satellite crabs, researchers selected female crabs and collected data on the following characteristics:
+Throughout this module, we will refer to the horseshoe crab data. Some female crabs attract many males while others do not attract any.  The males that cluster around a female are called "satellites." In order to understand what influences the presence of satellite crabs, researchers selected female crabs and collected data on the following characteristics:
 
 * the color of her shell
 * the condition of her spine
