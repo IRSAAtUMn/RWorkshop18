@@ -181,14 +181,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.6" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#interpret-the-model"><i class="fa fa-check"></i><b>5.6</b> Interpret the Model</a></li>
 <li class="chapter" data-level="5.7" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#calculate-probabilities"><i class="fa fa-check"></i><b>5.7</b> Calculate Probabilities</a></li>
 <li class="chapter" data-level="5.8" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#test-a-regression-coefficient"><i class="fa fa-check"></i><b>5.8</b> Test a Regression Coefficient</a></li>
-<li class="chapter" data-level="5.9" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#additional-practice-problems"><i class="fa fa-check"></i><b>5.9</b> Additional Practice Problems</a><ul>
-<li class="chapter" data-level="5.9.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#beer"><i class="fa fa-check"></i><b>5.9.1</b> Beer</a></li>
-<li class="chapter" data-level="5.9.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#state-colors"><i class="fa fa-check"></i><b>5.9.2</b> State Colors</a></li>
+<li class="chapter" data-level="5.9" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#practice-problems"><i class="fa fa-check"></i><b>5.9</b> Practice Problems</a><ul>
+<li class="chapter" data-level="5.9.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#female-horseshoe-crab-weight"><i class="fa fa-check"></i><b>5.9.1</b> Female Horseshoe Crab Weight</a></li>
+<li class="chapter" data-level="5.9.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#boundary-water-blowdown"><i class="fa fa-check"></i><b>5.9.2</b> Boundary Water Blowdown</a></li>
+<li class="chapter" data-level="5.9.3" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#beer"><i class="fa fa-check"></i><b>5.9.3</b> Beer</a></li>
+<li class="chapter" data-level="5.9.4" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#state-colors"><i class="fa fa-check"></i><b>5.9.4</b> State Colors</a></li>
 </ul></li>
 <li class="chapter" data-level="5.10" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#partial-solutions"><i class="fa fa-check"></i><b>5.10</b> Partial Solutions</a><ul>
 <li class="chapter" data-level="5.10.1" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#crab-weight"><i class="fa fa-check"></i><b>5.10.1</b> Crab Weight</a></li>
-<li class="chapter" data-level="5.10.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#beer-1"><i class="fa fa-check"></i><b>5.10.2</b> Beer</a></li>
-<li class="chapter" data-level="5.10.3" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#state-colors-1"><i class="fa fa-check"></i><b>5.10.3</b> State Colors</a></li>
+<li class="chapter" data-level="5.10.2" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#boundary-water-blowdown-1"><i class="fa fa-check"></i><b>5.10.2</b> Boundary Water Blowdown</a></li>
+<li class="chapter" data-level="5.10.3" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#beer-1"><i class="fa fa-check"></i><b>5.10.3</b> Beer</a></li>
+<li class="chapter" data-level="5.10.4" data-path="logistic-regression-in-r.html"><a href="logistic-regression-in-r.html#state-colors-1"><i class="fa fa-check"></i><b>5.10.4</b> State Colors</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html"><i class="fa fa-check"></i><b>6</b> Using R Reproducibly</a><ul>
@@ -301,9 +304,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">7.2</span> R</h2>
 <ul>
 <li><p>The version of R used to make this document is 3.5.1.</p></li>
-<li><p>The version of the <code>rmarkdown</code> package used to make this document is 1.10.</p></li>
+<li><p>The version of the <code>rmarkdown</code> package used to make this document is 1.9.</p></li>
 <li><p>The version of the <code>knitr</code> package used to make this document is 1.20.</p></li>
-<li><p>The version of the <code>ggplot2</code> package used to make this document is 3.0.0.</p></li>
+<li><p>The version of the <code>ggplot2</code> package used to make this document is 2.2.1.</p></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rmarkdown)
 <span class="kw">library</span>(ggplot2)</code></pre></div>
@@ -500,18 +503,18 @@ out1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op"
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -42.019  -9.881   1.713   7.977  38.810 
+## -49.395 -11.267   2.635  13.001  32.117 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   0.7875     4.9101    0.16    0.873    
-## x             1.6980     0.1676   10.13 1.64e-13 ***
+## (Intercept)   4.4494     5.2199   0.852    0.398    
+## x             1.3505     0.1782   7.581 9.53e-10 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 17.1 on 48 degrees of freedom
-## Multiple R-squared:  0.6814, Adjusted R-squared:  0.6748 
-## F-statistic: 102.7 on 1 and 48 DF,  p-value: 1.644e-13</code></pre>
+## Residual standard error: 18.18 on 48 degrees of freedom
+## Multiple R-squared:  0.5449, Adjusted R-squared:  0.5354 
+## F-statistic: 57.46 on 1 and 48 DF,  p-value: 9.533e-10</code></pre>
 </div>
 <div id="figure-with-code-to-make-it-shown" class="section level4">
 <h4><span class="header-section-number">7.7.3.2</span> Figure with Code to Make It Shown</h4>
@@ -519,8 +522,6 @@ out1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op"
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, y)
 <span class="kw">ggplot</span>(mydata, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</code></pre></div>
-<pre><code>## Warning in grid.Call.graphics(C_polygon, x$x, x$y, index): semi-
-## transparency is not supported on this device: reported only once per page</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:regression"></span>
 <img src="07-rmark_files/figure-html/regression-1.png" alt="Simple Linear Regression" width="672" />
 <p class="caption">
@@ -541,18 +542,18 @@ Figure 7.2: Simple Linear Regression
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -45.013 -11.912   1.403   9.975  36.720 
+## -46.098 -11.530   2.621  15.214  28.877 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept) -1.3986342 10.5286908  -0.133    0.895
-## x            1.5559491  1.7702213   0.879    0.384
-## I(x^2)       0.0262793  0.0802271   0.328    0.745
-## I(x^3)      -0.0005153  0.0010347  -0.498    0.621
+## (Intercept) 17.3708013 11.0923630   1.566    0.124
+## x           -0.6842721  1.8649933  -0.367    0.715
+## I(x^2)       0.0723016  0.0845222   0.855    0.397
+## I(x^3)      -0.0007107  0.0010901  -0.652    0.518
 ## 
-## Residual standard error: 17.23 on 46 degrees of freedom
-## Multiple R-squared:  0.6899, Adjusted R-squared:  0.6696 
-## F-statistic: 34.11 on 3 and 46 DF,  p-value: 9.313e-12</code></pre>
+## Residual standard error: 18.16 on 46 degrees of freedom
+## Multiple R-squared:  0.5649, Adjusted R-squared:  0.5365 
+## F-statistic: 19.91 on 3 and 46 DF,  p-value: 2.047e-08</code></pre>
 Then we plot this figure with a hidden code chunk (so the R commands to make it do not appear in the document).
 <div class="figure" style="text-align: center"><span id="fig:cubic"></span>
 <img src="07-rmark_files/figure-html/cubic-1.png" alt="Scatter Plot with Cubic Regression Curve" width="672" />
@@ -568,7 +569,7 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 <h3><span class="header-section-number">7.7.4</span> R in Text</h3>
 <p>The <em>no snarf and barf</em> rule must be adhered to strictly. None at all!</p>
 <p>When you want to refer to some number in R printout, either make a code chunk that contains the printout you want, or, much nicer looking, you can “inline” R printout.</p>
-<p>Here we show how to do that. The quadratic and cubic regression coefficients in the preceding regression were <span class="math inline">\(0.0262793\)</span> and <span class="math inline">\(-5.1526924\times 10^{-4}\)</span>. Magic!</p>
+<p>Here we show how to do that. The quadratic and cubic regression coefficients in the preceding regression were <span class="math inline">\(0.0723016\)</span> and <span class="math inline">\(-7.106876\times 10^{-4}\)</span>. Magic!</p>
 <p>See the source for this document to see how the magic works. The dollar signs around the in-line R chunks are required by the way R markdown handles scientific notation. It outputs LaTeX, which is explained in <a href="an-r-markdown-demo.html#latex-math">Section 7.8</a> below. It thus forces you to understand at least that much LaTeX. (Sorry about that!)</p>
 <p>If you never snarf and barf, and everything in your document is computed by R, then everything is always as claimed.</p>
 </div>
@@ -582,10 +583,10 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 ## Model 1: y ~ x
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
-##   Res.Df   RSS Df Sum of Sq     F Pr(&gt;F)
-## 1     48 14036                          
-## 2     47 13737  1   299.104 1.007 0.3209
-## 3     46 13663  1    73.666 0.248 0.6209</code></pre>
+##   Res.Df   RSS Df Sum of Sq      F Pr(&gt;F)
+## 1     48 15863                           
+## 2     47 15305  1    557.27 1.6903 0.2000
+## 3     46 15165  1    140.14 0.4251 0.5177</code></pre>
 <p>We want to turn that into a table in output format we are creating. First we have to figure out what the output of the R function <code>anova</code> is and capture it so we can use it.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span><span class="kw">anova</span>(out1, out2, out3)
 <span class="kw">class</span>(foo)</code></pre></div>
@@ -606,7 +607,7 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 <tbody>
 <tr class="odd">
 <td align="right">48</td>
-<td align="right">14035.9</td>
+<td align="right">15862.6</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right"></td>
@@ -614,19 +615,19 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 </tr>
 <tr class="even">
 <td align="right">47</td>
-<td align="right">13736.8</td>
+<td align="right">15305.4</td>
 <td align="right">1</td>
-<td align="right">299.10</td>
-<td align="right">1.007</td>
-<td align="right">0.321</td>
+<td align="right">557.27</td>
+<td align="right">1.690</td>
+<td align="right">0.200</td>
 </tr>
 <tr class="odd">
 <td align="right">46</td>
-<td align="right">13663.1</td>
+<td align="right">15165.2</td>
 <td align="right">1</td>
-<td align="right">73.67</td>
-<td align="right">0.248</td>
-<td align="right">0.621</td>
+<td align="right">140.14</td>
+<td align="right">0.425</td>
+<td align="right">0.518</td>
 </tr>
 </tbody>
 </table>
