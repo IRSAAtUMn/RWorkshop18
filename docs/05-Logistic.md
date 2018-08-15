@@ -220,7 +220,7 @@ Use this data set to understand the relationship between a tree's diameter and i
 
 ### Beer
 
-Recall the beer data set introduced by Nathaniel Helwig. Imagine that you have a friend with a rather black-and-white outlook. If a beer's rating is 90 or higher, your friend considers this beer good. Scores lower than 90 indicate the beer is not good, according to your friend's rule. We have added a binary variable (**Good**) to to represent your friend's classification strategy: **Good**  is 1 if the beer has a score of at least 90 and 0 otherwise.
+Recall the beer data set introduced by Alicia Johnson and Nathaniel Helwig. Imagine that you have a friend with a rather black-and-white outlook. If a beer's rating is 90 or higher, your friend considers this beer good. Scores lower than 90 indicate the beer is not good, according to your friend's rule. We have added a binary variable (**Good**) to to represent your friend's classification strategy: **Good**  is 1 if the beer has a score of at least 90 and 0 otherwise.
 
 * Use logistic regression to decide whether beers with higher **ABV** (alcohol by volume) are more likely to be "Good."
 * Choose your favorite beer off the list and calculate its probability of having a score of at least 90.
@@ -279,7 +279,7 @@ exp(coef(mod))
 
 A one centimeter increase in carapace width is associated with a 1.64 multiplicative change in the odds of having satellites. Alternatively, imagine two female crabs that have carapace widths that differ by exactly 1 cm. The odds of the larger crab having satellites is approximately 1.64 times the odds of the smaller crab having satellites.
 
-### Incorporating Categorical Predictors
+### Incorporate a Categorical Predictor
 
 Rather than using a quantitative predictor, we can use a categorical predictor. Let's try using the spine condition in our horseshoe crab data. Crabs were categorized according to whether they had two good spines (*good*), two worn or broken spines (*bad*), or one worn/broken spine and one good spine (*middle*).
 
@@ -338,7 +338,7 @@ Sometimes people have a hard time interpreting odds ratios below 1. In this case
 Therefore, we can reword the third bullet to the following: the odds of satellites for a female with two bad spines is 2 times the odds of satellites for a female with one bad spine and one good spine.
 
 
-### Multiple Logistic Regression
+### Incorporate Multiple Predictors
 
 In the linear regression setting, you created models with multiple predictors. This is useful in the logistic regression setting as well. Let's create a model with both the female's carapace width and her weight. We expand our **glm** formula in the same way as you would expand the **lm** formula.
 
@@ -383,7 +383,7 @@ exp(beta1 * 100)
 ```
 Holding carapace width constant, a one gram increase in weight is associated with a 1.0869539 multiplicative change in the odds of having satellites.
 
-### Testing a Regression Coefficient (Again!) 
+### Test a Regression Coefficient (Again!) 
 
 We discussed how to test a regression coefficient for a logistic model with a single predictor. You learned how to test a regression coefficient in multiple linear regression. Now it is time to test a logistic regression coefficient in models with multiple predictors.
 
