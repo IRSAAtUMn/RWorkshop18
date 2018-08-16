@@ -425,12 +425,12 @@ dim(failures)
 head(failures)
 
 # Subset of movies that EITHER have a budget under 1 million dollars OR fail the test
-cheap_or_fail <- subset(bechdel, budget_2013 < 1000000 | binary == "FALSE")
+cheap_or_fail <- subset(bechdel, budget_2013 < 1000000 | binary == "FAIL")
 dim(cheap_or_fail)
 head(cheap_or_fail)
 
 # Subset of movies that BOTH have a budget under 1 million dollars AND fail the test
-cheap_and_fail <- subset(bechdel, budget_2013 < 1000000 & binary == "FALSE")
+cheap_and_fail <- subset(bechdel, budget_2013 < 1000000 & binary == "FAIL")
 dim(cheap_and_fail)
 head(cheap_and_fail)
 ```
