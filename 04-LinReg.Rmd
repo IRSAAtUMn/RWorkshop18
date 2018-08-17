@@ -280,7 +280,10 @@ ggplot(beer, aes(x = IBU, y = Rating)) +
   geom_point()
   
 # 3: Fit a simple linear regression model predicting Rating from IBU
+# For every 1 IBU increase, Rating tends to increase by 0.07 points.
 my_model <- lm(Rating ~ IBU, data = beer)
+coef(my_model)
+
 
 #4: Is there a significant linear relationship between IBU and Rating?
 # Answer: Yes!  Notice that the p-value in the IBU row
@@ -289,6 +292,8 @@ my_model <- lm(Rating ~ IBU, data = beer)
 summary(my_model)
 
 #5: Plot the linear relationship, along with 95% confidence and prediction intervals
+# The confidence intervals reflect the plausible TREND in this relationship.
+# The prediction intervals reflect the plausible DEVIATIONS from this trend.
 ggplot(beer, aes(x = IBU, y = Rating)) + 
   geom_point() + 
   geom_smooth(method = "lm", se = TRUE)

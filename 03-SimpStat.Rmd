@@ -369,10 +369,12 @@ The estimated sample correlation is $r = 0.495$ and the 95% lower-bound confiden
 beer <- read.csv("http://users.stat.umn.edu/~helwig/notes/MNbeer.csv")
 
 #2) Make a boxplot of the IBUs by Style of beer.
+# Notice that IPAs tend to have higher IBU (bitterness)
 ggplot(beer, aes(x = Style, y = IBU)) + 
   geom_boxplot()
 
 #3) Make a scatterplot of the ABV (x-axis) by Rating (y-axis).
+# Notice that Rating tends to increase with ABV (alcohol level)
 ggplot(beer, aes(x = ABV, y = Rating)) + 
   geom_point()
 
@@ -391,9 +393,12 @@ rtab1
 t.test(beer$IBU)
 
 #7) Repeat the one-way ANOVA using the IBU variable as the response.
+# The p-value here indicates that IBU significantly differs by Style
 amod <- aov(IBU ~ Style, data = beer)
 summary(amod)
 
 #8) Repeat the correlation test using the IBU and Rating variables.
+# The p-value here indicates that there's a significant, positive
+# correlation between beers' IBU & Rating.
 cor.test(beer$IBU, beer$Rating, alternative = "greater")
 ```    
