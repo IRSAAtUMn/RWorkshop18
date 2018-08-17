@@ -124,7 +124,8 @@ There are many issues affecting this "crisis."
  * There are scientific issues, such as what experiments are done
    and how they are interpreted.
 
- * There are statistical issues, such as too small sample sizes
+ * There are statistical issues, such as too small sample sizes,
+   multiple hypothesis testing without correction,
    and publication bias.
 
  * And there are computational issues: what data analysis was done and was
