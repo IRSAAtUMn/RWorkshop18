@@ -1,0 +1,79 @@
+
+R version 3.5.1 (2018-07-02) -- "Feather Spray"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> 
+>  data(state)
+> 
+>  nrow <- 5
+> 
+>  foo <- list()
+> 
+>  for (i in 1:3)
++     foo[[i]] <- data.frame(letters = sample(LETTERS, nrow),
++         colors = sample(colors(), nrow), state = sample(state.name, nrow))
+> 
+>  foo
+[[1]]
+  letters      colors     state
+1       I  sandybrown    Oregon
+2       M darkorange2  Nebraska
+3       P      ivory4   Alabama
+4       Y chartreuse2 Wisconsin
+5       Z     sienna4   Florida
+
+[[2]]
+  letters         colors          state
+1       U darkslategray3         Oregon
+2       O      honeydew3           Utah
+3       H         gray37   Rhode Island
+4       I         gray35 South Carolina
+5       X       honeydew      Louisiana
+
+[[3]]
+  letters     colors         state
+1       F     grey80  Rhode Island
+2       M goldenrod1       Indiana
+3       J     grey64      Illinois
+4       A peachpuff4 West Virginia
+5       Z  seagreen1      Michigan
+
+> 
+>  bar <- Reduce(rbind, foo)
+> 
+>  bar
+   letters         colors          state
+1        I     sandybrown         Oregon
+2        M    darkorange2       Nebraska
+3        P         ivory4        Alabama
+4        Y    chartreuse2      Wisconsin
+5        Z        sienna4        Florida
+6        U darkslategray3         Oregon
+7        O      honeydew3           Utah
+8        H         gray37   Rhode Island
+9        I         gray35 South Carolina
+10       X       honeydew      Louisiana
+11       F         grey80   Rhode Island
+12       M     goldenrod1        Indiana
+13       J         grey64       Illinois
+14       A     peachpuff4  West Virginia
+15       Z      seagreen1       Michigan
+> 
+> proc.time()
+   user  system elapsed 
+  0.176   0.028   0.185 
