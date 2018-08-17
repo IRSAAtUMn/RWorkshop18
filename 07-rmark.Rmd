@@ -139,7 +139,7 @@ a document that includes a statistical analysis may help to document it?)
 Indirectly, R Markdown also helps with the other issues.  Having the whole
 analysis from raw data to scientific findings publicly available --- as many
 scientific journals now require --- tends to
-make you a lot more careful in doing the analysis.
+make you a lot more careful and a lot more thoughtful in doing the analysis.
 
 #### Business and Consulting
 

@@ -419,6 +419,8 @@ y_i = \beta_0 + \beta_1 x_i + \epsilon_i
 <span class="kw">ggplot</span>(beer, <span class="kw">aes</span>(<span class="dt">x =</span> IBU, <span class="dt">y =</span> ABV)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## Warning in grid.Call.graphics(C_polygon, x$x, x$y, index): semi-
+## transparency is not supported on this device: reported only once per page</code></pre>
 <p><img src="04-LinReg_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
 <p>```</p>
 <p>Alternatively, we can use the <strong>abline()</strong> function:</p>

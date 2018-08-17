@@ -13,11 +13,11 @@ Attribution-ShareAlike 4.0 International License
 
  * The version of R used to make this document is 3.5.1.
 
- * The version of the `rmarkdown` package used to make this document is 1.9.
+ * The version of the `rmarkdown` package used to make this document is 1.10.
 
  * The version of the `knitr` package used to make this document is 1.20.
 
- * The version of the `ggplot2` package used to make this document is 2.2.1.
+ * The version of the `ggplot2` package used to make this document is 3.0.0.
 
 
 ```r
@@ -137,7 +137,8 @@ There are many issues affecting this "crisis."
  * There are scientific issues, such as what experiments are done
    and how they are interpreted.
 
- * There are statistical issues, such as too small sample sizes
+ * There are statistical issues, such as too small sample sizes,
+   multiple hypothesis testing without correction,
    and publication bias.
 
  * And there are computational issues: what data analysis was done and was
@@ -392,18 +393,18 @@ summary(out1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -36.087 -10.541   1.819   9.010  36.902 
+## -45.926 -12.120   0.795  13.270  37.833 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   1.1735     4.8193   0.243    0.809    
-## x             1.4486     0.1645   8.807 1.37e-11 ***
+## (Intercept)   4.4117     5.7569   0.766    0.447    
+## x             1.4769     0.1965   7.517 1.19e-09 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 16.78 on 48 degrees of freedom
-## Multiple R-squared:  0.6177,	Adjusted R-squared:  0.6098 
-## F-statistic: 77.56 on 1 and 48 DF,  p-value: 1.366e-11
+## Residual standard error: 20.05 on 48 degrees of freedom
+## Multiple R-squared:  0.5407,	Adjusted R-squared:  0.5311 
+## F-statistic:  56.5 on 1 and 48 DF,  p-value: 1.193e-09
 ```
 
 #### Figure with Code to Make It Shown
@@ -414,6 +415,11 @@ The following figure is produced by the following code
 mydata <- data.frame(x, y)
 ggplot(mydata, aes(x = x, y = y)) + geom_point() +
     geom_smooth(method = "lm")
+```
+
+```
+## Warning in grid.Call.graphics(C_polygon, x$x, x$y, index): semi-
+## transparency is not supported on this device: reported only once per page
 ```
 
 <div class="figure" style="text-align: center">
@@ -442,18 +448,18 @@ summary(out3)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -34.366 -10.965   2.014   9.710  36.607 
+## -48.209 -13.553   1.574  12.497  36.015 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(>|t|)
-## (Intercept) -5.1400263 10.3704279  -0.496    0.623
-## x            2.2733169  1.7436121   1.304    0.199
-## I(x^2)      -0.0219085  0.0790211  -0.277    0.783
-## I(x^3)       0.0001258  0.0010191   0.123    0.902
+## (Intercept)  0.2061661 12.3989618   0.017    0.987
+## x            2.7258987  2.0846758   1.308    0.198
+## I(x^2)      -0.0700032  0.0944783  -0.741    0.462
+## I(x^3)       0.0009982  0.0012185   0.819    0.417
 ## 
-## Residual standard error: 16.98 on 46 degrees of freedom
-## Multiple R-squared:  0.6252,	Adjusted R-squared:  0.6008 
-## F-statistic: 25.58 on 3 and 46 DF,  p-value: 6.919e-10
+## Residual standard error: 20.3 on 46 degrees of freedom
+## Multiple R-squared:  0.5489,	Adjusted R-squared:  0.5195 
+## F-statistic: 18.66 on 3 and 46 DF,  p-value: 4.628e-08
 ```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
@@ -482,9 +488,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
-$-0.0219085$
+$-0.0700032$
 and
-$1.2581885\times 10^{-4}$.
+$9.9815868\times 10^{-4}$.
 Magic!
 
 See the source for this document to see how the magic works.
@@ -514,9 +520,9 @@ anova(out1, out2, out3)
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
 ##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
-## 1     48 13521                           
-## 2     47 13260  1   261.423 0.9072 0.3458
-## 3     46 13255  1     4.392 0.0152 0.9023
+## 1     48 19295                           
+## 2     47 19225  1    69.995 0.1699 0.6821
+## 3     46 18948  1   276.437 0.6711 0.4169
 ```
 
 We want to turn that into a table in output format we are creating.
@@ -539,9 +545,9 @@ Table: (\#tab:kable)ANOVA Table
 
  Res.Df       RSS   Df   Sum of Sq       F   Pr(>F)
 -------  --------  ---  ----------  ------  -------
-     48   13521.3                                  
-     47   13259.8    1      261.42   0.907    0.346
-     46   13255.4    1        4.39   0.015    0.902
+     48   19294.8                                  
+     47   19224.8    1       70.00   0.170    0.682
+     46   18948.4    1      276.44   0.671    0.417
 
 ## LaTeX Math
 
