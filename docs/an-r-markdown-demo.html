@@ -220,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#starting-a-reproducible-workflow-in-r"><i class="fa fa-check"></i><b>6.3</b> Starting a Reproducible Workflow in R</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#organization"><i class="fa fa-check"></i><b>6.3.1</b> Organization</a></li>
-<li class="chapter" data-level="6.3.2" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#anantomy-of-a-script"><i class="fa fa-check"></i><b>6.3.2</b> Anantomy of a script</a></li>
+<li class="chapter" data-level="6.3.2" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#anatomy-of-a-script"><i class="fa fa-check"></i><b>6.3.2</b> Anatomy of a script</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="an-r-markdown-demo.html"><a href="an-r-markdown-demo.html"><i class="fa fa-check"></i><b>7</b> An R Markdown Demo</a><ul>
@@ -317,8 +317,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="r" class="section level2">
 <h2><span class="header-section-number">7.2</span> R</h2>
 <ul>
-<li><p>The version of R used to make this document is 3.5.1.</p></li>
-<li><p>The version of the <code>rmarkdown</code> package used to make this document is 1.10.</p></li>
+<li><p>The version of R used to make this document is 3.5.0.</p></li>
+<li><p>The version of the <code>rmarkdown</code> package used to make this document is 1.9.</p></li>
 <li><p>The version of the <code>knitr</code> package used to make this document is 1.20.</p></li>
 <li><p>The version of the <code>ggplot2</code> package used to make this document is 3.0.0.</p></li>
 </ul>
@@ -517,18 +517,18 @@ out1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op"
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -41.673 -10.666   1.892  12.464  33.626 
+## -39.277 -14.044   0.228  12.749  47.301 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   8.8245     5.3728   1.642    0.107    
-## x             1.4443     0.1834   7.877 3.38e-10 ***
+## (Intercept)   6.7035     5.3220    1.26    0.214    
+## x             1.4258     0.1816    7.85 3.71e-10 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 18.71 on 48 degrees of freedom
-## Multiple R-squared:  0.5638, Adjusted R-squared:  0.5547 
-## F-statistic: 62.04 on 1 and 48 DF,  p-value: 3.384e-10</code></pre>
+## Residual standard error: 18.53 on 48 degrees of freedom
+## Multiple R-squared:  0.5621, Adjusted R-squared:  0.553 
+## F-statistic: 61.62 on 1 and 48 DF,  p-value: 3.715e-10</code></pre>
 </div>
 <div id="figure-with-code-to-make-it-shown" class="section level4">
 <h4><span class="header-section-number">7.7.3.2</span> Figure with Code to Make It Shown</h4>
@@ -536,8 +536,6 @@ out1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op"
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, y)
 <span class="kw">ggplot</span>(mydata, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</code></pre></div>
-<pre><code>## Warning in grid.Call.graphics(C_polygon, x$x, x$y, index): semi-
-## transparency is not supported on this device: reported only once per page</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:regression"></span>
 <img src="07-rmark_files/figure-html/regression-1.png" alt="Simple Linear Regression" width="672" />
 <p class="caption">
@@ -558,18 +556,18 @@ Figure 7.2: Simple Linear Regression
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -46.181  -9.354   4.094  12.822  27.981 
+## -40.648 -13.445   1.161  10.270  47.283 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept) -2.1407636 11.2187407  -0.191    0.850
-## x            2.5921474  1.8862416   1.374    0.176
-## I(x^2)      -0.0155090  0.0854852  -0.181    0.857
-## I(x^3)      -0.0001535  0.0011025  -0.139    0.890
+##              Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) 14.523465  11.306185   1.285    0.205
+## x           -0.652299   1.900944  -0.343    0.733
+## I(x^2)       0.110812   0.086151   1.286    0.205
+## I(x^3)      -0.001537   0.001111  -1.383    0.173
 ## 
-## Residual standard error: 18.36 on 46 degrees of freedom
-## Multiple R-squared:  0.5974, Adjusted R-squared:  0.5711 
-## F-statistic: 22.75 on 3 and 46 DF,  p-value: 3.528e-09</code></pre>
+## Residual standard error: 18.51 on 46 degrees of freedom
+## Multiple R-squared:  0.5816, Adjusted R-squared:  0.5543 
+## F-statistic: 21.32 on 3 and 46 DF,  p-value: 8.418e-09</code></pre>
 Then we plot this figure with a hidden code chunk (so the R commands to make it do not appear in the document).
 <div class="figure" style="text-align: center"><span id="fig:cubic"></span>
 <img src="07-rmark_files/figure-html/cubic-1.png" alt="Scatter Plot with Cubic Regression Curve" width="672" />
@@ -585,7 +583,7 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 <h3><span class="header-section-number">7.7.4</span> R in Text</h3>
 <p>The <em>no snarf and barf</em> rule must be adhered to strictly. None at all!</p>
 <p>When you want to refer to some number in R printout, either make a code chunk that contains the printout you want, or, much nicer looking, you can “inline” R printout.</p>
-<p>Here we show how to do that. The quadratic and cubic regression coefficients in the preceding regression were <span class="math inline">\(-0.015509\)</span> and <span class="math inline">\(-1.5345386\times 10^{-4}\)</span>. Magic!</p>
+<p>Here we show how to do that. The quadratic and cubic regression coefficients in the preceding regression were <span class="math inline">\(0.1108123\)</span> and <span class="math inline">\(-0.0015366\)</span>. Magic!</p>
 <p>See the source for this document to see how the magic works. The dollar signs around the in-line R chunks are required by the way R markdown handles scientific notation. It outputs LaTeX, which is explained in <a href="an-r-markdown-demo.html#latex-math">Section 7.8</a> below. It thus forces you to understand at least that much LaTeX. (Sorry about that!)</p>
 <p>If you never snarf and barf, and everything in your document is computed by R, then everything is always as claimed.</p>
 </div>
@@ -599,12 +597,10 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 ## Model 1: y ~ x
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
-##   Res.Df   RSS Df Sum of Sq      F  Pr(&gt;F)  
-## 1     48 16806                              
-## 2     47 15519  1   1286.43 3.8146 0.05691 .
-## 3     46 15513  1      6.53 0.0194 0.88991  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+##   Res.Df   RSS Df Sum of Sq      F Pr(&gt;F)
+## 1     48 16489                           
+## 2     47 16411  1     78.72 0.2298 0.6339
+## 3     46 15756  1    655.15 1.9128 0.1733</code></pre>
 <p>We want to turn that into a table in output format we are creating. First we have to figure out what the output of the R function <code>anova</code> is and capture it so we can use it.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span><span class="kw">anova</span>(out1, out2, out3)
 <span class="kw">class</span>(foo)</code></pre></div>
@@ -625,7 +621,7 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 <tbody>
 <tr class="odd">
 <td align="right">48</td>
-<td align="right">16805.7</td>
+<td align="right">16489.4</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right"></td>
@@ -633,19 +629,19 @@ Figure 7.3: Scatter Plot with Cubic Regression Curve
 </tr>
 <tr class="even">
 <td align="right">47</td>
-<td align="right">15519.3</td>
+<td align="right">16410.7</td>
 <td align="right">1</td>
-<td align="right">1286.43</td>
-<td align="right">3.815</td>
-<td align="right">0.057</td>
+<td align="right">78.72</td>
+<td align="right">0.230</td>
+<td align="right">0.634</td>
 </tr>
 <tr class="odd">
 <td align="right">46</td>
-<td align="right">15512.8</td>
+<td align="right">15755.5</td>
 <td align="right">1</td>
-<td align="right">6.53</td>
-<td align="right">0.019</td>
-<td align="right">0.890</td>
+<td align="right">655.15</td>
+<td align="right">1.913</td>
+<td align="right">0.173</td>
 </tr>
 </tbody>
 </table>

@@ -220,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#starting-a-reproducible-workflow-in-r"><i class="fa fa-check"></i><b>6.3</b> Starting a Reproducible Workflow in R</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#organization"><i class="fa fa-check"></i><b>6.3.1</b> Organization</a></li>
-<li class="chapter" data-level="6.3.2" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#anantomy-of-a-script"><i class="fa fa-check"></i><b>6.3.2</b> Anantomy of a script</a></li>
+<li class="chapter" data-level="6.3.2" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#anatomy-of-a-script"><i class="fa fa-check"></i><b>6.3.2</b> Anatomy of a script</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="an-r-markdown-demo.html"><a href="an-r-markdown-demo.html"><i class="fa fa-check"></i><b>7</b> An R Markdown Demo</a><ul>
@@ -419,8 +419,6 @@ y_i = \beta_0 + \beta_1 x_i + \epsilon_i
 <span class="kw">ggplot</span>(beer, <span class="kw">aes</span>(<span class="dt">x =</span> IBU, <span class="dt">y =</span> ABV)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## Warning in grid.Call.graphics(C_polygon, x$x, x$y, index): semi-
-## transparency is not supported on this device: reported only once per page</code></pre>
 <p><img src="04-LinReg_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
 <p>```</p>
 <p>Alternatively, we can use the <strong>abline()</strong> function:</p>
@@ -688,6 +686,136 @@ imodsum</code></pre></div>
 <li>Fit a multiple linear regression model predicting Rating from the additive and interaction effects of IBU and Brewery.</li>
 <li>Considering the models you fit in Ex 3, 7, 8, which do you prefer and why?</li>
 </ol>
+<p><br />
+<br />
+<br />
+</p>
+<p><strong>Solutions:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## 1: Load the Minnesota Beer Data into R
+beer &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://users.stat.umn.edu/~helwig/notes/MNbeer.csv&quot;</span>)
+
+<span class="co"># 2: Make a scatterplot of the IBU (x-axis) by Rating (y-axis)</span>
+<span class="kw">ggplot</span>(beer, <span class="kw">aes</span>(<span class="dt">x =</span> IBU, <span class="dt">y =</span> Rating)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="04-LinReg_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3: Fit a simple linear regression model predicting Rating from IBU</span>
+<span class="co"># For every 1 IBU increase, Rating tends to increase by 0.07 points.</span>
+my_model &lt;-<span class="st"> </span><span class="kw">lm</span>(Rating <span class="op">~</span><span class="st"> </span>IBU, <span class="dt">data =</span> beer)
+<span class="kw">coef</span>(my_model)</code></pre></div>
+<pre><code>## (Intercept)         IBU 
+## 83.76336277  0.06693905</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#4: Is there a significant linear relationship between IBU and Rating?</span>
+<span class="co"># Answer: Yes!  Notice that the p-value in the IBU row</span>
+<span class="co"># below is 0.  Also, notice that the confidence bands below</span>
+<span class="co"># don&#39;t include the flat, 0 slope line.</span>
+<span class="kw">summary</span>(my_model)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Rating ~ IBU, data = beer)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -7.3822 -2.4669  0.3309  2.0854  9.8856 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 83.76336    1.36811  61.225   &lt;2e-16 ***
+## IBU          0.06694    0.02474   2.706   0.0098 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.484 on 42 degrees of freedom
+## Multiple R-squared:  0.1485, Adjusted R-squared:  0.1282 
+## F-statistic: 7.322 on 1 and 42 DF,  p-value: 0.0098</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#5: Plot the linear relationship, along with 95% confidence and prediction intervals</span>
+<span class="co"># The confidence intervals reflect the plausible TREND in this relationship.</span>
+<span class="co"># The prediction intervals reflect the plausible DEVIATIONS from this trend.</span>
+<span class="kw">ggplot</span>(beer, <span class="kw">aes</span>(<span class="dt">x =</span> IBU, <span class="dt">y =</span> Rating)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="04-LinReg_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># prediction bands (this code = yuck)</span>
+newdata  &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">IBU =</span> <span class="kw">seq</span>(<span class="dv">15</span>, <span class="dv">100</span>, <span class="dt">by =</span> <span class="dv">1</span>))
+newfit   &lt;-<span class="st"> </span><span class="kw">predict</span>(my_model, newdata)
+newfitPI &lt;-<span class="st"> </span><span class="kw">predict</span>(my_model, newdata, <span class="dt">interval =</span> <span class="st">&quot;prediction&quot;</span>)
+newfitPI &lt;-<span class="st"> </span><span class="kw">data.frame</span>(newfitPI)
+newfitPI<span class="op">$</span>IBU &lt;-<span class="st"> </span>newdata<span class="op">$</span>IBU
+<span class="kw">ggplot</span>(beer, <span class="kw">aes</span>(<span class="dt">x =</span> IBU, <span class="dt">y =</span> Rating)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="dt">data =</span> newfitPI, <span class="kw">aes</span>(<span class="dt">x =</span> IBU, <span class="dt">y =</span> fit, <span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr), <span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.2</span>) </code></pre></div>
+<pre><code>## Warning: Ignoring unknown aesthetics: y</code></pre>
+<p><img src="04-LinReg_files/figure-html/unnamed-chunk-26-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#6: Fit a multiple linear regression model predicting Rating from the additive effects of IBU and Brewery.</span>
+model_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(Rating <span class="op">~</span><span class="st"> </span>IBU <span class="op">+</span><span class="st"> </span>Brewery, <span class="dt">data =</span> beer)
+<span class="kw">summary</span>(model_<span class="dv">2</span>)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Rating ~ IBU + Brewery, data = beer)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.7732 -1.7126  0.0889  1.2031  5.9521 
+## 
+## Coefficients:
+##                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)          83.98984    1.65525  50.741  &lt; 2e-16 ***
+## IBU                   0.05493    0.01969   2.790  0.00848 ** 
+## BreweryBent Paddle    1.19330    1.78467   0.669  0.50811    
+## BreweryFulton        -2.00670    1.78467  -1.124  0.26849    
+## BreweryIndeed         0.46958    1.67917   0.280  0.78139    
+## BrewerySteel Toe      1.16761    1.87697   0.622  0.53793    
+## BrewerySummit        -1.47248    1.66443  -0.885  0.38237    
+## BrewerySurly          5.20257    1.66495   3.125  0.00357 ** 
+## BreweryUrban Growler -2.59571    1.78495  -1.454  0.15479    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.654 on 35 degrees of freedom
+## Multiple R-squared:  0.5881, Adjusted R-squared:  0.4939 
+## F-statistic: 6.246 on 8 and 35 DF,  p-value: 5.108e-05</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#7: Fit a multiple linear regression model predicting Rating from the additive and interaction effects of IBU and Brewery.</span>
+model_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(Rating <span class="op">~</span><span class="st"> </span>IBU <span class="op">*</span><span class="st"> </span>Brewery, <span class="dt">data =</span> beer)
+<span class="kw">summary</span>(model_<span class="dv">3</span>)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Rating ~ IBU * Brewery, data = beer)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.1925 -1.5054 -0.0439  1.1809  5.4490 
+## 
+## Coefficients:
+##                          Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)              88.22268    4.88650  18.054   &lt;2e-16 ***
+## IBU                      -0.02931    0.09313  -0.315    0.755    
+## BreweryBent Paddle       -1.02635    6.56017  -0.156    0.877    
+## BreweryFulton            -6.97752    5.59517  -1.247    0.223    
+## BreweryIndeed            -2.02179    5.70948  -0.354    0.726    
+## BrewerySteel Toe         -4.66505    5.96999  -0.781    0.441    
+## BrewerySummit            -6.14258    5.99866  -1.024    0.315    
+## BrewerySurly             -1.26059    5.52626  -0.228    0.821    
+## BreweryUrban Growler     -4.71814    5.99284  -0.787    0.438    
+## IBU:BreweryBent Paddle    0.03848    0.13323   0.289    0.775    
+## IBU:BreweryFulton         0.10101    0.10813   0.934    0.358    
+## IBU:BreweryIndeed         0.05608    0.10323   0.543    0.591    
+## IBU:BrewerySteel Toe      0.11515    0.11102   1.037    0.309    
+## IBU:BrewerySummit         0.09249    0.11216   0.825    0.417    
+## IBU:BrewerySurly          0.12576    0.10291   1.222    0.232    
+## IBU:BreweryUrban Growler  0.03605    0.11883   0.303    0.764    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.814 on 28 degrees of freedom
+## Multiple R-squared:  0.6297, Adjusted R-squared:  0.4313 
+## F-statistic: 3.174 on 15 and 28 DF,  p-value: 0.00403</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(beer, <span class="kw">aes</span>(<span class="dt">x =</span> IBU, <span class="dt">y =</span> Rating, <span class="dt">color =</span> Brewery)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="04-LinReg_files/figure-html/unnamed-chunk-26-4.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#8 Considering the models you fit in Ex 3, 7, 8, which do you prefer and why?</span>
+<span class="co"># I prefer the middle model.  Including Brewery in the model appears</span>
+<span class="co"># to improve predictions.  The &quot;interactive&quot; effects seem to be overkill.</span></code></pre></div>
 
 </div>
 </div>

@@ -220,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#starting-a-reproducible-workflow-in-r"><i class="fa fa-check"></i><b>6.3</b> Starting a Reproducible Workflow in R</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#organization"><i class="fa fa-check"></i><b>6.3.1</b> Organization</a></li>
-<li class="chapter" data-level="6.3.2" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#anantomy-of-a-script"><i class="fa fa-check"></i><b>6.3.2</b> Anantomy of a script</a></li>
+<li class="chapter" data-level="6.3.2" data-path="using-r-reproducibly.html"><a href="using-r-reproducibly.html#anatomy-of-a-script"><i class="fa fa-check"></i><b>6.3.2</b> Anatomy of a script</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="an-r-markdown-demo.html"><a href="an-r-markdown-demo.html"><i class="fa fa-check"></i><b>7</b> An R Markdown Demo</a><ul>
@@ -740,6 +740,80 @@ H_0: \rho = 0 \quad \mbox{vs.} \quad H_1: \rho &gt; 0
 <li>Repeat the one-way ANOVA using the IBU variable as the response.</li>
 <li>Repeat the correlation test using the IBU and Rating variables.</li>
 </ol>
+<p><br />
+<br />
+</p>
+<p><strong>SOLUTIONS</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1 Load the Minnesota Beer Data into R.</span>
+beer &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://users.stat.umn.edu/~helwig/notes/MNbeer.csv&quot;</span>)
+
+<span class="co">#2) Make a boxplot of the IBUs by Style of beer.</span>
+<span class="co"># Notice that IPAs tend to have higher IBU (bitterness)</span>
+<span class="kw">ggplot</span>(beer, <span class="kw">aes</span>(<span class="dt">x =</span> Style, <span class="dt">y =</span> IBU)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p><img src="03-SimpStat_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#3) Make a scatterplot of the ABV (x-axis) by Rating (y-axis).</span>
+<span class="co"># Notice that Rating tends to increase with ABV (alcohol level)</span>
+<span class="kw">ggplot</span>(beer, <span class="kw">aes</span>(<span class="dt">x =</span> ABV, <span class="dt">y =</span> Rating)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="03-SimpStat_files/figure-html/unnamed-chunk-37-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#4) Calculate some descriptive statistics for the IBU variable.</span>
+<span class="kw">summary</span>(beer<span class="op">$</span>IBU)</code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   15.00   33.00   48.50   51.07   68.25   99.00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#5) Create a table showing the sample size and variable means and standard deviations for each Brewery.</span>
+tab1 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">tapply</span>(beer<span class="op">$</span>Rating, beer<span class="op">$</span>Brewery, length),
+              <span class="kw">tapply</span>(beer<span class="op">$</span>Rating, beer<span class="op">$</span>Brewery, mean),
+              <span class="kw">tapply</span>(beer<span class="op">$</span>Rating, beer<span class="op">$</span>Brewery, sd))
+<span class="kw">colnames</span>(tab1) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;Rating.Mean&quot;</span>, <span class="st">&quot;Rating.SD&quot;</span>)
+rtab1 &lt;-<span class="st"> </span><span class="kw">round</span>(tab1, <span class="dv">2</span>)
+rtab1</code></pre></div>
+<pre><code>##               n Rating.Mean Rating.SD
+## Bauhaus       4       86.75      0.96
+## Bent Paddle   5       87.60      1.67
+## Fulton        5       84.40      5.03
+## Indeed        7       87.86      2.12
+## Steel Toe     4       88.00      2.45
+## Summit        7       85.43      3.10
+## Surly         7       92.14      3.53
+## Urban Growler 5       83.80      1.48</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#6) Repeat the *t*-tests using the IBU variable as the response.</span>
+<span class="kw">t.test</span>(beer<span class="op">$</span>IBU)</code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  beer$IBU
+## t = 15.774, df = 43, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  44.53914 57.59722
+## sample estimates:
+## mean of x 
+##  51.06818</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#7) Repeat the one-way ANOVA using the IBU variable as the response.</span>
+<span class="co"># The p-value here indicates that IBU significantly differs by Style</span>
+amod &lt;-<span class="st"> </span><span class="kw">aov</span>(IBU <span class="op">~</span><span class="st"> </span>Style, <span class="dt">data =</span> beer)
+<span class="kw">summary</span>(amod)</code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Style        2  14209    7105   51.81 5.98e-12 ***
+## Residuals   41   5622     137                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#8) Repeat the correlation test using the IBU and Rating variables.</span>
+<span class="co"># The p-value here indicates that there&#39;s a significant, positive</span>
+<span class="co"># correlation between beers&#39; IBU &amp; Rating.</span>
+<span class="kw">cor.test</span>(beer<span class="op">$</span>IBU, beer<span class="op">$</span>Rating, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  beer$IBU and beer$Rating
+## t = 2.706, df = 42, p-value = 0.0049
+## alternative hypothesis: true correlation is greater than 0
+## 95 percent confidence interval:
+##  0.1482865 1.0000000
+## sample estimates:
+##       cor 
+## 0.3853018</code></pre>
 
 </div>
 </div>

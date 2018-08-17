@@ -647,3 +647,121 @@ The estimated sample correlation is $r = 0.495$ and the 95% lower-bound confiden
 6) Repeat the *t*-tests using the IBU variable as the response.
 7) Repeat the one-way ANOVA using the IBU variable as the response.
 8) Repeat the correlation test using the IBU and Rating variables.
+
+
+
+\
+\
+
+
+
+**SOLUTIONS**
+
+
+```r
+#1 Load the Minnesota Beer Data into R.
+beer <- read.csv("http://users.stat.umn.edu/~helwig/notes/MNbeer.csv")
+
+#2) Make a boxplot of the IBUs by Style of beer.
+# Notice that IPAs tend to have higher IBU (bitterness)
+ggplot(beer, aes(x = Style, y = IBU)) + 
+  geom_boxplot()
+```
+
+<img src="03-SimpStat_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+
+```r
+#3) Make a scatterplot of the ABV (x-axis) by Rating (y-axis).
+# Notice that Rating tends to increase with ABV (alcohol level)
+ggplot(beer, aes(x = ABV, y = Rating)) + 
+  geom_point()
+```
+
+<img src="03-SimpStat_files/figure-html/unnamed-chunk-37-2.png" width="672" />
+
+```r
+#4) Calculate some descriptive statistics for the IBU variable.
+summary(beer$IBU)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   15.00   33.00   48.50   51.07   68.25   99.00
+```
+
+```r
+#5) Create a table showing the sample size and variable means and standard deviations for each Brewery.
+tab1 <- cbind(tapply(beer$Rating, beer$Brewery, length),
+              tapply(beer$Rating, beer$Brewery, mean),
+              tapply(beer$Rating, beer$Brewery, sd))
+colnames(tab1) <- c("n", "Rating.Mean", "Rating.SD")
+rtab1 <- round(tab1, 2)
+rtab1
+```
+
+```
+##               n Rating.Mean Rating.SD
+## Bauhaus       4       86.75      0.96
+## Bent Paddle   5       87.60      1.67
+## Fulton        5       84.40      5.03
+## Indeed        7       87.86      2.12
+## Steel Toe     4       88.00      2.45
+## Summit        7       85.43      3.10
+## Surly         7       92.14      3.53
+## Urban Growler 5       83.80      1.48
+```
+
+```r
+#6) Repeat the *t*-tests using the IBU variable as the response.
+t.test(beer$IBU)
+```
+
+```
+## 
+## 	One Sample t-test
+## 
+## data:  beer$IBU
+## t = 15.774, df = 43, p-value < 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  44.53914 57.59722
+## sample estimates:
+## mean of x 
+##  51.06818
+```
+
+```r
+#7) Repeat the one-way ANOVA using the IBU variable as the response.
+# The p-value here indicates that IBU significantly differs by Style
+amod <- aov(IBU ~ Style, data = beer)
+summary(amod)
+```
+
+```
+##             Df Sum Sq Mean Sq F value   Pr(>F)    
+## Style        2  14209    7105   51.81 5.98e-12 ***
+## Residuals   41   5622     137                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+```r
+#8) Repeat the correlation test using the IBU and Rating variables.
+# The p-value here indicates that there's a significant, positive
+# correlation between beers' IBU & Rating.
+cor.test(beer$IBU, beer$Rating, alternative = "greater")
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  beer$IBU and beer$Rating
+## t = 2.706, df = 42, p-value = 0.0049
+## alternative hypothesis: true correlation is greater than 0
+## 95 percent confidence interval:
+##  0.1482865 1.0000000
+## sample estimates:
+##       cor 
+## 0.3853018
+```

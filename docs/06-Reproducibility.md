@@ -175,30 +175,25 @@ sessionInfo()
 ```
 
 ```
-## R version 3.5.1 (2018-07-02)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 16.04.5 LTS
+## R version 3.5.0 (2018-04-23)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS High Sierra 10.13.4
 ## 
 ## Matrix products: default
-## BLAS: /home/geyer/local/current/lib/R/lib/libRblas.so
-## LAPACK: /home/geyer/local/current/lib/R/lib/libRlapack.so
+## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_3.5.1  backports_1.1.2 bookdown_0.7    magrittr_1.5   
-##  [5] rprojroot_1.3-2 tools_3.5.1     htmltools_0.3.6 Rcpp_0.12.18   
-##  [9] stringi_1.2.4   rmarkdown_1.10  knitr_1.20      xfun_0.3       
-## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.11
+##  [1] compiler_3.5.0  backports_1.1.2 bookdown_0.7    magrittr_1.5   
+##  [5] rprojroot_1.3-2 tools_3.5.0     htmltools_0.3.6 Rcpp_0.12.17   
+##  [9] stringi_1.2.2   rmarkdown_1.9   knitr_1.20      xfun_0.1       
+## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.10.1
 ```
 
 
@@ -299,7 +294,7 @@ Use consistent directory organization in your project folder (e.g., separate fol
 Give files descriptive and meaningful names. Avoid special characters (/ , . # ?), spaces between words, or very lengthy file names. 
 
 
-### Anantomy of a script
+### Anatomy of a script
 
 Order matters in a script; data used in an analysis needs to be loaded at an earlier point in the script. 
 
@@ -351,7 +346,7 @@ Load all data in one spot. Again, if you are loading through the interface windo
 
 Use sections in R Studio to organize and quickly navigate your code. Press cmd-shift-R on a Mac or cntrl-shift-R on a PC to insert a section. 
 
-<img src="images/rscriptsections.jpg" style="display: block; margin: auto;" />
+<img src="images/rscriptsections.jpg" width="713" style="display: block; margin: auto;" />
 
 \
 
@@ -402,7 +397,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1]  54  12  77  28  55  43  38  32 100  57
+##  [1] 56 73 71 96 31  5 88 12 40 89
 ```
 
 ```r
@@ -410,7 +405,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 12 26 50 80 31 15 73 42 22 96
+##  [1] 45 59 36 31 96 25 42  7 26 11
 ```
 
 ```r

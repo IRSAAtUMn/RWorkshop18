@@ -11,9 +11,9 @@ Attribution-ShareAlike 4.0 International License
 
 ## R
 
- * The version of R used to make this document is 3.5.1.
+ * The version of R used to make this document is 3.5.0.
 
- * The version of the `rmarkdown` package used to make this document is 1.10.
+ * The version of the `rmarkdown` package used to make this document is 1.9.
 
  * The version of the `knitr` package used to make this document is 1.20.
 
@@ -393,18 +393,18 @@ summary(out1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -41.673 -10.666   1.892  12.464  33.626 
+## -39.277 -14.044   0.228  12.749  47.301 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   8.8245     5.3728   1.642    0.107    
-## x             1.4443     0.1834   7.877 3.38e-10 ***
+## (Intercept)   6.7035     5.3220    1.26    0.214    
+## x             1.4258     0.1816    7.85 3.71e-10 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 18.71 on 48 degrees of freedom
-## Multiple R-squared:  0.5638,	Adjusted R-squared:  0.5547 
-## F-statistic: 62.04 on 1 and 48 DF,  p-value: 3.384e-10
+## Residual standard error: 18.53 on 48 degrees of freedom
+## Multiple R-squared:  0.5621,	Adjusted R-squared:  0.553 
+## F-statistic: 61.62 on 1 and 48 DF,  p-value: 3.715e-10
 ```
 
 #### Figure with Code to Make It Shown
@@ -415,11 +415,6 @@ The following figure is produced by the following code
 mydata <- data.frame(x, y)
 ggplot(mydata, aes(x = x, y = y)) + geom_point() +
     geom_smooth(method = "lm")
-```
-
-```
-## Warning in grid.Call.graphics(C_polygon, x$x, x$y, index): semi-
-## transparency is not supported on this device: reported only once per page
 ```
 
 <div class="figure" style="text-align: center">
@@ -448,18 +443,18 @@ summary(out3)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -46.181  -9.354   4.094  12.822  27.981 
+## -40.648 -13.445   1.161  10.270  47.283 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)
-## (Intercept) -2.1407636 11.2187407  -0.191    0.850
-## x            2.5921474  1.8862416   1.374    0.176
-## I(x^2)      -0.0155090  0.0854852  -0.181    0.857
-## I(x^3)      -0.0001535  0.0011025  -0.139    0.890
+##              Estimate Std. Error t value Pr(>|t|)
+## (Intercept) 14.523465  11.306185   1.285    0.205
+## x           -0.652299   1.900944  -0.343    0.733
+## I(x^2)       0.110812   0.086151   1.286    0.205
+## I(x^3)      -0.001537   0.001111  -1.383    0.173
 ## 
-## Residual standard error: 18.36 on 46 degrees of freedom
-## Multiple R-squared:  0.5974,	Adjusted R-squared:  0.5711 
-## F-statistic: 22.75 on 3 and 46 DF,  p-value: 3.528e-09
+## Residual standard error: 18.51 on 46 degrees of freedom
+## Multiple R-squared:  0.5816,	Adjusted R-squared:  0.5543 
+## F-statistic: 21.32 on 3 and 46 DF,  p-value: 8.418e-09
 ```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
@@ -488,9 +483,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
-$-0.015509$
+$0.1108123$
 and
-$-1.5345386\times 10^{-4}$.
+$-0.0015366$.
 Magic!
 
 See the source for this document to see how the magic works.
@@ -519,12 +514,10 @@ anova(out1, out2, out3)
 ## Model 1: y ~ x
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
-##   Res.Df   RSS Df Sum of Sq      F  Pr(>F)  
-## 1     48 16806                              
-## 2     47 15519  1   1286.43 3.8146 0.05691 .
-## 3     46 15513  1      6.53 0.0194 0.88991  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
+## 1     48 16489                           
+## 2     47 16411  1     78.72 0.2298 0.6339
+## 3     46 15756  1    655.15 1.9128 0.1733
 ```
 
 We want to turn that into a table in output format we are creating.
@@ -547,9 +540,9 @@ Table: (\#tab:kable)ANOVA Table
 
  Res.Df       RSS   Df   Sum of Sq       F   Pr(>F)
 -------  --------  ---  ----------  ------  -------
-     48   16805.7                                  
-     47   15519.3    1     1286.43   3.815    0.057
-     46   15512.8    1        6.53   0.019    0.890
+     48   16489.4                                  
+     47   16410.7    1       78.72   0.230    0.634
+     46   15755.5    1      655.15   1.913    0.173
 
 ## LaTeX Math
 
