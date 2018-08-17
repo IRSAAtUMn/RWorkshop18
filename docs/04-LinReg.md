@@ -563,3 +563,184 @@ In this case, the *F*-tests and AIC values suggest that the additive model shoul
 6) Fit a multiple linear regression model predicting Rating from the additive effects of IBU and Brewery.
 7) Fit a multiple linear regression model predicting Rating from the additive and interaction effects of IBU and Brewery.
 8) Considering the models you fit in Ex 3, 7, 8, which do you prefer and why?
+
+
+\
+\
+\
+
+
+**Solutions:**
+
+
+```r
+## 1: Load the Minnesota Beer Data into R
+beer <- read.csv("http://users.stat.umn.edu/~helwig/notes/MNbeer.csv")
+
+# 2: Make a scatterplot of the IBU (x-axis) by Rating (y-axis)
+ggplot(beer, aes(x = IBU, y = Rating)) + 
+  geom_point()
+```
+
+<img src="04-LinReg_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+
+```r
+# 3: Fit a simple linear regression model predicting Rating from IBU
+# For every 1 IBU increase, Rating tends to increase by 0.07 points.
+my_model <- lm(Rating ~ IBU, data = beer)
+coef(my_model)
+```
+
+```
+## (Intercept)         IBU 
+## 83.76336277  0.06693905
+```
+
+```r
+#4: Is there a significant linear relationship between IBU and Rating?
+# Answer: Yes!  Notice that the p-value in the IBU row
+# below is 0.  Also, notice that the confidence bands below
+# don't include the flat, 0 slope line.
+summary(my_model)
+```
+
+```
+## 
+## Call:
+## lm(formula = Rating ~ IBU, data = beer)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -7.3822 -2.4669  0.3309  2.0854  9.8856 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 83.76336    1.36811  61.225   <2e-16 ***
+## IBU          0.06694    0.02474   2.706   0.0098 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.484 on 42 degrees of freedom
+## Multiple R-squared:  0.1485,	Adjusted R-squared:  0.1282 
+## F-statistic: 7.322 on 1 and 42 DF,  p-value: 0.0098
+```
+
+```r
+#5: Plot the linear relationship, along with 95% confidence and prediction intervals
+# The confidence intervals reflect the plausible TREND in this relationship.
+# The prediction intervals reflect the plausible DEVIATIONS from this trend.
+ggplot(beer, aes(x = IBU, y = Rating)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = TRUE)
+```
+
+<img src="04-LinReg_files/figure-html/unnamed-chunk-26-2.png" width="672" />
+
+```r
+# prediction bands (this code = yuck)
+newdata  <- data.frame(IBU = seq(15, 100, by = 1))
+newfit   <- predict(my_model, newdata)
+newfitPI <- predict(my_model, newdata, interval = "prediction")
+newfitPI <- data.frame(newfitPI)
+newfitPI$IBU <- newdata$IBU
+ggplot(beer, aes(x = IBU, y = Rating)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_ribbon(data = newfitPI, aes(x = IBU, y = fit, ymin = lwr, ymax = upr), fill = "blue", alpha = 0.2) 
+```
+
+```
+## Warning: Ignoring unknown aesthetics: y
+```
+
+<img src="04-LinReg_files/figure-html/unnamed-chunk-26-3.png" width="672" />
+
+```r
+#6: Fit a multiple linear regression model predicting Rating from the additive effects of IBU and Brewery.
+model_2 <- lm(Rating ~ IBU + Brewery, data = beer)
+summary(model_2)
+```
+
+```
+## 
+## Call:
+## lm(formula = Rating ~ IBU + Brewery, data = beer)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.7732 -1.7126  0.0889  1.2031  5.9521 
+## 
+## Coefficients:
+##                      Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)          83.98984    1.65525  50.741  < 2e-16 ***
+## IBU                   0.05493    0.01969   2.790  0.00848 ** 
+## BreweryBent Paddle    1.19330    1.78467   0.669  0.50811    
+## BreweryFulton        -2.00670    1.78467  -1.124  0.26849    
+## BreweryIndeed         0.46958    1.67917   0.280  0.78139    
+## BrewerySteel Toe      1.16761    1.87697   0.622  0.53793    
+## BrewerySummit        -1.47248    1.66443  -0.885  0.38237    
+## BrewerySurly          5.20257    1.66495   3.125  0.00357 ** 
+## BreweryUrban Growler -2.59571    1.78495  -1.454  0.15479    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.654 on 35 degrees of freedom
+## Multiple R-squared:  0.5881,	Adjusted R-squared:  0.4939 
+## F-statistic: 6.246 on 8 and 35 DF,  p-value: 5.108e-05
+```
+
+```r
+#7: Fit a multiple linear regression model predicting Rating from the additive and interaction effects of IBU and Brewery.
+model_3 <- lm(Rating ~ IBU * Brewery, data = beer)
+summary(model_3)
+```
+
+```
+## 
+## Call:
+## lm(formula = Rating ~ IBU * Brewery, data = beer)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.1925 -1.5054 -0.0439  1.1809  5.4490 
+## 
+## Coefficients:
+##                          Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)              88.22268    4.88650  18.054   <2e-16 ***
+## IBU                      -0.02931    0.09313  -0.315    0.755    
+## BreweryBent Paddle       -1.02635    6.56017  -0.156    0.877    
+## BreweryFulton            -6.97752    5.59517  -1.247    0.223    
+## BreweryIndeed            -2.02179    5.70948  -0.354    0.726    
+## BrewerySteel Toe         -4.66505    5.96999  -0.781    0.441    
+## BrewerySummit            -6.14258    5.99866  -1.024    0.315    
+## BrewerySurly             -1.26059    5.52626  -0.228    0.821    
+## BreweryUrban Growler     -4.71814    5.99284  -0.787    0.438    
+## IBU:BreweryBent Paddle    0.03848    0.13323   0.289    0.775    
+## IBU:BreweryFulton         0.10101    0.10813   0.934    0.358    
+## IBU:BreweryIndeed         0.05608    0.10323   0.543    0.591    
+## IBU:BrewerySteel Toe      0.11515    0.11102   1.037    0.309    
+## IBU:BrewerySummit         0.09249    0.11216   0.825    0.417    
+## IBU:BrewerySurly          0.12576    0.10291   1.222    0.232    
+## IBU:BreweryUrban Growler  0.03605    0.11883   0.303    0.764    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.814 on 28 degrees of freedom
+## Multiple R-squared:  0.6297,	Adjusted R-squared:  0.4313 
+## F-statistic: 3.174 on 15 and 28 DF,  p-value: 0.00403
+```
+
+```r
+ggplot(beer, aes(x = IBU, y = Rating, color = Brewery)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+<img src="04-LinReg_files/figure-html/unnamed-chunk-26-4.png" width="672" />
+
+```r
+#8 Considering the models you fit in Ex 3, 7, 8, which do you prefer and why?
+# I prefer the middle model.  Including Brewery in the model appears
+# to improve predictions.  The "interactive" effects seem to be overkill.
+```
+

@@ -4,6 +4,9 @@
 *Author: Alicia Johnson*
 
 
+<!-- NEXT TIME: Swap the birthday data (use for discussion) and bechdel data (use for exercises). Cut out subset() and put it in exercises for students that are working quickly.  -->
+
+
 \
 \
 \

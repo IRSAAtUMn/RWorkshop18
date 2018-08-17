@@ -11,13 +11,13 @@ Attribution-ShareAlike 4.0 International License
 
 ## R
 
- * The version of R used to make this document is 3.5.1.
+ * The version of R used to make this document is 3.5.0.
 
  * The version of the `rmarkdown` package used to make this document is 1.9.
 
  * The version of the `knitr` package used to make this document is 1.20.
 
- * The version of the `ggplot2` package used to make this document is 2.2.1.
+ * The version of the `ggplot2` package used to make this document is 3.0.0.
 
 
 ```r
@@ -137,7 +137,8 @@ There are many issues affecting this "crisis."
  * There are scientific issues, such as what experiments are done
    and how they are interpreted.
 
- * There are statistical issues, such as too small sample sizes
+ * There are statistical issues, such as too small sample sizes,
+   multiple hypothesis testing without correction,
    and publication bias.
 
  * And there are computational issues: what data analysis was done and was
@@ -151,7 +152,7 @@ a document that includes a statistical analysis may help to document it?)
 Indirectly, R Markdown also helps with the other issues.  Having the whole
 analysis from raw data to scientific findings publicly available --- as many
 scientific journals now require --- tends to
-make you a lot more careful in doing the analysis.
+make you a lot more careful and a lot more thoughtful in doing the analysis.
 
 #### Business and Consulting
 
@@ -392,18 +393,18 @@ summary(out1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -36.087 -10.541   1.819   9.010  36.902 
+## -39.277 -14.044   0.228  12.749  47.301 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   1.1735     4.8193   0.243    0.809    
-## x             1.4486     0.1645   8.807 1.37e-11 ***
+## (Intercept)   6.7035     5.3220    1.26    0.214    
+## x             1.4258     0.1816    7.85 3.71e-10 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 16.78 on 48 degrees of freedom
-## Multiple R-squared:  0.6177,	Adjusted R-squared:  0.6098 
-## F-statistic: 77.56 on 1 and 48 DF,  p-value: 1.366e-11
+## Residual standard error: 18.53 on 48 degrees of freedom
+## Multiple R-squared:  0.5621,	Adjusted R-squared:  0.553 
+## F-statistic: 61.62 on 1 and 48 DF,  p-value: 3.715e-10
 ```
 
 #### Figure with Code to Make It Shown
@@ -442,18 +443,18 @@ summary(out3)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -34.366 -10.965   2.014   9.710  36.607 
+## -40.648 -13.445   1.161  10.270  47.283 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)
-## (Intercept) -5.1400263 10.3704279  -0.496    0.623
-## x            2.2733169  1.7436121   1.304    0.199
-## I(x^2)      -0.0219085  0.0790211  -0.277    0.783
-## I(x^3)       0.0001258  0.0010191   0.123    0.902
+##              Estimate Std. Error t value Pr(>|t|)
+## (Intercept) 14.523465  11.306185   1.285    0.205
+## x           -0.652299   1.900944  -0.343    0.733
+## I(x^2)       0.110812   0.086151   1.286    0.205
+## I(x^3)      -0.001537   0.001111  -1.383    0.173
 ## 
-## Residual standard error: 16.98 on 46 degrees of freedom
-## Multiple R-squared:  0.6252,	Adjusted R-squared:  0.6008 
-## F-statistic: 25.58 on 3 and 46 DF,  p-value: 6.919e-10
+## Residual standard error: 18.51 on 46 degrees of freedom
+## Multiple R-squared:  0.5816,	Adjusted R-squared:  0.5543 
+## F-statistic: 21.32 on 3 and 46 DF,  p-value: 8.418e-09
 ```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
@@ -482,9 +483,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
-$-0.0219085$
+$0.1108123$
 and
-$1.2581885\times 10^{-4}$.
+$-0.0015366$.
 Magic!
 
 See the source for this document to see how the magic works.
@@ -514,9 +515,9 @@ anova(out1, out2, out3)
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
 ##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
-## 1     48 13521                           
-## 2     47 13260  1   261.423 0.9072 0.3458
-## 3     46 13255  1     4.392 0.0152 0.9023
+## 1     48 16489                           
+## 2     47 16411  1     78.72 0.2298 0.6339
+## 3     46 15756  1    655.15 1.9128 0.1733
 ```
 
 We want to turn that into a table in output format we are creating.
@@ -539,9 +540,9 @@ Table: (\#tab:kable)ANOVA Table
 
  Res.Df       RSS   Df   Sum of Sq       F   Pr(>F)
 -------  --------  ---  ----------  ------  -------
-     48   13521.3                                  
-     47   13259.8    1      261.42   0.907    0.346
-     46   13255.4    1        4.39   0.015    0.902
+     48   16489.4                                  
+     47   16410.7    1       78.72   0.230    0.634
+     46   15755.5    1      655.15   1.913    0.173
 
 ## LaTeX Math
 
