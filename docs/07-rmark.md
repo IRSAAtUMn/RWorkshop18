@@ -152,7 +152,7 @@ a document that includes a statistical analysis may help to document it?)
 Indirectly, R Markdown also helps with the other issues.  Having the whole
 analysis from raw data to scientific findings publicly available --- as many
 scientific journals now require --- tends to
-make you a lot more careful in doing the analysis.
+make you a lot more careful and a lot more thoughtful in doing the analysis.
 
 #### Business and Consulting
 
@@ -393,18 +393,18 @@ summary(out1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -45.926 -12.120   0.795  13.270  37.833 
+## -41.673 -10.666   1.892  12.464  33.626 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   4.4117     5.7569   0.766    0.447    
-## x             1.4769     0.1965   7.517 1.19e-09 ***
+## (Intercept)   8.8245     5.3728   1.642    0.107    
+## x             1.4443     0.1834   7.877 3.38e-10 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 20.05 on 48 degrees of freedom
-## Multiple R-squared:  0.5407,	Adjusted R-squared:  0.5311 
-## F-statistic:  56.5 on 1 and 48 DF,  p-value: 1.193e-09
+## Residual standard error: 18.71 on 48 degrees of freedom
+## Multiple R-squared:  0.5638,	Adjusted R-squared:  0.5547 
+## F-statistic: 62.04 on 1 and 48 DF,  p-value: 3.384e-10
 ```
 
 #### Figure with Code to Make It Shown
@@ -448,18 +448,18 @@ summary(out3)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -48.209 -13.553   1.574  12.497  36.015 
+## -46.181  -9.354   4.094  12.822  27.981 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(>|t|)
-## (Intercept)  0.2061661 12.3989618   0.017    0.987
-## x            2.7258987  2.0846758   1.308    0.198
-## I(x^2)      -0.0700032  0.0944783  -0.741    0.462
-## I(x^3)       0.0009982  0.0012185   0.819    0.417
+## (Intercept) -2.1407636 11.2187407  -0.191    0.850
+## x            2.5921474  1.8862416   1.374    0.176
+## I(x^2)      -0.0155090  0.0854852  -0.181    0.857
+## I(x^3)      -0.0001535  0.0011025  -0.139    0.890
 ## 
-## Residual standard error: 20.3 on 46 degrees of freedom
-## Multiple R-squared:  0.5489,	Adjusted R-squared:  0.5195 
-## F-statistic: 18.66 on 3 and 46 DF,  p-value: 4.628e-08
+## Residual standard error: 18.36 on 46 degrees of freedom
+## Multiple R-squared:  0.5974,	Adjusted R-squared:  0.5711 
+## F-statistic: 22.75 on 3 and 46 DF,  p-value: 3.528e-09
 ```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
@@ -488,9 +488,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
-$-0.0700032$
+$-0.015509$
 and
-$9.9815868\times 10^{-4}$.
+$-1.5345386\times 10^{-4}$.
 Magic!
 
 See the source for this document to see how the magic works.
@@ -519,10 +519,12 @@ anova(out1, out2, out3)
 ## Model 1: y ~ x
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
-##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
-## 1     48 19295                           
-## 2     47 19225  1    69.995 0.1699 0.6821
-## 3     46 18948  1   276.437 0.6711 0.4169
+##   Res.Df   RSS Df Sum of Sq      F  Pr(>F)  
+## 1     48 16806                              
+## 2     47 15519  1   1286.43 3.8146 0.05691 .
+## 3     46 15513  1      6.53 0.0194 0.88991  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 We want to turn that into a table in output format we are creating.
@@ -545,9 +547,9 @@ Table: (\#tab:kable)ANOVA Table
 
  Res.Df       RSS   Df   Sum of Sq       F   Pr(>F)
 -------  --------  ---  ----------  ------  -------
-     48   19294.8                                  
-     47   19224.8    1       70.00   0.170    0.682
-     46   18948.4    1      276.44   0.671    0.417
+     48   16805.7                                  
+     47   15519.3    1     1286.43   3.815    0.057
+     46   15512.8    1        6.53   0.019    0.890
 
 ## LaTeX Math
 
