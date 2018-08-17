@@ -26,7 +26,7 @@ The process between input and output needs to be **transparent** and **repeatabl
 
 ## Types of Reproducibility
 
-Many fields, most noteably [biomedicine](http://www.slate.com/articles/health_and_science/future_tense/2016/04/biomedicine_facing_a_worse_replication_crisis_than_the_one_plaguing_psychology.html) and [psychology](https://www.nature.com/news/over-half-of-psychology-studies-fail-reproducibility-test-1.18248), have been undergoing a **replication crisis** - a name given to the finding that many published research results can not be reproduced. 
+Many fields, most notably [biomedicine](http://www.slate.com/articles/health_and_science/future_tense/2016/04/biomedicine_facing_a_worse_replication_crisis_than_the_one_plaguing_psychology.html) and [psychology](https://www.nature.com/news/over-half-of-psychology-studies-fail-reproducibility-test-1.18248), have been undergoing a **replication crisis** - a name given to the finding that many published research results can not be reproduced. 
 
 But what is meant by "reproducible"? Given the diversity of disciplines involved, not everyone uses the term in the same way. Scholars such as [Victoria Stodden](http://bulletin.imstat.org/2013/11/resolving-irreproducibility-in-empirical-and-computational-research/) and Brian Nosek, who leads the [Center for Open Science](https://cos.io/), distinguish between several types of reproducibility: 
 
@@ -175,9 +175,9 @@ sessionInfo()
 ```
 
 ```
-## R version 3.5.0 (2018-04-23)
+## R version 3.5.1 (2018-07-02)
 ## Platform: x86_64-apple-darwin15.6.0 (64-bit)
-## Running under: macOS High Sierra 10.13.4
+## Running under: macOS High Sierra 10.13.6
 ## 
 ## Matrix products: default
 ## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
@@ -190,10 +190,10 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_3.5.0  backports_1.1.2 bookdown_0.7    magrittr_1.5   
-##  [5] rprojroot_1.3-2 tools_3.5.0     htmltools_0.3.6 Rcpp_0.12.17   
-##  [9] stringi_1.2.2   rmarkdown_1.9   knitr_1.20      xfun_0.1       
-## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.10.1
+##  [1] compiler_3.5.1  backports_1.1.2 bookdown_0.7    magrittr_1.5   
+##  [5] rprojroot_1.3-2 tools_3.5.1     htmltools_0.3.6 Rcpp_0.12.16   
+##  [9] stringi_1.2.2   rmarkdown_1.9   knitr_1.20      xfun_0.2       
+## [13] stringr_1.3.0   digest_0.6.15   evaluate_0.10.1
 ```
 
 
@@ -346,7 +346,7 @@ Load all data in one spot. Again, if you are loading through the interface windo
 
 Use sections in R Studio to organize and quickly navigate your code. Press cmd-shift-R on a Mac or cntrl-shift-R on a PC to insert a section. 
 
-<img src="images/rscriptsections.jpg" width="713" style="display: block; margin: auto;" />
+<img src="images/rscriptsections.jpg" style="display: block; margin: auto;" />
 
 \
 
@@ -397,7 +397,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 56 73 71 96 31  5 88 12 40 89
+##  [1] 96 12 21 47 73 74 24 98 88 46
 ```
 
 ```r
@@ -405,7 +405,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 45 59 36 31 96 25 42  7 26 11
+##  [1] 74 25 75 57 90 94 32 54 65 31
 ```
 
 ```r

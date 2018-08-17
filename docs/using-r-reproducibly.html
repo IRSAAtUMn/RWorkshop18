@@ -331,7 +331,7 @@ source: <a href="http://r4ds.had.co.nz/">Wickham &amp; Grolemund: R for Data Sci
 </p>
 <div id="types-of-reproducibility" class="section level2">
 <h2><span class="header-section-number">6.1</span> Types of Reproducibility</h2>
-<p>Many fields, most noteably <a href="http://www.slate.com/articles/health_and_science/future_tense/2016/04/biomedicine_facing_a_worse_replication_crisis_than_the_one_plaguing_psychology.html">biomedicine</a> and <a href="https://www.nature.com/news/over-half-of-psychology-studies-fail-reproducibility-test-1.18248">psychology</a>, have been undergoing a <strong>replication crisis</strong> - a name given to the finding that many published research results can not be reproduced.</p>
+<p>Many fields, most notably <a href="http://www.slate.com/articles/health_and_science/future_tense/2016/04/biomedicine_facing_a_worse_replication_crisis_than_the_one_plaguing_psychology.html">biomedicine</a> and <a href="https://www.nature.com/news/over-half-of-psychology-studies-fail-reproducibility-test-1.18248">psychology</a>, have been undergoing a <strong>replication crisis</strong> - a name given to the finding that many published research results can not be reproduced.</p>
 <p>But what is meant by “reproducible”? Given the diversity of disciplines involved, not everyone uses the term in the same way. Scholars such as <a href="http://bulletin.imstat.org/2013/11/resolving-irreproducibility-in-empirical-and-computational-research/">Victoria Stodden</a> and Brian Nosek, who leads the <a href="https://cos.io/">Center for Open Science</a>, distinguish between several types of reproducibility:</p>
 <br />
 <strong>Computational Reproducibility:</strong> Given the author’s data and statistical code, can someone produce the same results?<br />
@@ -446,9 +446,9 @@ To ensure your code can be run in long after your current laptop is functioning,
 <br />
 Capturing your session info does a lot of this for you:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
-<pre><code>## R version 3.5.0 (2018-04-23)
+<pre><code>## R version 3.5.1 (2018-07-02)
 ## Platform: x86_64-apple-darwin15.6.0 (64-bit)
-## Running under: macOS High Sierra 10.13.4
+## Running under: macOS High Sierra 10.13.6
 ## 
 ## Matrix products: default
 ## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
@@ -461,10 +461,10 @@ Capturing your session info does a lot of this for you:</p>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_3.5.0  backports_1.1.2 bookdown_0.7    magrittr_1.5   
-##  [5] rprojroot_1.3-2 tools_3.5.0     htmltools_0.3.6 Rcpp_0.12.17   
-##  [9] stringi_1.2.2   rmarkdown_1.9   knitr_1.20      xfun_0.1       
-## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.10.1</code></pre>
+##  [1] compiler_3.5.1  backports_1.1.2 bookdown_0.7    magrittr_1.5   
+##  [5] rprojroot_1.3-2 tools_3.5.1     htmltools_0.3.6 Rcpp_0.12.16   
+##  [9] stringi_1.2.2   rmarkdown_1.9   knitr_1.20      xfun_0.2       
+## [13] stringr_1.3.0   digest_0.6.15   evaluate_0.10.1</code></pre>
 </div>
 <div id="document-your-analysis" class="section level3">
 <h3><span class="header-section-number">6.2.5</span> Document your analysis</h3>
@@ -569,7 +569,7 @@ rawdata &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span cla
 <br />
 <strong>Throughout your script:</strong></p>
 <p>Use sections in R Studio to organize and quickly navigate your code. Press cmd-shift-R on a Mac or cntrl-shift-R on a PC to insert a section.</p>
-<p><img src="images/rscriptsections.jpg" width="713" style="display: block; margin: auto;" /></p>
+<p><img src="images/rscriptsections.jpg" style="display: block; margin: auto;" /></p>
 <p><br />
 Use lots of white space (it’s free). Use spaces between arguments and between different lines of code.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
@@ -597,9 +597,9 @@ djm1</code></pre></div>
 Set seed when doing any random number generations</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#take a random sample twice</span>
 <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">size=</span><span class="dv">10</span>)</code></pre></div>
-<pre><code>##  [1] 56 73 71 96 31  5 88 12 40 89</code></pre>
+<pre><code>##  [1] 96 12 21 47 73 74 24 98 88 46</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">size=</span><span class="dv">10</span>)</code></pre></div>
-<pre><code>##  [1] 45 59 36 31 96 25 42  7 26 11</code></pre>
+<pre><code>##  [1] 74 25 75 57 90 94 32 54 65 31</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#set seed before hand to ensure the random numbers are consistent</span>
 <span class="kw">set.seed</span>(<span class="dt">seed=</span><span class="dv">42</span>)
 <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">size=</span><span class="dv">10</span>)</code></pre></div>
