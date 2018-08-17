@@ -262,3 +262,63 @@ In this case, the *F*-tests and AIC values suggest that the additive model shoul
 6) Fit a multiple linear regression model predicting Rating from the additive effects of IBU and Brewery.
 7) Fit a multiple linear regression model predicting Rating from the additive and interaction effects of IBU and Brewery.
 8) Considering the models you fit in Ex 3, 7, 8, which do you prefer and why?
+
+
+\
+\
+\
+
+
+**Solutions:**
+
+```{r echo = TRUE}
+## 1: Load the Minnesota Beer Data into R
+beer <- read.csv("http://users.stat.umn.edu/~helwig/notes/MNbeer.csv")
+
+# 2: Make a scatterplot of the IBU (x-axis) by Rating (y-axis)
+ggplot(beer, aes(x = IBU, y = Rating)) + 
+  geom_point()
+  
+# 3: Fit a simple linear regression model predicting Rating from IBU
+my_model <- lm(Rating ~ IBU, data = beer)
+
+#4: Is there a significant linear relationship between IBU and Rating?
+# Answer: Yes!  Notice that the p-value in the IBU row
+# below is 0.  Also, notice that the confidence bands below
+# don't include the flat, 0 slope line.
+summary(my_model)
+
+#5: Plot the linear relationship, along with 95% confidence and prediction intervals
+ggplot(beer, aes(x = IBU, y = Rating)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = TRUE)
+
+# prediction bands (this code = yuck)
+newdata  <- data.frame(IBU = seq(15, 100, by = 1))
+newfit   <- predict(my_model, newdata)
+newfitPI <- predict(my_model, newdata, interval = "prediction")
+newfitPI <- data.frame(newfitPI)
+newfitPI$IBU <- newdata$IBU
+ggplot(beer, aes(x = IBU, y = Rating)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_ribbon(data = newfitPI, aes(x = IBU, y = fit, ymin = lwr, ymax = upr), fill = "blue", alpha = 0.2) 
+  
+  
+#6: Fit a multiple linear regression model predicting Rating from the additive effects of IBU and Brewery.
+model_2 <- lm(Rating ~ IBU + Brewery, data = beer)
+summary(model_2)
+
+#7: Fit a multiple linear regression model predicting Rating from the additive and interaction effects of IBU and Brewery.
+model_3 <- lm(Rating ~ IBU * Brewery, data = beer)
+summary(model_3)
+ggplot(beer, aes(x = IBU, y = Rating, color = Brewery)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+
+#8 Considering the models you fit in Ex 3, 7, 8, which do you prefer and why?
+# I prefer the middle model.  Including Brewery in the model appears
+# to improve predictions.  The "interactive" effects seem to be overkill.
+
+```
+

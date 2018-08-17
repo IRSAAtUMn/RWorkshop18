@@ -35,7 +35,7 @@ This data set combines the county level election results provided by Tony McGove
 
 ```{r collapse=TRUE}
 # Use read.csv() to import the csv file
-election <- read.csv("https://www.macalester.edu/~ajohns24/data/IMAdata1.csv")
+election <- read.csv("https://www.macalester.edu/~ajohns24/Data/electionDemographics16.csv")
 ```
 
 ```{r eval = FALSE}
