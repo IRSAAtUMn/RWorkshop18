@@ -271,7 +271,7 @@ Use consistent directory organization in your project folder (e.g., separate fol
 Give files descriptive and meaningful names. Avoid special characters (/ , . # ?), spaces between words, or very lengthy file names. 
 
 
-### Anantomy of a script
+### Anatomy of a script
 
 Order matters in a script; data used in an analysis needs to be loaded at an earlier point in the script. 
 
