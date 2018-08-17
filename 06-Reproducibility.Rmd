@@ -26,7 +26,7 @@ The process between input and output needs to be **transparent** and **repeatabl
 
 ## Types of Reproducibility
 
-Many fields, most noteably [biomedicine](http://www.slate.com/articles/health_and_science/future_tense/2016/04/biomedicine_facing_a_worse_replication_crisis_than_the_one_plaguing_psychology.html) and [psychology](https://www.nature.com/news/over-half-of-psychology-studies-fail-reproducibility-test-1.18248), have been undergoing a **replication crisis** - a name given to the finding that many published research results can not be reproduced. 
+Many fields, most notably [biomedicine](http://www.slate.com/articles/health_and_science/future_tense/2016/04/biomedicine_facing_a_worse_replication_crisis_than_the_one_plaguing_psychology.html) and [psychology](https://www.nature.com/news/over-half-of-psychology-studies-fail-reproducibility-test-1.18248), have been undergoing a **replication crisis** - a name given to the finding that many published research results can not be reproduced. 
 
 But what is meant by "reproducible"? Given the diversity of disciplines involved, not everyone uses the term in the same way. Scholars such as [Victoria Stodden](http://bulletin.imstat.org/2013/11/resolving-irreproducibility-in-empirical-and-computational-research/) and Brian Nosek, who leads the [Center for Open Science](https://cos.io/), distinguish between several types of reproducibility: 
 
@@ -271,7 +271,7 @@ Use consistent directory organization in your project folder (e.g., separate fol
 Give files descriptive and meaningful names. Avoid special characters (/ , . # ?), spaces between words, or very lengthy file names. 
 
 
-### Anantomy of a script
+### Anatomy of a script
 
 Order matters in a script; data used in an analysis needs to be loaded at an earlier point in the script. 
 
