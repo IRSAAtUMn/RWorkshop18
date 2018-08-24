@@ -2,7 +2,7 @@
 
 For non-authors:
 
-The HTML for the course is at https://IRSAAtUMn.github.io/RWorkshop18.
+The HTML for the course is at https://IRSAAtUMn.github.io/RWorkshop18/.
 
 The example for the question about how to paste together many data frames
 into one is in the folder [examples](examples).
