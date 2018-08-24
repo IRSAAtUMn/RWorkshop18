@@ -1,0 +1,9 @@
+R code for an answer to a fairly complicated question asked in class.
+
+How does one paste together a bunch of data frames into one data frame?
+
+The short answer is R function Reduce does that.  The longer answer
+is in these files.
+
+    foo.R       is the R code and comments
+    foo.Rout    is th result of running R CMD BATCH --vanilla foo.R
