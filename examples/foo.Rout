@@ -102,7 +102,7 @@ Type 'q()' to quit R.
 >  files
 [1] "file1.csv" "file2.csv" "file3.csv"
 >  for (i in seq(along = foo))
-+      write.csv(foo[[i]], file = files[i])
++      write.csv(foo[[i]], file = files[i], row.names = FALSE)
 > 
 >  rm(list = ls())
 >  ls()
@@ -119,33 +119,33 @@ character(0)
 +      foo[[file]] <- read.csv(file)
 >  foo
 $file1.csv
-  X letters        colors       state
-1 1       Y      navyblue    Colorado
-2 2       H     lightblue Mississippi
-3 3       T       oldlace    Nebraska
-4 4       O          snow       Texas
-5 5       L darkslategray Connecticut
-6 6       P  lemonchiffon     Vermont
-7 7       C     slategray   Tennessee
-8 8       M           tan    Arkansas
+  letters        colors       state
+1       Y      navyblue    Colorado
+2       H     lightblue Mississippi
+3       T       oldlace    Nebraska
+4       O          snow       Texas
+5       L darkslategray Connecticut
+6       P  lemonchiffon     Vermont
+7       C     slategray   Tennessee
+8       M           tan    Arkansas
 
 $file2.csv
-  X letters         colors         state
-1 1       K       honeydew      Virginia
-2 2       W       moccasin    New Jersey
-3 3       Z          white         Maine
-4 4       T         purple Massachusetts
-5 5       Q      aliceblue        Alaska
-6 6       R darkolivegreen          Utah
+  letters         colors         state
+1       K       honeydew      Virginia
+2       W       moccasin    New Jersey
+3       Z          white         Maine
+4       T         purple Massachusetts
+5       Q      aliceblue        Alaska
+6       R darkolivegreen          Utah
 
 $file3.csv
-  X letters          colors    state
-1 1       Y            gold  Florida
-2 2       W         hotpink Illinois
-3 3       P      papayawhip Missouri
-4 4       Z           beige New York
-5 5       N       orangered Virginia
-6 6       H mediumvioletred     Ohio
+  letters          colors    state
+1       Y            gold  Florida
+2       W         hotpink Illinois
+3       P      papayawhip Missouri
+4       Z           beige New York
+5       N       orangered Virginia
+6       H mediumvioletred     Ohio
 
 >  
 >  # So again, this works.
@@ -153,29 +153,29 @@ $file3.csv
 >  bar <- Reduce(rbind, foo)
 > 
 >  bar
-   X letters          colors         state
-1  1       Y        navyblue      Colorado
-2  2       H       lightblue   Mississippi
-3  3       T         oldlace      Nebraska
-4  4       O            snow         Texas
-5  5       L   darkslategray   Connecticut
-6  6       P    lemonchiffon       Vermont
-7  7       C       slategray     Tennessee
-8  8       M             tan      Arkansas
-9  1       K        honeydew      Virginia
-10 2       W        moccasin    New Jersey
-11 3       Z           white         Maine
-12 4       T          purple Massachusetts
-13 5       Q       aliceblue        Alaska
-14 6       R  darkolivegreen          Utah
-15 1       Y            gold       Florida
-16 2       W         hotpink      Illinois
-17 3       P      papayawhip      Missouri
-18 4       Z           beige      New York
-19 5       N       orangered      Virginia
-20 6       H mediumvioletred          Ohio
+   letters          colors         state
+1        Y        navyblue      Colorado
+2        H       lightblue   Mississippi
+3        T         oldlace      Nebraska
+4        O            snow         Texas
+5        L   darkslategray   Connecticut
+6        P    lemonchiffon       Vermont
+7        C       slategray     Tennessee
+8        M             tan      Arkansas
+9        K        honeydew      Virginia
+10       W        moccasin    New Jersey
+11       Z           white         Maine
+12       T          purple Massachusetts
+13       Q       aliceblue        Alaska
+14       R  darkolivegreen          Utah
+15       Y            gold       Florida
+16       W         hotpink      Illinois
+17       P      papayawhip      Missouri
+18       Z           beige      New York
+19       N       orangered      Virginia
+20       H mediumvioletred          Ohio
 > 
 > 
 > proc.time()
    user  system elapsed 
-  0.280   0.046   0.297 
+  0.279   0.049   0.300 

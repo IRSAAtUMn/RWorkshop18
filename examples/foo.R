@@ -32,7 +32,7 @@
  files <- paste("file", seq(along = foo), ".csv", sep = "")
  files
  for (i in seq(along = foo))
-     write.csv(foo[[i]], file = files[i])
+     write.csv(foo[[i]], file = files[i], row.names = FALSE)
 
  rm(list = ls())
  ls()
