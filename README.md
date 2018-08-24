@@ -1,5 +1,14 @@
 # RWorkshop18
 
+For non-authors:
+
+The HTML for the course is at https://IRSAAtUMn.github.io/RWorkshop18.
+
+The example for the question about how to paste together many data frames
+into one is in the folder [examples](examples).
+
+For authors:
+
 Post all workshop materials here.  
 
 In order to collate the materials into a single git book, you can simply drop your Rmd files (and any supporting images, etc) OUTSIDE the docs folder.  Someone will put these into the book later.  Or, if you're comfortable with R bookdown, read the steps below.
