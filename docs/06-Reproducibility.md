@@ -176,24 +176,29 @@ sessionInfo()
 
 ```
 ## R version 3.5.1 (2018-07-02)
-## Platform: x86_64-apple-darwin15.6.0 (64-bit)
-## Running under: macOS High Sierra 10.13.6
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 18.04.1 LTS
 ## 
 ## Matrix products: default
-## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+## BLAS: /home/geyer/local/current/lib/R/lib/libRblas.so
+## LAPACK: /home/geyer/local/current/lib/R/lib/libRlapack.so
 ## 
 ## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] compiler_3.5.1  backports_1.1.2 bookdown_0.7    magrittr_1.5   
-##  [5] rprojroot_1.3-2 tools_3.5.1     htmltools_0.3.6 Rcpp_0.12.16   
-##  [9] stringi_1.2.2   rmarkdown_1.9   knitr_1.20      xfun_0.2       
-## [13] stringr_1.3.0   digest_0.6.15   evaluate_0.10.1
+##  [5] rprojroot_1.3-2 tools_3.5.1     htmltools_0.3.6 Rcpp_0.12.18   
+##  [9] stringi_1.2.4   rmarkdown_1.10  knitr_1.20      xfun_0.3       
+## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.11
 ```
 
 
@@ -346,7 +351,8 @@ Load all data in one spot. Again, if you are loading through the interface windo
 
 Use sections in R Studio to organize and quickly navigate your code. Press cmd-shift-R on a Mac or cntrl-shift-R on a PC to insert a section. 
 
-<img src="images/rscriptsections.jpg" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{images/rscriptsections} \end{center}
 
 \
 
@@ -397,7 +403,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 96 12 21 47 73 74 24 98 88 46
+##  [1] 59 94 79 98 52 35  9 29 62 95
 ```
 
 ```r
@@ -405,7 +411,7 @@ sample(1:100, size=10)
 ```
 
 ```
-##  [1] 74 25 75 57 90 94 32 54 65 31
+##  [1] 40 61 11 96 57 82 85 49 62 99
 ```
 
 ```r

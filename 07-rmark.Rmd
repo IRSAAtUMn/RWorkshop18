@@ -55,7 +55,7 @@ that contain R computations and graphics.
 
 Markdown is fast becoming an internet standard for "easy" markup.
 
-![xkcd:927 Standards](https://imgs.xkcd.com/comics/standards.png){title="Fortunately, the charging one has been solved now that we&#39;ve all standardized on mini-USB. Or is it micro-USB? Shit."}
+![xkcd:927 Standards](images/standards.png){title="Fortunately, the charging one has been solved now that we&#39;ve all standardized on mini-USB. Or is it micro-USB? Shit."}
 
 Markdown is way too simple to replace HTML or LaTeX, but it gets the job
 done, even if the result isn't as pretty as one might like.

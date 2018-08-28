@@ -366,10 +366,21 @@ Equivalently, our model could be written as
 \ \dfrac{p_i}{1-p_i}  = \exp(-9.35) \; \exp \left( 0.0008337917 \; \text{weight}_i \right) \; \exp \left( 0.3067892044 \; \text{width}_i \right) .
 \]
 
-The exponentiated regression coefficients tell us the following:
+The exponentiated regression coefficients 
+
+```r
+round(exp(coef(multimod)),3)
+```
+
+```
+## (Intercept)      weight       width 
+##       0.000       1.001       1.359
+```
+
+tell us the following:
 
 * Holding weight constant, a one centimeter increase in carapace width is associated with a 1.359 multiplicative change in the odds of having satellites.
-* Holding carapace width constant, a one gram increase in weight is associated with a .000834 multiplicative change in the odds of having satellites.
+* Holding carapace width constant, a one gram increase in weight is associated with a 1.001 multiplicative change in the odds of having satellites.
 
 Of course, a one gram increase in weight is practically imperceptible. Let's instead consider a 100 gram increase in weight.
 
@@ -382,7 +393,7 @@ exp(beta1 * 100)
 ##   weight 
 ## 1.086954
 ```
-Holding carapace width constant, a one gram increase in weight is associated with a 1.0869539 multiplicative change in the odds of having satellites.
+Holding carapace width constant, a 100 gram increase in weight is associated with a 1.087 multiplicative change in the odds of having satellites.
 
 ### Test a Regression Coefficient (Again!) 
 

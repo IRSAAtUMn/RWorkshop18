@@ -13,11 +13,11 @@ Attribution-ShareAlike 4.0 International License
 
  * The version of R used to make this document is 3.5.1.
 
- * The version of the `rmarkdown` package used to make this document is 1.9.
+ * The version of the `rmarkdown` package used to make this document is 1.10.
 
  * The version of the `knitr` package used to make this document is 1.20.
 
- * The version of the `ggplot2` package used to make this document is 2.2.1.
+ * The version of the `ggplot2` package used to make this document is 3.0.0.
 
 
 ```r
@@ -57,7 +57,7 @@ that contain R computations and graphics.
 
 Markdown is fast becoming an internet standard for "easy" markup.
 
-![xkcd:927 Standards](https://imgs.xkcd.com/comics/standards.png){title="Fortunately, the charging one has been solved now that we&#39;ve all standardized on mini-USB. Or is it micro-USB? Shit."}
+![xkcd:927 Standards](images/standards.png){title="Fortunately, the charging one has been solved now that we&#39;ve all standardized on mini-USB. Or is it micro-USB? Shit."}
 
 Markdown is way too simple to replace HTML or LaTeX, but it gets the job
 done, even if the result isn't as pretty as one might like.
@@ -112,10 +112,14 @@ ggplot(mydata, aes(x)) +
     stat_function(fun = dnorm, color = "maroon")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07-rmark_files/figure-html/histogram-1.png" alt="Histogram with probability density function." width="672" />
-<p class="caption">(\#fig:histogram)Histogram with probability density function.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics{07-rmark_files/figure-latex/histogram-1} 
+
+}
+
+\caption{Histogram with probability density function.}(\#fig:histogram)
+\end{figure}
 Every time the document is generated, this figure is different because the
 random sample produced by `rnorm(1000)` is different.  (If I wanted it to
 be the same, I could uncomment the `set.seed(42)` statement.)
@@ -393,18 +397,18 @@ summary(out1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -34.542 -12.541  -2.909  11.039  35.277 
+## -35.101 -13.966   0.544  11.578  49.270 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   -3.079      5.304  -0.581    0.564    
-## x              1.766      0.181   9.758 5.61e-13 ***
+## (Intercept)  -4.4734     5.2804  -0.847    0.401    
+## x             1.6878     0.1802   9.365 2.07e-12 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 18.47 on 48 degrees of freedom
-## Multiple R-squared:  0.6649,	Adjusted R-squared:  0.6579 
-## F-statistic: 95.22 on 1 and 48 DF,  p-value: 5.609e-13
+## Residual standard error: 18.39 on 48 degrees of freedom
+## Multiple R-squared:  0.6463,	Adjusted R-squared:  0.6389 
+## F-statistic: 87.71 on 1 and 48 DF,  p-value: 2.073e-12
 ```
 
 #### Figure with Code to Make It Shown
@@ -417,10 +421,14 @@ ggplot(mydata, aes(x = x, y = y)) + geom_point() +
     geom_smooth(method = "lm")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07-rmark_files/figure-html/regression-1.png" alt="Simple Linear Regression" width="672" />
-<p class="caption">(\#fig:regression)Simple Linear Regression</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics{07-rmark_files/figure-latex/regression-1} 
+
+}
+
+\caption{Simple Linear Regression}(\#fig:regression)
+\end{figure}
 Here we use the chunk options
 `fig.align='center', fig.cap='Simple Linear Regression'`
 to center the figure and to get the figure legend.
@@ -443,25 +451,29 @@ summary(out3)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -33.938 -12.855  -1.553  13.006  34.067 
+## -32.964 -11.329   0.284  10.870  49.238 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(>|t|)
-## (Intercept)  5.0945898 11.4398958   0.445    0.658
-## x            0.3934269  1.9234250   0.205    0.839
-## I(x^2)       0.0525337  0.0871703   0.603    0.550
-## I(x^3)      -0.0005617  0.0011242  -0.500    0.620
+## (Intercept)  0.5539695 11.2994060   0.049    0.961
+## x            1.3513867  1.8998041   0.711    0.480
+## I(x^2)      -0.0079246  0.0860998  -0.092    0.927
+## I(x^3)       0.0003185  0.0011104   0.287    0.776
 ## 
-## Residual standard error: 18.73 on 46 degrees of freedom
-## Multiple R-squared:  0.6699,	Adjusted R-squared:  0.6484 
-## F-statistic: 31.12 on 3 and 46 DF,  p-value: 3.862e-11
+## Residual standard error: 18.5 on 46 degrees of freedom
+## Multiple R-squared:  0.6571,	Adjusted R-squared:  0.6347 
+## F-statistic: 29.38 on 3 and 46 DF,  p-value: 9.17e-11
 ```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
-<div class="figure" style="text-align: center">
-<img src="07-rmark_files/figure-html/cubic-1.png" alt="Scatter Plot with Cubic Regression Curve" width="672" />
-<p class="caption">(\#fig:cubic)Scatter Plot with Cubic Regression Curve</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics{07-rmark_files/figure-latex/cubic-1} 
+
+}
+
+\caption{Scatter Plot with Cubic Regression Curve}(\#fig:cubic)
+\end{figure}
 
 This plot is made by a hidden code chunk that uses the option `echo=FALSE`
 in addition to `fig.align` and `fig.caption` that were also used in the
@@ -483,9 +495,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
-$0.0525337$
+$-0.0079246$
 and
-$-5.6174179\times 10^{-4}$.
+$3.1845976\times 10^{-4}$.
 Magic!
 
 See the source for this document to see how the magic works.
@@ -515,9 +527,9 @@ anova(out1, out2, out3)
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
 ##   Res.Df   RSS Df Sum of Sq      F Pr(>F)
-## 1     48 16376                           
-## 2     47 16218  1   158.368 0.4516 0.5049
-## 3     46 16130  1    87.553 0.2497 0.6197
+## 1     48 16233                           
+## 2     47 15765  1    468.15 1.3684 0.2481
+## 3     46 15737  1     28.14 0.0823 0.7756
 ```
 
 We want to turn that into a table in output format we are creating.
@@ -535,14 +547,22 @@ class(foo)
 So now we are ready to turn the data frame `foo` into a table
 and the simplest way to do that seems to be the `kable` option on
 our R chunk
+\begin{table}
 
-Table: (\#tab:kable)ANOVA Table
-
- Res.Df       RSS   Df   Sum of Sq       F   Pr(>F)
--------  --------  ---  ----------  ------  -------
-     48   16376.3                                  
-     47   16217.9    1      158.37   0.452    0.505
-     46   16130.4    1       87.55   0.250    0.620
+\caption{(\#tab:kable)ANOVA Table}
+\centering
+\begin{tabular}[t]{r|r|r|r|r|r}
+\hline
+Res.Df & RSS & Df & Sum of Sq & F & Pr(>F)\\
+\hline
+48 & 16232.9 &  &  &  & \\
+\hline
+47 & 15764.8 & 1 & 468.15 & 1.368 & 0.248\\
+\hline
+46 & 15736.6 & 1 & 28.14 & 0.082 & 0.776\\
+\hline
+\end{tabular}
+\end{table}
 
 ## LaTeX Math
 

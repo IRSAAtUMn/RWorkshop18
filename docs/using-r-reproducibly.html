@@ -447,24 +447,29 @@ To ensure your code can be run in long after your current laptop is functioning,
 Capturing your session info does a lot of this for you:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
 <pre><code>## R version 3.5.1 (2018-07-02)
-## Platform: x86_64-apple-darwin15.6.0 (64-bit)
-## Running under: macOS High Sierra 10.13.6
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 18.04.1 LTS
 ## 
 ## Matrix products: default
-## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+## BLAS: /home/geyer/local/current/lib/R/lib/libRblas.so
+## LAPACK: /home/geyer/local/current/lib/R/lib/libRlapack.so
 ## 
 ## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] compiler_3.5.1  backports_1.1.2 bookdown_0.7    magrittr_1.5   
-##  [5] rprojroot_1.3-2 tools_3.5.1     htmltools_0.3.6 Rcpp_0.12.16   
-##  [9] stringi_1.2.2   rmarkdown_1.9   knitr_1.20      xfun_0.2       
-## [13] stringr_1.3.0   digest_0.6.15   evaluate_0.10.1</code></pre>
+##  [5] rprojroot_1.3-2 tools_3.5.1     htmltools_0.3.6 Rcpp_0.12.18   
+##  [9] stringi_1.2.4   rmarkdown_1.10  knitr_1.20      xfun_0.3       
+## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.11</code></pre>
 </div>
 <div id="document-your-analysis" class="section level3">
 <h3><span class="header-section-number">6.2.5</span> Document your analysis</h3>
@@ -597,9 +602,9 @@ djm1</code></pre></div>
 Set seed when doing any random number generations</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#take a random sample twice</span>
 <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">size=</span><span class="dv">10</span>)</code></pre></div>
-<pre><code>##  [1] 96 12 21 47 73 74 24 98 88 46</code></pre>
+<pre><code>##  [1] 64 81 21 79 76 56 62 77 13 86</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">size=</span><span class="dv">10</span>)</code></pre></div>
-<pre><code>##  [1] 74 25 75 57 90 94 32 54 65 31</code></pre>
+<pre><code>##  [1] 83 38 30 64 52 51 63 45 22 74</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#set seed before hand to ensure the random numbers are consistent</span>
 <span class="kw">set.seed</span>(<span class="dt">seed=</span><span class="dv">42</span>)
 <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">size=</span><span class="dv">10</span>)</code></pre></div>

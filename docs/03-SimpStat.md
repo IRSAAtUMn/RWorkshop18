@@ -119,7 +119,7 @@ ggplot(beer, aes(x = Style, y = ABV)) +
   geom_boxplot()
 ```
 
-<img src="03-SimpStat_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+![](03-SimpStat_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
 
 There is, of course, more than one way to achieve this task!  For example, we can also make boxplots using the `boxplot()` function in "base R".  The **brewer.pal** function in the *RColorBrewer* package creates [ColorBrewer palettes](http://ColorBrewer.org) for plotting
 
@@ -135,7 +135,9 @@ boxplot(ABV ~ Style, data = beer, ylab = "Alcohol By Volume (ABV)",
         main = "Alcohol by Style of Beer", col = MyColors)
 ```
 
-<img src="03-SimpStat_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-SimpStat_files/figure-latex/unnamed-chunk-9-1} \end{center}
 
 
 Further, we can plot the relationship between `ABV` and `IBU` by `Style`:
@@ -147,7 +149,7 @@ ggplot(beer, aes(x = IBU, y = ABV, color = Style)) +
   geom_point()
 ```
 
-<img src="03-SimpStat_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+![](03-SimpStat_files/figure-latex/unnamed-chunk-10-1.pdf)<!-- --> 
 
 Alternatively, we can use the **plot()** function:    
 
@@ -161,7 +163,9 @@ legend("bottomright", legend = levels(beer$Style), pch = 15:17,
        col = MyColors, bty = "n")
 ```
 
-<img src="03-SimpStat_files/figure-html/beercolors-1.png" width="480" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-SimpStat_files/figure-latex/beercolors-1} \end{center}
 
 R has functions for saving plots to various figure formats:
 
@@ -439,15 +443,22 @@ library(knitr)
 kable(rtab1, caption = "Table 1: Sample size (n) and variable means and standard deviations (SD) for each style of beer.")
 ```
 
+\begin{table}
 
-
-Table: (\#tab:unnamed-chunk-29)Table 1: Sample size (n) and variable means and standard deviations (SD) for each style of beer.
-
-          n   ABV.Mean   ABV.SD   IBU.Mean   IBU.SD   Rating.Mean   Rating.SD
-------  ---  ---------  -------  ---------  -------  ------------  ----------
-Ale      18       5.49     0.67      39.00    12.28         86.83        3.50
-IPA      17       6.56     0.46      73.53    10.59         88.18        4.54
-Lager     9       5.06     0.35      32.78    12.58         86.00        1.87
+\caption{(\#tab:unnamed-chunk-29)Table 1: Sample size (n) and variable means and standard deviations (SD) for each style of beer.}
+\centering
+\begin{tabular}[t]{l|r|r|r|r|r|r|r}
+\hline
+  & n & ABV.Mean & ABV.SD & IBU.Mean & IBU.SD & Rating.Mean & Rating.SD\\
+\hline
+Ale & 18 & 5.49 & 0.67 & 39.00 & 12.28 & 86.83 & 3.50\\
+\hline
+IPA & 17 & 6.56 & 0.46 & 73.53 & 10.59 & 88.18 & 4.54\\
+\hline
+Lager & 9 & 5.06 & 0.35 & 32.78 & 12.58 & 86.00 & 1.87\\
+\hline
+\end{tabular}
+\end{table}
 
 
 ## Student's t-Test in R
@@ -668,7 +679,7 @@ ggplot(beer, aes(x = Style, y = IBU)) +
   geom_boxplot()
 ```
 
-<img src="03-SimpStat_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+![](03-SimpStat_files/figure-latex/unnamed-chunk-37-1.pdf)<!-- --> 
 
 ```r
 #3) Make a scatterplot of the ABV (x-axis) by Rating (y-axis).
@@ -677,7 +688,7 @@ ggplot(beer, aes(x = ABV, y = Rating)) +
   geom_point()
 ```
 
-<img src="03-SimpStat_files/figure-html/unnamed-chunk-37-2.png" width="672" />
+![](03-SimpStat_files/figure-latex/unnamed-chunk-37-2.pdf)<!-- --> 
 
 ```r
 #4) Calculate some descriptive statistics for the IBU variable.

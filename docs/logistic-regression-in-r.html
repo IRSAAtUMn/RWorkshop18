@@ -545,17 +545,21 @@ election<span class="op">$</span>Red &lt;-<span class="st"> </span><span class="
 <p><span class="math display">\[
 \ \dfrac{p_i}{1-p_i}  = \exp(-9.35) \; \exp \left( 0.0008337917 \; \text{weight}_i \right) \; \exp \left( 0.3067892044 \; \text{width}_i \right) .
 \]</span></p>
-<p>The exponentiated regression coefficients tell us the following:</p>
+<p>The exponentiated regression coefficients</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">exp</span>(<span class="kw">coef</span>(multimod)),<span class="dv">3</span>)</code></pre></div>
+<pre><code>## (Intercept)      weight       width 
+##       0.000       1.001       1.359</code></pre>
+<p>tell us the following:</p>
 <ul>
 <li>Holding weight constant, a one centimeter increase in carapace width is associated with a 1.359 multiplicative change in the odds of having satellites.</li>
-<li>Holding carapace width constant, a one gram increase in weight is associated with a .000834 multiplicative change in the odds of having satellites.</li>
+<li>Holding carapace width constant, a one gram increase in weight is associated with a 1.001 multiplicative change in the odds of having satellites.</li>
 </ul>
 <p>Of course, a one gram increase in weight is practically imperceptible. Let’s instead consider a 100 gram increase in weight.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beta1 &lt;-<span class="st"> </span><span class="kw">coef</span>(multimod)[<span class="dv">2</span>]
 <span class="kw">exp</span>(beta1 <span class="op">*</span><span class="st"> </span><span class="dv">100</span>)</code></pre></div>
 <pre><code>##   weight 
 ## 1.086954</code></pre>
-<p>Holding carapace width constant, a one gram increase in weight is associated with a 1.0869539 multiplicative change in the odds of having satellites.</p>
+<p>Holding carapace width constant, a 100 gram increase in weight is associated with a 1.087 multiplicative change in the odds of having satellites.</p>
 </div>
 <div id="test-a-regression-coefficient-again" class="section level3">
 <h3><span class="header-section-number">5.4.4</span> Test a Regression Coefficient (Again!)</h3>

@@ -27,6 +27,7 @@ output:
         weibo: no
         instapper: no
         vk: no  
+  bookdown::pdf_book: default
 documentclass: book
 github-repo: IRSAAtUMn/RWorkshop18/docs
 ---

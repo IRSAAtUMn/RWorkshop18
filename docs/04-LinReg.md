@@ -170,7 +170,7 @@ ggplot(beer, aes(x = IBU, y = ABV)) +
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-<img src="04-LinReg_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+![](04-LinReg_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
 
 ```r
 # With "standard error bars"
@@ -179,7 +179,7 @@ ggplot(beer, aes(x = IBU, y = ABV)) +
   geom_smooth(method = "lm", se = TRUE)
 ```
 
-<img src="04-LinReg_files/figure-html/unnamed-chunk-9-2.png" width="672" />
+![](04-LinReg_files/figure-latex/unnamed-chunk-9-2.pdf)<!-- --> 
 
 ```
 
@@ -193,7 +193,9 @@ plot(beer$ABV, beer$Rating, xlab = "Alcohol By Volume",
 abline(mod)
 ```
 
-<img src="04-LinReg_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{04-LinReg_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
 
 ### Diagnostic and Influence Plots
@@ -204,7 +206,21 @@ R makes it really easy to create simple diagnostic and influence plots for a fit
 plot(mod)
 ```
 
-<img src="04-LinReg_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-11-2.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-11-3.png" width="480" style="display: block; margin: auto;" /><img src="04-LinReg_files/figure-html/unnamed-chunk-11-4.png" width="480" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{04-LinReg_files/figure-latex/unnamed-chunk-11-1} \end{center}
+
+
+
+\begin{center}\includegraphics{04-LinReg_files/figure-latex/unnamed-chunk-11-2} \end{center}
+
+
+
+\begin{center}\includegraphics{04-LinReg_files/figure-latex/unnamed-chunk-11-3} \end{center}
+
+
+
+\begin{center}\includegraphics{04-LinReg_files/figure-latex/unnamed-chunk-11-4} \end{center}
 
 
 ### Prediction for New Data
@@ -315,7 +331,7 @@ ggplot(beer, aes(x = ABV, y = Rating)) +
   geom_smooth(method = "lm", se = TRUE)
 ```
 
-<img src="04-LinReg_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+![](04-LinReg_files/figure-latex/unnamed-chunk-16-1.pdf)<!-- --> 
 
 ```r
 # Prediction intervals
@@ -327,7 +343,7 @@ ggplot(beer, aes(x = ABV, y = Rating)) +
   geom_ribbon(data = newfitPI, aes(x = ABV, y = fit, ymin = lwr, ymax = upr), fill = "blue", alpha = 0.2) 
 ```
 
-<img src="04-LinReg_files/figure-html/unnamed-chunk-16-2.png" width="672" />
+![](04-LinReg_files/figure-latex/unnamed-chunk-16-2.pdf)<!-- --> 
 
 Or:
 
@@ -346,7 +362,9 @@ legend("bottomright", lty = 1:3, legend = c("fit", "95% CI", "95% PI"),
        col = c("black", "blue", "red"), bty = "n")
 ```
 
-<img src="04-LinReg_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{04-LinReg_files/figure-latex/unnamed-chunk-17-1} \end{center}
 
 
 ## Multiple Linear Regression
@@ -582,7 +600,7 @@ ggplot(beer, aes(x = IBU, y = Rating)) +
   geom_point()
 ```
 
-<img src="04-LinReg_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+![](04-LinReg_files/figure-latex/unnamed-chunk-26-1.pdf)<!-- --> 
 
 ```r
 # 3: Fit a simple linear regression model predicting Rating from IBU
@@ -634,7 +652,7 @@ ggplot(beer, aes(x = IBU, y = Rating)) +
   geom_smooth(method = "lm", se = TRUE)
 ```
 
-<img src="04-LinReg_files/figure-html/unnamed-chunk-26-2.png" width="672" />
+![](04-LinReg_files/figure-latex/unnamed-chunk-26-2.pdf)<!-- --> 
 
 ```r
 # prediction bands (this code = yuck)
@@ -653,7 +671,7 @@ ggplot(beer, aes(x = IBU, y = Rating)) +
 ## Warning: Ignoring unknown aesthetics: y
 ```
 
-<img src="04-LinReg_files/figure-html/unnamed-chunk-26-3.png" width="672" />
+![](04-LinReg_files/figure-latex/unnamed-chunk-26-3.pdf)<!-- --> 
 
 ```r
 #6: Fit a multiple linear regression model predicting Rating from the additive effects of IBU and Brewery.
@@ -736,7 +754,7 @@ ggplot(beer, aes(x = IBU, y = Rating, color = Brewery)) +
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-<img src="04-LinReg_files/figure-html/unnamed-chunk-26-4.png" width="672" />
+![](04-LinReg_files/figure-latex/unnamed-chunk-26-4.pdf)<!-- --> 
 
 ```r
 #8 Considering the models you fit in Ex 3, 7, 8, which do you prefer and why?
