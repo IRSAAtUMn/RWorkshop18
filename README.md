@@ -4,7 +4,8 @@ For non-authors:
 
 The HTML for the course is at https://IRSAAtUMn.github.io/RWorkshop18/.
 
-The PDF for the course is at https://github.com/IRSAAtUMn/RWorkshop18/blob/master/docs/RWorkshop18.pdf.
+The PDF for the course is at
+https://raw.githubusercontent.com/IRSAAtUMn/RWorkshop18/master/docs/RWorkshop18.pdf.
 
 The example for the question about how to paste together many data frames
 into one is in the folder [examples](examples).
