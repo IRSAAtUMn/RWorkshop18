@@ -59,7 +59,7 @@ Markdown is fast becoming an internet standard for "easy" markup.
 
 ![xkcd:927 Standards](images/standards.png){title="Fortunately, the charging one has been solved now that we&#39;ve all standardized on mini-USB. Or is it micro-USB? Shit."}
 
-Markdown is way too simple to replace HTML or LaTeX, but it gets the job
+Markdown is way too simple to replace HTML or LaTeX, but it usually gets the job
 done, even if the result isn't as pretty as one might like.
 
 ## R Markdown
@@ -396,19 +396,19 @@ summary(out1)
 ## lm(formula = y ~ x)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -58.087  -8.457   2.870  12.573  41.063 
+##    Min     1Q Median     3Q    Max 
+## -41.68 -14.12  -2.10  13.48  49.91 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   8.0516     6.2230   1.294    0.202    
-## x             1.2924     0.2124   6.085 1.86e-07 ***
+## (Intercept)   0.7148     5.6654   0.126      0.9    
+## x             1.6742     0.1934   8.659 2.27e-11 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 21.67 on 48 degrees of freedom
-## Multiple R-squared:  0.4355,	Adjusted R-squared:  0.4237 
-## F-statistic: 37.03 on 1 and 48 DF,  p-value: 1.857e-07
+## Residual standard error: 19.73 on 48 degrees of freedom
+## Multiple R-squared:  0.6097,	Adjusted R-squared:  0.6015 
+## F-statistic: 74.97 on 1 and 48 DF,  p-value: 2.266e-11
 ```
 
 #### Figure with Code to Make It Shown
@@ -451,18 +451,20 @@ summary(out3)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -51.688 -11.042   3.798  11.154  37.126 
+## -36.176 -14.798   0.658  12.110  40.669 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)
-## (Intercept) 14.9635099 13.0663787   1.145    0.258
-## x            1.0805831  2.1968906   0.492    0.625
-## I(x^2)      -0.0307443  0.0995639  -0.309    0.759
-## I(x^3)       0.0007654  0.0012840   0.596    0.554
+##              Estimate Std. Error t value Pr(>|t|)  
+## (Intercept) 20.827179  11.779040   1.768   0.0837 .
+## x           -1.589074   1.980446  -0.802   0.4265  
+## I(x^2)       0.120156   0.089755   1.339   0.1872  
+## I(x^3)      -0.001232   0.001158  -1.064   0.2928  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 21.39 on 46 degrees of freedom
-## Multiple R-squared:  0.4731,	Adjusted R-squared:  0.4388 
-## F-statistic: 13.77 on 3 and 46 DF,  p-value: 1.538e-06
+## Residual standard error: 19.28 on 46 degrees of freedom
+## Multiple R-squared:  0.6428,	Adjusted R-squared:  0.6195 
+## F-statistic: 27.59 on 3 and 46 DF,  p-value: 2.327e-10
 ```
 Then we plot this figure with a hidden code chunk (so the R commands
 to make it do not appear in the document).
@@ -495,9 +497,9 @@ R printout.
 Here we show how to do that.
 The quadratic and cubic regression coefficients
 in the preceding regression were
-$-0.0307443$
+$0.120156$
 and
-$7.6538278\times 10^{-4}$.
+$-0.0012319$.
 Magic!
 
 See the source for this document to see how the magic works.
@@ -527,9 +529,9 @@ anova(out1, out2, out3)
 ## Model 2: y ~ x + I(x^2)
 ## Model 3: y ~ x + I(x^2) + I(x^3)
 ##   Res.Df   RSS Df Sum of Sq      F  Pr(>F)  
-## 1     48 22546                              
-## 2     47 21206  1   1339.78 2.9287 0.09375 .
-## 3     46 21043  1    162.54 0.3553 0.55405  
+## 1     48 18686                              
+## 2     47 17522  1   1163.70 3.1302 0.08348 .
+## 3     46 17101  1    421.06 1.1326 0.29277  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -557,11 +559,11 @@ our R chunk
 \hline
 Res.Df & RSS & Df & Sum of Sq & F & Pr(>F)\\
 \hline
-48 & 22545.5 &  &  &  & \\
+48 & 18685.7 &  &  &  & \\
 \hline
-47 & 21205.7 & 1 & 1339.78 & 2.929 & 0.094\\
+47 & 17522.0 & 1 & 1163.70 & 3.130 & 0.083\\
 \hline
-46 & 21043.2 & 1 & 162.54 & 0.355 & 0.554\\
+46 & 17101.0 & 1 & 421.06 & 1.133 & 0.293\\
 \hline
 \end{tabular}
 \end{table}
