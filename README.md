@@ -23,19 +23,20 @@ In order to collate the materials into a single git book, you can simply drop yo
 
 3. Create an Rmd for your chapter of the book.  The file should be saved OUTSIDE the docs folder and start with a number that indicates its order in the book.  For example the first Intro to R chapter is named "01-IntroToR.Rmd".
 
-4. "Build the book" by knitting the index file.   This will update the files in the "docs" folder of your project.    
+4. "Build the book" by knitting the index file.   This will update the
+   files in the "docs" folder of your project.
 
-In order to build both HTML and PDF you will need to install R package
-`webshot` which requires the system library `PhantomJS` (in addition,
-of course, to having R packages `knitr`, `rmarkdown`, and `bookdown`).
-The web page https://bookdown.org/yihui/bookdown/html-widgets.html suggests
-doing this with
+   In order to build both HTML and PDF you will need to install R package
+   `webshot` which requires the system library `PhantomJS` (in addition,
+   of course, to having R packages `knitr`, `rmarkdown`, and `bookdown`).
+   The web page https://bookdown.org/yihui/bookdown/html-widgets.html suggests
+   doing this with
 
-    install.packages("webshot")
-    webshot::install_phantomjs()
+       install.packages("webshot")
+       webshot::install_phantomjs()
 
-one can also install PhantomJS in the preferred way for you operating
-system (on Ubuntu find PhantomJS in synaptic and install it).
+   one can also install PhantomJS in the preferred way for you operating
+   system (on Ubuntu find PhantomJS in synaptic and install it).
 
 5. Push changes to github.  It may take as long as 10 minutes for the
 GitHub Pages to update so that the github.io site reflects the changes.
